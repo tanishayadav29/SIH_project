@@ -507,13 +507,155 @@
         <iframe class="w-full h-96 rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14687.57008539462!2d85.321!3d23.3441" allowfullscreen></iframe>
     </section>
 
+  <!-- Itinerary Section -->
     <section id="itinerary" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-4">AI-based Itinerary (Demo)</h2>
-        <label class="block mb-2">Enter days:</label>
-        <input id="days" type="number" min="1" max="7" value="3" class="border rounded p-2 mb-4 w-24" />
-        <button onclick="generatePlan()" class="bg-emerald-600 text-white px-4 py-2 rounded">Generate</button>
-        <ul id="plan" class="mt-4 space-y-2"></ul>
+        <h2 class="text-2xl font-bold mb-4">AI-based Itinerary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow space-y-3">
+                <label class="block">Destination
+                    <select id="destSel" class="border rounded p-2 w-full mt-1">
+                        <option>Explore Jharkhand (General)</option>
+                        <option>Ranchi & Surroundings</option>
+                        <option>Deoghar Pilgrimage Circuit</option>
+                        <option>Netarhat Hill Station</option>
+                        <option>Betla National Park</option>
+                        <option>Tribal Villages & Culture</option>
+                        <option>Waterfalls Circuit</option>
+                        <option>Custom Destination</option>
+                    </select>
+                    <input id="destCustom" class="border rounded p-2 w-full mt-2 hidden" placeholder="Specify your destination" />
+                </label>
+                <label class="block">Month
+                    <select id="month" class="border rounded p-2 w-full mt-1">
+                        <option>January</option><option>February</option><option>March</option><option>April</option>
+                        <option>May</option><option>June</option><option>July</option><option>August</option>
+                        <option>September</option><option>October</option><option>November</option><option>December</option>
+                    </select>
+                </label>
+                <label class="block">Duration (days)
+                    <input id="duration" type="number" min="1" max="30" value="7" class="border rounded p-2 w-full mt-1" />
+                </label>
+                <label class="block">People
+                    <select id="people" class="border rounded p-2 w-full mt-1">
+                        <option>1</option><option>2</option><option>3</option><option>4-6</option><option>7-10</option><option>10+</option>
+                    </select>
+                </label>
+                <label class="block">Tourism Type
+                    <select id="tourism" class="border rounded p-2 w-full mt-1">
+                        <option>Eco-Tourism & Nature</option>
+                        <option>Tribal Culture & Heritage</option>
+                        <option>Pilgrimage & Spiritual</option>
+                        <option>Adventure & Trekking</option>
+                        <option>Mixed Experience</option>
+                        <option>Photography & Wildlife</option>
+                    </select>
+                </label>
+                <label class="block">Tribal Interest
+                    <select id="tribal" class="border rounded p-2 w-full mt-1">
+                        <option>Low</option><option selected>Medium</option><option>High</option><option>Very High</option>
+                    </select>
+                </label>
+                <label class="block">Mobility Level
+                    <select id="mobility" class="border rounded p-2 w-full mt-1">
+                        <option>Easy (No trekking)</option>
+                        <option>Moderate (Light walking)</option>
+                        <option>Active (Moderate trekking)</option>
+                        <option>Adventure (Challenging treks)</option>
+                    </select>
+                </label>
+                <label class="block">Accommodation
+                    <select id="accommodation" class="border rounded p-2 w-full mt-1">
+                        <option>Homestays (Tribal villages)</option>
+                        <option>Eco-lodges & Nature stays</option>
+                        <option>Hotels & Resorts</option>
+                        <option>Mixed (Homestays + Hotels)</option>
+                        <option>Budget-friendly options</option>
+                    </select>
+                </label>
+                <label class="block">Language
+                    <select id="language" class="border rounded p-2 w-full mt-1">
+                        <option>English</option>
+                        <option>Hindi</option>
+                        <option>English + Hindi</option>
+                        <option>Local languages welcome</option>
+                    </select>
+                </label>
+                <label class="block">Budget
+                    <select id="budget" class="border rounded p-2 w-full mt-1">
+                        <option>Budget (₹500-1500/day)</option>
+                        <option>Mid-Range (₹1500-3000/day)</option>
+                        <option>Comfortable (₹3000-5000/day)</option>
+                        <option>Luxury (₹5000+/day)</option>
+                    </select>
+                </label>
+                <label class="block">Special Interests (comma separated)
+                    <input id="interests" class="border rounded p-2 w-full mt-1" placeholder="Wildlife photography, Handicraft workshops" />
+                </label>
+                <label class="block">Comments
+                    <textarea id="comments" class="border rounded p-2 w-full mt-1" rows="2"></textarea>
+                </label>
+                <button id="generateBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Itinerary</button>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-semibold mb-2">Result</h3>
+                <div id="itineraryResult" class="prose max-w-none whitespace-pre-wrap text-sm"></div>
+                <div id="errorBox" class="hidden mt-2 p-2 bg-red-50 text-red-700 rounded text-sm"></div>
+            </div>
+        </div>
     </section>
+
+    <!-- Marketplace Section -->
+    <section id="marketplace" class="tab-content max-w-7xl mx-auto p-8">
+        <h2 class="text-2xl font-bold mb-6">Marketplace</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-4 rounded shadow">
+                <img src="images/dokra.jpg" class="h-36 w-full object-cover rounded" />
+                <h4 class="mt-2 font-medium">Handmade Dokra</h4>
+                <p class="font-semibold">₹1200</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <img src="images/shawl.jpeg" class="h-36 w-full object-cover rounded" />
+                <h4 class="mt-2 font-medium">Tribal Shawl</h4>
+                <p class="font-semibold">₹800</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics" class="tab-content max-w-7xl mx-auto p-8">
+        <h2 class="text-2xl font-bold mb-6">Analytics Dashboard (Mock)</h2>
+        <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="p-4 bg-white rounded shadow">Visitors: 12.4K</div>
+            <div class="p-4 bg-white rounded shadow">Bookings: 1.2K</div>
+            <div class="p-4 bg-white rounded shadow">Avg Stay: 2.8d</div>
+            <div class="p-4 bg-white rounded shadow">Sentiment: +68%</div>
+        </div>
+    </section>
+
+    <!-- User Section -->
+    <section id="user" class="tab-content max-w-7xl mx-auto p-8">
+        <h2 class="text-2xl font-bold mb-6">User Dashboard</h2>
+        <div class="bg-white p-6 rounded shadow space-y-4">
+            <label class="block"><strong>User Name:</strong>
+                <input id="username" class="border rounded p-2 w-full mt-1" type="text">
+            </label>
+            <label class="block"><strong>User ID:</strong>
+                <input id="userid" class="border rounded p-2 w-full mt-1" type="text" disabled>
+            </label>
+            <label class="block"><strong>Email:</strong>
+                <input id="email" class="border rounded p-2 w-full mt-1" type="email">
+            </label>
+            <button onclick="saveUser()" class="bg-emerald-600 text-white px-4 py-2 rounded mt-2">Save</button>
+            <hr>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-gray-100 p-4 rounded shadow">Upcoming Trip: Betla Safari</div>
+                <div class="bg-gray-100 p-4 rounded shadow">Saved: Netarhat Sunrise</div>
+                <div class="bg-gray-100 p-4 rounded shadow">Past Bookings</div>
+                <div class="bg-gray-100 p-4 rounded shadow">Feedback & Reviews</div>
+            </div>
+        </div>
+    </section>
+    </main>
 
     <section id="marketplace" class="tab-content max-w-7xl mx-auto p-8">
         <h2 class="text-2xl font-bold mb-6">Marketplace</h2>
