@@ -93,6 +93,18 @@
             background: #059669;
             border-radius: 9999px;
         }
+        .heading-main {
+            font-weight: 700;
+            font-size: clamp(1.75rem, 1.2rem + 1.2vw, 2.25rem);
+            line-height: 1.2;
+            color: #0f172a;
+        }
+        .heading-sub {
+            font-weight: 600;
+            font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+            line-height: 1.3;
+            color: #111827;
+        }
         .card-soft {
             border: 1px solid #e5e7eb;
             box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08);
@@ -118,19 +130,19 @@
 <body>
 
     <nav class="bg-white shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-3 gap-2">
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-4 shrink-0">
                     <img src="images/betla.jpg" alt="emblem" class="w-10 h-10 rounded-full" />
-                    <span class="font-bold text-lg">Jharkhand 360</span>
+                    <span class="font-bold text-xl md:text-2xl">Jharkhand 360</span>
                 </div>
-                <div class="flex gap-3 flex-nowrap md:flex-wrap overflow-x-auto no-scrollbar">
+                <div class="flex-1 min-w-0 flex gap-3 flex-nowrap md:flex-wrap overflow-x-auto no-scrollbar items-center justify-end">
                     <button onclick="openTab('home', this)" class="tab-btn px-3 py-2 rounded active">Home</button>
                     <button onclick="openTab('destinations', this)" class="tab-btn px-3 py-2 rounded">Destinations</button>
                     <button onclick="openTab('culture', this)" class="tab-btn px-3 py-2 rounded">Culture</button>
                     <button onclick="openTab('map', this)" class="tab-btn px-3 py-2 rounded">Map</button>
                     <button onclick="openTab('itinerary', this)" class="tab-btn px-3 py-2 rounded">Trip Planner</button>
-                    <button onclick="openTab('marketplace', this)" class="tab-btn px-3 py-2 rounded">Marketplace</button>
+                    <button onclick="openTab('marketplace', this)" class="tab-btn px-3 py-2 rounded">Local Market</button>
                     <button onclick="openTab('analytics', this)" class="tab-btn px-3 py-2 rounded">Analytics</button>
                     <button onclick="openTab('user', this)" class="tab-btn px-3 py-2 rounded">User</button>
                 </div>
@@ -139,7 +151,7 @@
     </nav>
 
     <main>
-    <section id="home" class="tab-content active max-w-7xl mx-auto p-8 space-y-8">
+    <section id="home" class="tab-content active max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5 space-y-8">
         <div class="bg-emerald-700 text-white p-16 text-center rounded-lg shadow-lg card-soft">
             <h1 class="text-5xl font-bold">Welcome to Jharkhand Tourism</h1>
             <p class="mt-4 text-lg md:text-xl">Discover the natural beauty, rich culture, and heritage of Jharkhand.</p>
@@ -169,8 +181,8 @@
         </div>
     </section>
 
-    <section id="destinations" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6 section-title">Top Destinations</h2>
+    <section id="destinations" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+        <h2 class="heading-main mb-8 section-title">Top Destinations</h2>
         <!-- AI Destination Helpers -->
         <div class="grid md:grid-cols-2 gap-6 mb-6">
             <!-- Activities Recommender -->
@@ -207,7 +219,7 @@
                 </div>
             </div>
         </div>
-        <h3 class="text-xl font-bold mb-4 section-title">Explore more places</h3>
+        <h3 class="heading-sub mb-6 section-title">Explore more places</h3>
         <div class="grid md:grid-cols-3 gap-6">
             <button onclick="openTab('betla')" class="bg-white rounded shadow overflow-hidden text-left">
                 <img src="images/betla.jpg" class="h-48 w-full object-cover" alt="Betla National Park">
@@ -252,7 +264,7 @@
         </div>
     </section>
 
-    <section id="betla" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="betla" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Betla National Park</h1>
             <img src="images/betla.jpg" alt="Betla National Park" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -282,7 +294,7 @@
         </div>
     </section>
     
-    <section id="baidyanath" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="baidyanath" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Baidyanath Temple</h1>
             <img src="images/baidyanath.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -312,7 +324,7 @@
         </div>
     </section>
 
-    <section id="netarhat" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="netarhat" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Netarhat Sunrise</h1>
             <img src="images/netarhat.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -342,7 +354,7 @@
         </div>
     </section>
 
-    <section id="jonha-falls" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="jonha-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Jonha Falls</h1>
             <img src="https://via.placeholder.com/600x400.png?text=Jonha+Falls" alt="Jonha Falls" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -355,7 +367,7 @@
         </div>
     </section>
 
-    <section id="dassam-falls" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="dassam-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dassam Falls</h1>
             <img src="https://via.placeholder.com/600x400.png?text=Dassam+Falls" alt="Dassam Falls" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -368,7 +380,7 @@
         </div>
     </section>
 
-    <section id="dalma-wildlife" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="dalma-wildlife" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dalma Wildlife Sanctuary</h1>
             <img src="https://via.placeholder.com/600x400.png?text=Dalma+Wildlife+Sanctuary" alt="Dalma Wildlife Sanctuary" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -381,7 +393,7 @@
         </div>
     </section>
 
-    <section id="parasnath-hill" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="parasnath-hill" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Parasnath Hill</h1>
             <img src="https://via.placeholder.com/600x400.png?text=Parasnath+Hill" alt="Parasnath Hill" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -394,7 +406,7 @@
         </div>
     </section>
 
-    <section id="hundru-falls" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="hundru-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Hundru Falls</h1>
             <img src="https://via.placeholder.com/600x400.png?text=Hundru+Falls" alt="Hundru Falls" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -407,7 +419,7 @@
         </div>
     </section>
 
-    <section id="tagore-hill" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="tagore-hill" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Tagore Hill</h1>
             <img src="https://via.placeholder.com/600x400.png?text=Tagore+Hill" alt="Tagore Hill" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -420,7 +432,7 @@
         </div>
     </section>
 
-    <section id="patratu-valley" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="patratu-valley" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Patratu Valley</h1>
             <img src="https://via.placeholder.com/600x400.png?text=Patratu+Valley" alt="Patratu Valley" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -433,8 +445,8 @@
         </div>
     </section>
     
-    <section id="culture" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6 section-title">Culture & Traditions</h2>
+    <section id="culture" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+        <h2 class="heading-main mb-8 section-title">Culture & Traditions</h2>
 
         <!-- AI Recommendation Agents -->
         <div class="grid md:grid-cols-2 gap-6 mb-8">
@@ -473,7 +485,7 @@
             </div>
         </div>
 
-        <h3 class="text-xl font-bold mb-4 section-title">Explore more</h3>
+        <h3 class="heading-sub mb-6 section-title">Explore more</h3>
         <div class="grid md:grid-cols-3 gap-6">
             <button onclick="openTab('tribal-dance')" class="bg-white rounded shadow p-4 text-left">
                 <img src="images/tribaldance.jpg" class="h-36 w-full object-cover rounded" />
@@ -493,7 +505,7 @@
         </div>
     </section>
 
-    <section id="tribal-dance" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="tribal-dance" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Tribal Dances</h1>
             <img src="images/tribaldance.jpg" alt="Tribal Dance" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -515,7 +527,7 @@
         </div>
     </section>
 
-    <section id="festivals" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="festivals" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Festivals</h1>
             <img src="images/festival.jpg" alt="Festivals" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -537,7 +549,7 @@
         </div>
     </section>
 
-    <section id="handicrafts" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="handicrafts" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handicrafts</h1>
             <img src="images/handicraft.jpg" alt="Handicrafts" class="w-full h-80 object-cover rounded-lg mb-6">
@@ -559,7 +571,7 @@
         </div>
     </section>
 
-    <section id="dokra" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="dokra" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Dokra Art</h1>
             
@@ -596,7 +608,7 @@
         </div>
     </section>
 
-    <section id="tribal-shawl" class="tab-content max-w-7xl mx-auto p-8">
+    <section id="tribal-shawl" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Tribal Shawl</h1>
             
@@ -633,8 +645,8 @@
         </div>
     </section>
 
-    <section id="map" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6 section-title">Interactive Map</h2>
+    <section id="map" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+        <h2 class="heading-main mb-8 section-title">Interactive Map</h2>
         <div class="grid md:grid-cols-2 gap-6">
             <!-- Weather Forecaster AI -->
             <div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
@@ -667,18 +679,18 @@
     </section>
 
   <!-- Itinerary Section -->
-    <section id="itinerary" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-4 section-title">Trip Planner</h2>
-        <div class="grid md:grid-cols-2 gap-6">
+    <section id="itinerary" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+        <h2 class="heading-main mb-8 section-title">Trip Planner</h2>
+        <div class="grid md:grid-cols-2 gap-6 items-stretch">
             <!-- Trip Planner Card -->
-            <div class="bg-white p-4 rounded shadow border-t-4 border-emerald-600">
+            <div class="bg-white p-4 rounded shadow border-t-4 border-emerald-600 h-full min-h-[520px] flex flex-col">
                 <h3 class="font-semibold mb-2 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8m-4-4v4m8-10a8 8 0 11-16 0 8 8 0 0116 0z" />
                     </svg>
                     Plan your trip
                 </h3>
-                <div class="space-y-3">
+                <div class="space-y-3 flex-1 overflow-auto">
                     <label class="block">Destination
                         <select id="destSel" class="border rounded p-2 w-full mt-1">
                             <option>Explore Jharkhand (General)</option>
@@ -807,8 +819,8 @@
     </section>
 
     <!-- Marketplace Section -->
-    <section id="marketplace" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6">Marketplace</h2>
+    <section id="marketplace" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+        <h2 class="heading-main mb-8 section-title">Local Market</h2>
         <div class="grid md:grid-cols-3 gap-6">
             <div class="bg-white p-4 rounded shadow">
                 <img src="images/dokra.jpg" class="h-36 w-full object-cover rounded" />
@@ -824,14 +836,14 @@
     </section>
 
     <!-- Analytics Section -->
-    <section id="analytics" class="tab-content max-w-7xl mx-auto p-8">
-      <h2 class="text-2xl font-bold mb-6">Analytics Dashboard</h2>
+    <section id="analytics" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+      <h2 class="heading-main mb-8 section-title">Analytics Dashboard</h2>
       <div id="analytics-root"></div>
     </section>
 
     <!-- User Section -->
-    <section id="user" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6 section-title">User Dashboard</h2>
+    <section id="user" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+        <h2 class="heading-main mb-8 section-title">User Dashboard</h2>
         <div class="bg-white p-6 rounded shadow">
             <div class="flex items-center gap-4 mb-6">
                 <div id="userAvatar" class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-semibold select-none">U</div>
