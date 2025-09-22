@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jharkhand 360</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="./analytics.js" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', async () => {
+        const apiRoot = (typeof apiBase !== 'undefined') ? apiBase : '';
+        const dataFetcher = async () => {
+          const res = await fetch(`${apiRoot}/api/analytics`);
+          if (!res.ok) throw new Error('Failed to load analytics');
+          return await res.json();
+        };
+        window.initAnalyticsDashboard('#analytics-root', dataFetcher);
+      });
+    </script>
     <style>
         html, body {
             height: 100%;
@@ -812,13 +825,8 @@
 
     <!-- Analytics Section -->
     <section id="analytics" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6">Analytics Dashboard (Mock)</h2>
-        <div class="grid grid-cols-2 gap-4 text-center">
-            <div class="p-4 bg-white rounded shadow">Visitors: 12.4K</div>
-            <div class="p-4 bg-white rounded shadow">Bookings: 1.2K</div>
-            <div class="p-4 bg-white rounded shadow">Avg Stay: 2.8d</div>
-            <div class="p-4 bg-white rounded shadow">Sentiment: +68%</div>
-        </div>
+      <h2 class="text-2xl font-bold mb-6">Analytics Dashboard</h2>
+      <div id="analytics-root"></div>
     </section>
 
     <!-- User Section -->
