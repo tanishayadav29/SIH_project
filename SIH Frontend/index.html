@@ -18,14 +18,46 @@
         main { flex: 1; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
         .tab-btn {
             transition: background-color 0.2s;
         }
         .tab-btn:hover { background-color: #34d399; }
         .tab-btn.active { background-color: #059669; color: white; }
-
         #carousel { display: flex; transition: transform 0.7s ease; }
+
+        /* Modal specific styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -97,6 +129,34 @@
                 <img src="images/netarhat.jpg" class="h-48 w-full object-cover" alt="Netarhat Sunrise">
                 <div class="p-4"><h3 class="font-bold">Netarhat Sunrise</h3><p class="text-sm text-gray-600">Scenic sunrise viewpoint.</p></div>
             </button>
+            <button onclick="openTab('jonha-falls')" class="bg-white rounded shadow overflow-hidden text-left">
+                <img src="https://via.placeholder.com/400x250.png?text=Jonha+Falls" class="h-48 w-full object-cover" alt="Jonha Falls">
+                <div class="p-4"><h3 class="font-bold">Jonha Falls</h3><p class="text-sm text-gray-600">Beautiful waterfalls.</p></div>
+            </button>
+            <button onclick="openTab('dassam-falls')" class="bg-white rounded shadow overflow-hidden text-left">
+                <img src="https://via.placeholder.com/400x250.png?text=Dassam+Falls" class="h-48 w-full object-cover" alt="Dassam Falls">
+                <div class="p-4"><h3 class="font-bold">Dassam Falls</h3><p class="text-sm text-gray-600">Ten streams waterfall.</p></div>
+            </button>
+            <button onclick="openTab('dalma-wildlife')" class="bg-white rounded shadow overflow-hidden text-left">
+                <img src="https://via.placeholder.com/400x250.png?text=Dalma+Wildlife+Sanctuary" class="h-48 w-full object-cover" alt="Dalma Wildlife Sanctuary">
+                <div class="p-4"><h3 class="font-bold">Dalma Wildlife Sanctuary</h3><p class="text-sm text-gray-600">Elephant reserve.</p></div>
+            </button>
+            <button onclick="openTab('parasnath-hill')" class="bg-white rounded shadow overflow-hidden text-left">
+                <img src="https://via.placeholder.com/400x250.png?text=Parasnath+Hill" class="h-48 w-full object-cover" alt="Parasnath Hill">
+                <div class="p-4"><h3 class="font-bold">Parasnath Hill</h3><p class="text-sm text-gray-600">Jain pilgrimage site.</p></div>
+            </button>
+            <button onclick="openTab('hundru-falls')" class="bg-white rounded shadow overflow-hidden text-left">
+                <img src="https://via.placeholder.com/400x250.png?text=Hundru+Falls" class="h-48 w-full object-cover" alt="Hundru Falls">
+                <div class="p-4"><h3 class="font-bold">Hundru Falls</h3><p class="text-sm text-gray-600">Scenic cascade.</p></div>
+            </button>
+            <button onclick="openTab('tagore-hill')" class="bg-white rounded shadow overflow-hidden text-left">
+                <img src="https://via.placeholder.com/400x250.png?text=Tagore+Hill" class="h-48 w-full object-cover" alt="Tagore Hill">
+                <div class="p-4"><h3 class="font-bold">Tagore Hill</h3><p class="text-sm text-gray-600">Historical viewpoint.</p></div>
+            </button>
+            <button onclick="openTab('patratu-valley')" class="bg-white rounded shadow overflow-hidden text-left">
+                <img src="https://via.placeholder.com/400x250.png?text=Patratu+Valley" class="h-48 w-full object-cover" alt="Patratu Valley">
+                <div class="p-4"><h3 class="font-bold">Patratu Valley</h3><p class="text-sm text-gray-600">Lush green valley.</p></div>
+            </button>
         </div>
     </section>
 
@@ -133,7 +193,7 @@
     <section id="baidyanath" class="tab-content max-w-7xl mx-auto p-8">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Baidyanath Temple</h1>
-            <img src="images/baidyanath.jpg" alt="Baidyanath Temple" class="w-full h-80 object-cover rounded-lg mb-6">
+            <img src="images/baidyanath.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
             
             <p class="text-lg text-gray-700 leading-relaxed mb-6">
                 Baidyanath Temple, located in Deoghar, is one of the twelve sacred Jyotirlingas of Shiva and a revered pilgrimage site. It is believed that the temple was built at the spot where the demon king Ravana offered his ten heads to Shiva as a sacrifice. The temple's spiritual significance attracts millions of devotees every year.
@@ -163,7 +223,7 @@
     <section id="netarhat" class="tab-content max-w-7xl mx-auto p-8">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Netarhat Sunrise</h1>
-            <img src="images/netarhat.jpg" alt="Netarhat Sunrise" class="w-full h-80 object-cover rounded-lg mb-6">
+            <img src="images/netarhat.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
             
             <p class="text-lg text-gray-700 leading-relaxed mb-6">
                 Netarhat, also known as the "Queen of Chotanagpur," is a beautiful hill station famous for its breathtaking sunrise and sunset views. The panoramic view of the sun rising from behind the hills and illuminating the valley below is an unforgettable experience for tourists.
@@ -184,6 +244,97 @@
                 <li><strong>Timings:</strong> The sunrise point can be visited from early morning. It is recommended to reach before sunrise for the best experience.</li>
                 <li><strong>Accommodation:</strong> There are several guesthouses and hotels available in Netarhat for an overnight stay.</li>
             </ul>
+            <div class="mt-8">
+                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="jonha-falls" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Jonha Falls</h1>
+            <img src="https://via.placeholder.com/600x400.png?text=Jonha+Falls" alt="Jonha Falls" class="w-full h-80 object-cover rounded-lg mb-6">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Jonha Falls is a beautiful waterfall located near Ranchi. It is also known as Gautamdhara, as there is a temple dedicated to Lord Buddha nearby. The water falls from a height of 43 meters, and visitors have to descend 722 steps to reach the base of the waterfall.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="dassam-falls" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dassam Falls</h1>
+            <img src="https://via.placeholder.com/600x400.png?text=Dassam+Falls" alt="Dassam Falls" class="w-full h-80 object-cover rounded-lg mb-6">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Dassam Falls is a stunning waterfall created by the Kanchi River, a tributary of the Subarnarekha River. It is famous for its natural beauty and the sound of ten streams of water cascading down. It is a popular picnic and photography spot, but tourists are advised to be careful as the rocks can be slippery.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="dalma-wildlife" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dalma Wildlife Sanctuary</h1>
+            <img src="https://via.placeholder.com/600x400.png?text=Dalma+Wildlife+Sanctuary" alt="Dalma Wildlife Sanctuary" class="w-full h-80 object-cover rounded-lg mb-6">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Located near Jamshedpur, Dalma Wildlife Sanctuary is a must-visit for wildlife lovers. It is particularly known for its high population of elephants. The sanctuary also houses a wide range of animals like barking deer, wild boars, and various bird species. The sanctuary offers a great trekking experience up the hills.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="parasnath-hill" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Parasnath Hill</h1>
+            <img src="https://via.placeholder.com/600x400.png?text=Parasnath+Hill" alt="Parasnath Hill" class="w-full h-80 object-cover rounded-lg mb-6">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Parasnath Hill is a prominent Jain pilgrimage site and the highest peak in Jharkhand. It is believed that 20 of the 24 Jain Tirthankaras attained moksha here. The hill is home to several Jain temples (known as gaddis). Pilgrims and tourists undertake a challenging trek to reach the temples at the top, which offers a serene and spiritual experience.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="hundru-falls" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Hundru Falls</h1>
+            <img src="https://via.placeholder.com/600x400.png?text=Hundru+Falls" alt="Hundru Falls" class="w-full h-80 object-cover rounded-lg mb-6">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Hundru Falls is one of the most famous waterfalls in Jharkhand. Created by the Subarnarekha River, the water falls from a height of 98 meters, making it one of the highest waterfalls in the state. The sight of the water cascading down is truly spectacular, and the surrounding area is perfect for a day trip.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="tagore-hill" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Tagore Hill</h1>
+            <img src="https://via.placeholder.com/600x400.png?text=Tagore+Hill" alt="Tagore Hill" class="w-full h-80 object-cover rounded-lg mb-6">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Named after Rabindranath Tagore, this hill near Ranchi is known for its serene atmosphere and historical significance. The hill offers a magnificent panoramic view of the city. It is said that Tagore used to visit this place often for his writings. The hill also houses the Ramakrishna Mission Ashram.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="patratu-valley" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Patratu Valley</h1>
+            <img src="https://via.placeholder.com/600x400.png?text=Patratu+Valley" alt="Patratu Valley" class="w-full h-80 object-cover rounded-lg mb-6">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Patratu Valley is famous for its stunning scenic drive and the horseshoe-shaped Patratu Dam. The winding roads of the valley offer a thrilling ride with panoramic views of the lush green hills and the tranquil lake. It is a popular spot for picnics and boat rides, and an ideal weekend getaway.
+            </p>
             <div class="mt-8">
                 <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
             </div>
@@ -291,7 +442,7 @@
                     <p class="text-sm text-gray-500 line-through">₹1333</p>
                     <div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
                     <div class="flex gap-4">
-                        <button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition">Buy Now</button>
+                        <button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition" onclick="showReceipt('Dokra Handicraft', 1200)">Buy Now</button>
                         <button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
                     </div>
                     <div>
@@ -307,6 +458,43 @@
             <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Dokra Art</h2>
             <p class="text-lg text-gray-700 leading-relaxed">
                 **Dokra** is an ancient art of metal casting using the lost-wax technique. It's one of the oldest forms of this craft, with a history spanning over 4,000 years. The artisans, mainly from the Malhar and Dhokra Damar tribes of Jharkhand, create intricate and beautiful figures of animals, deities, and tribal life. The art is known for its primitive simplicity and folk motifs. Each piece is unique because the mold is broken after casting.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="tribal-shawl" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Tribal Shawl</h1>
+            
+            <div class="md:flex gap-8 items-center">
+                <div class="md:w-1/2">
+                    <img src="images/shawl.jpeg" alt="Tribal Shawl" class="w-full h-80 object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
+                    <h2 class="text-2xl font-bold">Tribal Shawl</h2>
+                    <p class="text-3xl font-semibold text-emerald-600">₹800</p>
+                    <p class="text-sm text-gray-500 line-through">₹888</p>
+                    <div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
+                    <div class="flex gap-4">
+                        <button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition" onclick="showReceipt('Tribal Shawl', 800)">Buy Now</button>
+                        <button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
+                    </div>
+                    <div>
+                        <label for="coupon2" class="block text-gray-700">Have a coupon code?</label>
+                        <div class="flex mt-1">
+                            <input type="text" id="coupon2" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
+                            <button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Tribal Shawls</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Jharkhand's tribal shawls are more than just clothing; they are a symbol of culture, tradition, and artistry. Hand-woven by local tribes, these shawls feature intricate designs and vibrant colors, often depicting elements from nature and tribal folklore. They are made from natural fibers, making them soft, comfortable, and durable. Each shawl tells a unique story and is a testament to the skill of the artisans.
             </p>
             <div class="mt-8">
                 <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
@@ -338,14 +526,14 @@
                     <p class="text-sm text-gray-500 line-through">₹1333</p>
                 </div>
             </button>
-            <div class="bg-white p-4 rounded shadow">
+            <button onclick="openTab('tribal-shawl')" class="bg-white p-4 rounded shadow text-left">
                 <img src="images/shawl.jpeg" class="h-36 w-full object-cover rounded" />
                 <h4 class="mt-2 font-medium">Tribal Shawl</h4>
                 <div class="flex items-center gap-2 mt-1">
                     <p class="font-semibold text-emerald-600">₹800</p>
                     <p class="text-sm text-gray-500 line-through">₹888</p>
                 </div>
-            </div>
+            </button>
         </div>
     </section>
 
@@ -376,19 +564,50 @@
             <div class="grid md:grid-cols-2 gap-4">
                 <div class="bg-gray-100 p-4 rounded shadow">Upcoming Trip: Betla Safari</div>
                 <div class="bg-gray-100 p-4 rounded shadow">Saved: Netarhat Sunrise</div>
-                <div class="bg-gray-100 p-4 rounded shadow">Past Bookings</div>
-                <div class="bg-gray-100 p-4 rounded shadow">Feedback & Reviews</div>
+                <div class="bg-gray-100 p-4 rounded shadow">
+                    <h4 class="font-semibold mb-2">My Cart</h4>
+                    <ul id="cart-items" class="list-disc list-inside text-sm text-gray-600">
+                        <li class="p-1 rounded bg-gray-200">Dokra Handicraft (₹1200)</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-100 p-4 rounded shadow">
+                    <h4 class="font-semibold mb-2">Previous Orders</h4>
+                    <ul id="previous-orders" class="list-disc list-inside text-sm text-gray-600">
+                        <li>Order #12345 (2024-05-10)</li>
+                        <li>Order #12344 (2024-04-22)</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
     </main>
+
+    <div id="receipt-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeReceipt()">×</span>
+            <div id="receipt-details"></div>
+        </div>
+    </div>
+
+    <section id="payment-page" class="tab-content fixed inset-0 z-50 bg-white p-8 overflow-auto hidden">
+        <div class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-2xl font-bold mb-4">Payment Gateway</h2>
+            <img src="https://via.placeholder.com/300x150.png?text=UPI+QR+Code" alt="UPI QR Code" class="w-full h-40 object-contain rounded mb-4">
+            <p class="mb-4 text-lg">Scan to Pay: <strong id="payment-amount"></strong></p>
+            <p class="text-sm text-gray-500">
+                This is a mock payment interface. Please do not enter real payment details.
+            </p>
+            <div class="flex justify-center gap-4 mt-6">
+                <button onclick="openTab('user')" class="bg-emerald-600 text-white px-6 py-2 rounded-lg">Go to Profile</button>
+            </div>
+        </div>
+    </section>
 
     <footer class="bg-emerald-700 text-white text-center py-4 mt-8">
         © 2025 Jharkhand Tourism Portal
     </footer>
 
     <script>
-        // Tab functionality
         function openTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
@@ -396,9 +615,9 @@
             if (btn) {
                 btn.classList.add('active');
             }
+            document.getElementById('payment-page').classList.add('hidden');
         }
 
-        // Carousel
         const carousel = document.getElementById('carousel');
         const slides = carousel.children;
         let index = 0;
@@ -424,7 +643,6 @@
         function resetInterval(){ clearInterval(interval); interval=setInterval(()=>{index=(index+1)%total; updateCarousel();},3000);}
         updateCarousel();
 
-        // Itinerary generator
         function generatePlan() {
             const days = document.getElementById('days').value;
             const pool = ['Betla National Park', 'Baidyanath Temple', 'Netarhat', 'Jonha Falls', 'Parasnath Hill'];
@@ -438,11 +656,49 @@
             }
         }
 
-        // User save mock
         function saveUser() {
             const name = document.getElementById('username').value;
             const email = document.getElementById('email').value;
             alert(`Saved! Name: ${name}, Email: ${email}`);
+        }
+
+        const receiptModal = document.getElementById('receipt-modal');
+        const receiptDetails = document.getElementById('receipt-details');
+
+        function showReceipt(itemName, price) {
+            receiptDetails.innerHTML = `
+                <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
+                <div class="border-b pb-4 mb-4">
+                    <p class="text-lg">Item: <strong class="text-emerald-700">${itemName}</strong></p>
+                    <p class="text-lg">Total: <strong class="text-orange-500">₹${price}</strong></p>
+                </div>
+                <div class="space-y-2">
+                    <button onclick="showPayment('${price}')" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">Proceed to Payment</button>
+                    <button onclick="showAddressForm()" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Add Address</button>
+                    <button onclick="closeReceipt()" class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">Cancel</button>
+                </div>
+            `;
+            receiptModal.style.display = 'block';
+        }
+
+        function closeReceipt() {
+            receiptModal.style.display = 'none';
+        }
+
+        function showPayment(amount) {
+            closeReceipt();
+            openTab('payment-page');
+            document.getElementById('payment-amount').innerText = `₹${amount}`;
+        }
+        
+        function showAddressForm() {
+            alert('Address form would appear here!');
+        }
+
+        window.onclick = function(event) {
+            if (event.target == receiptModal) {
+                closeReceipt();
+            }
         }
     </script>
 </body>
