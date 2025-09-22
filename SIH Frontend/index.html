@@ -657,73 +657,6 @@
     </section>
     </main>
 
-    <section id="marketplace" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6">Marketplace</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-            <button onclick="openTab('dokra')" class="bg-white p-4 rounded shadow text-left">
-                <img src="images/dokra.jpg" class="h-36 w-full object-cover rounded" />
-                <h4 class="mt-2 font-medium">Handmade Dokra</h4>
-                <div class="flex items-center gap-2 mt-1">
-                    <p class="font-semibold text-emerald-600">₹1200</p>
-                    <p class="text-sm text-gray-500 line-through">₹1333</p>
-                </div>
-            </button>
-            <button onclick="openTab('tribal-shawl')" class="bg-white p-4 rounded shadow text-left">
-                <img src="images/shawl.jpeg" class="h-36 w-full object-cover rounded" />
-                <h4 class="mt-2 font-medium">Tribal Shawl</h4>
-                <div class="flex items-center gap-2 mt-1">
-                    <p class="font-semibold text-emerald-600">₹800</p>
-                    <p class="text-sm text-gray-500 line-through">₹888</p>
-                </div>
-            </button>
-        </div>
-    </section>
-
-    <section id="analytics" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6">Analytics Dashboard (Mock)</h2>
-        <div class="grid grid-cols-2 gap-4 text-center">
-            <div class="p-4 bg-white rounded shadow">Visitors: 12.4K</div>
-            <div class="p-4 bg-white rounded shadow">Bookings: 1.2K</div>
-            <div class="p-4 bg-white rounded shadow">Avg Stay: 2.8d</div>
-            <div class="p-4 bg-white rounded shadow">Sentiment: +68%</div>
-        </div>
-    </section>
-
-    <section id="user" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6">User Dashboard</h2>
-        <div class="bg-white p-6 rounded shadow space-y-4">
-            <label class="block"><strong>User Name:</strong>
-                <input id="username" class="border rounded p-2 w-full mt-1" type="text">
-            </label>
-            <label class="block"><strong>User ID:</strong>
-                <input id="userid" class="border rounded p-2 w-full mt-1" type="text" disabled>
-            </label>
-            <label class="block"><strong>Email:</strong>
-                <input id="email" class="border rounded p-2 w-full mt-1" type="email">
-            </label>
-            <button onclick="saveUser()" class="bg-emerald-600 text-white px-4 py-2 rounded mt-2">Save</button>
-            <hr>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="bg-gray-100 p-4 rounded shadow">Upcoming Trip: Betla Safari</div>
-                <div class="bg-gray-100 p-4 rounded shadow">Saved: Netarhat Sunrise</div>
-                <div class="bg-gray-100 p-4 rounded shadow">
-                    <h4 class="font-semibold mb-2">My Cart</h4>
-                    <ul id="cart-items" class="list-disc list-inside text-sm text-gray-600">
-                        <li class="p-1 rounded bg-gray-200">Dokra Handicraft (₹1200)</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-100 p-4 rounded shadow">
-                    <h4 class="font-semibold mb-2">Previous Orders</h4>
-                    <ul id="previous-orders" class="list-disc list-inside text-sm text-gray-600">
-                        <li>Order #12345 (2024-05-10)</li>
-                        <li>Order #12344 (2024-04-22)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    </main>
-
     <div id="receipt-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeReceipt()">×</span>
@@ -752,12 +685,22 @@
     <script>
         function openTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+            const target = document.getElementById(tabId);
+            if (target) {
+                target.classList.add('active');
+            }
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             if (btn) {
                 btn.classList.add('active');
             }
-            document.getElementById('payment-page').classList.add('hidden');
+            const payment = document.getElementById('payment-page');
+            if (payment) {
+                if (tabId === 'payment-page') {
+                    payment.classList.remove('hidden');
+                } else {
+                    payment.classList.add('hidden');
+                }
+            }
         }
 
         const carousel = document.getElementById('carousel');
