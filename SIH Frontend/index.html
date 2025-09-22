@@ -784,6 +784,62 @@
         let interval = setInterval(()=>{ index=(index+1)%total; updateCarousel(); }, 3000);
         function resetInterval(){ clearInterval(interval); interval=setInterval(()=>{index=(index+1)%total; updateCarousel();},3000);}
         updateCarousel();
+          // Itinerary generator (calls backend)
+        const apiBase = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://127.0.0.1:8000' : '';
+
+        // Toggle custom destination input
+        const destSel = document.getElementById('destSel');
+        const destCustom = document.getElementById('destCustom');
+        destSel.addEventListener('change', () => {
+            if (destSel.value === 'Custom Destination') {
+                destCustom.classList.remove('hidden');
+            } else {
+                destCustom.classList.add('hidden');
+            }
+        });
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('generateBtn');
+            const resultBox = document.getElementById('itineraryResult');
+            const errorBox = document.getElementById('errorBox');
+            errorBox.classList.add('hidden');
+            resultBox.textContent = '';
+            btn.disabled = true; btn.textContent = 'Generating...';
+            try {
+                const selectedDestination = destSel.value === 'Custom Destination'
+                    ? (destCustom.value || 'Explore Jharkhand (General)')
+                    : destSel.value;
+                const payload = {
+                    preferences: {
+                        destination: selectedDestination,
+                        month: document.getElementById('month').value,
+                        duration: parseInt(document.getElementById('duration').value || '7'),
+                        num_people: document.getElementById('people').value,
+                        tourism_type: document.getElementById('tourism').value,
+                        tribal_interest: document.getElementById('tribal').value,
+                        mobility_level: document.getElementById('mobility').value,
+                        accommodation_type: document.getElementById('accommodation').value,
+                        language_preference: document.getElementById('language').value,
+                        budget_range: document.getElementById('budget').value,
+                        special_interests: (document.getElementById('interests').value || '').split(',').map(s=>s.trim()).filter(Boolean),
+                        comments: document.getElementById('comments').value || ''
+                    }
+                };
+                const res = await fetch(`${apiBase}/api/generate_itinerary`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error(`API ${res.status}`);
+                const data = await res.json();
+                resultBox.textContent = data.itinerary || 'No itinerary returned.';
+            } catch (err) {
+                errorBox.textContent = `Failed to generate itinerary: ${err.message || err}`;
+                errorBox.classList.remove('hidden');
+            } finally {
+                btn.disabled = false; btn.textContent = 'Generate Itinerary';
+            }
+        });
+
 
         function generatePlan() {
             const days = document.getElementById('days').value;
