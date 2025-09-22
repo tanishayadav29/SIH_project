@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Hundru Falls — Jharkhand VR Preview</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+  <style>
+    body { margin:0; font-family: Inter, Arial, sans-serif; background:#000; color:#fff; }
+    #infoPanel {
+      position: absolute; left:12px; top:12px; background: rgba(0,0,0,0.7); color:#fff;
+      padding:10px 14px; border-radius:8px; max-width: 320px; display:none;
+      z-index: 10;
+    }
+    #attrib {
+      position: absolute; right:12px; bottom:12px; background: rgba(255,255,255,0.9); padding:6px 10px; border-radius:6px; font-size:12px; color:#000;
+      z-index: 10;
+    }
+    button { background:#fff;color:#000;padding:6px 8px;border-radius:6px;border:none;cursor:pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- Info Panel -->
+  <div id="infoPanel">
+    <strong>Hundru Falls</strong><br>
+    Ranchi district, Subarnarekha river. Tip: best visited during/after monsoon. <br><br>
+    <button onclick="closeInfo()">Close</button>
+  </div>
+
+  <!-- VR Scene -->
+  <a-scene embedded vr-mode-ui="enterVRButton: true" renderer="antialias: true">
+    <a-assets>
+      <!-- Bright 360° panorama placeholder -->
+      <img id="hundru" crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/e/ec/360-degree-panorama-example.jpg">
+    </a-assets>
+
+    <!-- Panorama Sky -->
+    <a-sky id="sky" src="#hundru" rotation="0 -90 0"></a-sky>
+
+    <!-- Ambient light to brighten scene -->
+    <a-entity light="type: ambient; color: #ffffff; intensity: 0.8"></a-entity>
+
+    <!-- Hotspot -->
+    <a-entity id="hotspot"
+              geometry="primitive: plane; width: 1.2; height: 0.6"
+              material="color:#111; opacity:0.85"
+              position="0 1.6 -2.5"
+              look-at="[camera]"
+              class="clickable">
+      <a-text value="Info • Hundru Falls" align="center" color="#fff" position="0 0 0.01" width="1.8"></a-text>
+    </a-entity>
+
+    <!-- Exit Button -->
+    <a-entity id="exitBtn" geometry="primitive: plane; width: 1.6; height: 0.5"
+              material="color:#02796f" position="0 -1.8 -2.5"
+              text="value:Exit VR; align:center; color:#fff"
+              class="clickable"></a-entity>
+
+    <!-- Camera + cursor -->
+    <a-entity id="cameraRig">
+      <a-camera id="camera" position="0 1.6 0">
+        <a-cursor id="cursor" fuse="true" fuse-timeout="800"
+                  geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
+                  material="color: #fff; shader: flat">
+        </a-cursor>
+      </a-camera>
+    </a-entity>
+  </a-scene>
+
+  <!-- Attribution -->
+  <div id="attrib">
+    Photo: Ajay Kumar / Wikimedia Commons (CC BY-SA 4.0). Source page: Wikimedia Commons.
+  </div>
+
+<script>
+  const hotspot = document.getElementById('hotspot');
+  const exitBtn = document.getElementById('exitBtn');
+  const infoPanel = document.getElementById('infoPanel');
+
+  function closeInfo() {
+    infoPanel.style.display = 'none';
+  }
+
+  hotspot.addEventListener('click', () => {
+    infoPanel.style.display = 'block';
+  });
+
+  exitBtn.addEventListener('click', () => {
+    alert('Exit VR: You can now close the tab or navigate away.');
+  });
+
+  // Escape key closes info panel
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeInfo();
+  });
+</script>
+
+</body>
+</html>
