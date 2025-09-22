@@ -1,0 +1,395 @@
+{
+  "permit_requirements": {
+    "national_parks": {
+      "betla_national_park": {
+        "permit_required": true,
+        "permit_type": "Entry Permit",
+        "cost": "₹200 per person",
+        "validity": "1 day",
+        "booking_advance": "24 hours",
+        "booking_method": "Online or Forest Department office",
+        "restrictions": [
+          "No plastic allowed",
+          "No loud music",
+          "Stay on designated paths",
+          "No feeding of animals"
+        ],
+        "safety_requirements": [
+          "Guide mandatory for wildlife safaris",
+          "Carry first aid kit",
+          "Inform authorities of your presence",
+          "Emergency contact numbers"
+        ]
+      },
+      "hazaribagh_national_park": {
+        "permit_required": true,
+        "permit_type": "Entry Permit",
+        "cost": "₹150 per person",
+        "validity": "1 day",
+        "booking_advance": "24 hours",
+        "booking_method": "Forest Department office",
+        "restrictions": [
+          "No smoking",
+          "No littering",
+          "Stay in groups",
+          "Follow guide instructions"
+        ],
+        "safety_requirements": [
+          "Guide recommended",
+          "Carry water and snacks",
+          "Wear appropriate clothing",
+          "Inform about medical conditions"
+        ]
+      }
+    },
+    "wildlife_sanctuaries": {
+      "dalma_wildlife_sanctuary": {
+        "permit_required": true,
+        "permit_type": "Entry Permit",
+        "cost": "₹100 per person",
+        "validity": "1 day",
+        "booking_advance": "Same day",
+        "booking_method": "On-site",
+        "restrictions": [
+          "No photography without permission",
+          "No loud noises",
+          "Stay on designated trails"
+        ],
+        "safety_requirements": [
+          "Carry identification",
+          "Inform about allergies",
+          "Follow safety guidelines"
+        ]
+      }
+    },
+    "tribal_areas": {
+      "village_visits": {
+        "permit_required": false,
+        "permit_type": "None",
+        "cost": "Free",
+        "validity": "N/A",
+        "booking_advance": "N/A",
+        "booking_method": "Contact local guides or homestays",
+        "restrictions": [
+          "Respect local customs",
+          "Ask permission before photography",
+          "Dress modestly",
+          "Follow cultural etiquette"
+        ],
+        "safety_requirements": [
+          "Travel with local guide",
+          "Inform homestay hosts",
+          "Carry emergency contacts",
+          "Respect tribal traditions"
+        ]
+      }
+    }
+  },
+  "safety_guidelines": {
+    "general_safety": {
+      "emergency_contacts": {
+        "police": "100",
+        "medical_emergency": "108",
+        "forest_department": "Various district numbers",
+        "tourist_helpline": "1800-11-1363"
+      },
+      "health_precautions": [
+        "Carry first aid kit",
+        "Stay hydrated",
+        "Protect from sun",
+        "Inform about medical conditions",
+        "Carry necessary medications"
+      ],
+      "communication": [
+        "Inform someone about your itinerary",
+        "Carry mobile phone with charger",
+        "Know local emergency numbers",
+        "Have backup communication method"
+      ],
+      "documentation": [
+        "Carry valid ID proof",
+        "Keep copies of important documents",
+        "Carry emergency contact information",
+        "Have travel insurance details"
+      ]
+    },
+    "monsoon_safety": {
+      "road_safety": [
+        "Check road conditions before travel",
+        "Avoid flooded areas",
+        "Carry emergency supplies",
+        "Inform about travel plans",
+        "Use reliable transportation"
+      ],
+      "health_risks": [
+        "Waterborne diseases",
+        "Mosquito-borne illnesses",
+        "Slip and fall hazards",
+        "Respiratory issues due to humidity"
+      ],
+      "precautions": [
+        "Carry rain gear",
+        "Use mosquito repellent",
+        "Avoid stagnant water",
+        "Stay updated on weather",
+        "Have emergency contacts ready"
+      ]
+    },
+    "wildlife_safety": {
+      "national_parks": [
+        "Never approach wild animals",
+        "Stay in vehicles during safaris",
+        "Follow guide instructions",
+        "Do not feed animals",
+        "Carry binoculars for viewing"
+      ],
+      "trekking_safety": [
+        "Travel in groups",
+        "Inform authorities about routes",
+        "Carry emergency supplies",
+        "Know basic first aid",
+        "Have communication device"
+      ],
+      "emergency_procedures": [
+        "Stay calm if encountering wildlife",
+        "Back away slowly",
+        "Make noise to alert others",
+        "Contact authorities immediately",
+        "Follow evacuation procedures"
+      ]
+    },
+    "cultural_safety": {
+      "tribal_communities": [
+        "Respect local customs and traditions",
+        "Ask permission before photography",
+        "Dress appropriately",
+        "Follow cultural etiquette",
+        "Support local communities"
+      ],
+      "religious_sites": [
+        "Remove shoes where required",
+        "Dress modestly",
+        "Follow temple rules",
+        "Respect religious ceremonies",
+        "Do not disturb worshippers"
+      ],
+      "cultural_sensitivity": [
+        "Learn basic local greetings",
+        "Respect sacred spaces",
+        "Support local artisans",
+        "Follow community guidelines",
+        "Maintain respectful behavior"
+      ]
+    }
+  },
+  "seasonal_constraints": {
+    "monsoon_restrictions": {
+      "closed_attractions": [
+        "Betla National Park",
+        "Hazaribagh National Park",
+        "Most wildlife safaris",
+        "Trekking trails in remote areas"
+      ],
+      "limited_access": [
+        "Hill stations (Netarhat)",
+        "Remote tribal villages",
+        "Some waterfalls (due to flooding)",
+        "Forest areas"
+      ],
+      "recommended_alternatives": [
+        "Indoor cultural activities",
+        "Museum visits",
+        "Temple visits",
+        "Handicraft workshops",
+        "Local market visits"
+      ]
+    },
+    "summer_precautions": {
+      "heat_safety": [
+        "Avoid outdoor activities during peak hours (11 AM - 4 PM)",
+        "Stay hydrated",
+        "Wear light, breathable clothing",
+        "Use sunscreen",
+        "Take frequent breaks"
+      ],
+      "activity_timing": [
+        "Early morning activities (6-10 AM)",
+        "Evening activities (5-8 PM)",
+        "Indoor activities during midday",
+        "Hill station visits for relief"
+      ]
+    },
+    "winter_considerations": {
+      "cold_weather_precautions": [
+        "Carry warm clothing",
+        "Protect from fog",
+        "Check road conditions",
+        "Carry emergency supplies",
+        "Inform about travel plans"
+      ],
+      "optimal_activities": [
+        "Wildlife safaris",
+        "Trekking and hiking",
+        "Outdoor photography",
+        "Cultural festivals",
+        "All outdoor activities"
+      ]
+    }
+  },
+  "accessibility_constraints": {
+    "mobility_considerations": {
+      "easy_mobility": {
+        "suitable_activities": [
+          "Temple visits",
+          "Museum visits",
+          "Local market visits",
+          "Cultural workshops",
+          "City tours"
+        ],
+        "avoid_activities": [
+          "Trekking",
+          "Wildlife safaris",
+          "Adventure activities",
+          "Remote area visits"
+        ]
+      },
+      "moderate_mobility": {
+        "suitable_activities": [
+          "Light trekking",
+          "Waterfall visits",
+          "Hill station visits",
+          "Cultural homestays",
+          "Local village visits"
+        ],
+        "avoid_activities": [
+          "Challenging treks",
+          "Remote wildlife areas",
+          "Adventure sports",
+          "Difficult terrain"
+        ]
+      },
+      "active_mobility": {
+        "suitable_activities": [
+          "Moderate trekking",
+          "Wildlife safaris",
+          "Adventure activities",
+          "Remote area visits",
+          "Cultural experiences"
+        ],
+        "avoid_activities": [
+          "Extreme adventure sports",
+          "Very challenging treks",
+          "High-risk activities"
+        ]
+      },
+      "adventure_mobility": {
+        "suitable_activities": [
+          "All outdoor activities",
+          "Challenging treks",
+          "Adventure sports",
+          "Remote area exploration",
+          "Wildlife safaris"
+        ],
+        "safety_requirements": [
+          "Professional guides",
+          "Safety equipment",
+          "Emergency procedures",
+          "Risk assessment",
+          "Insurance coverage"
+        ]
+      }
+    }
+  },
+  "health_and_medical": {
+    "common_health_risks": {
+      "waterborne_diseases": {
+        "prevention": [
+          "Drink only bottled or filtered water",
+          "Avoid street food during monsoon",
+          "Wash hands frequently",
+          "Carry water purification tablets"
+        ],
+        "symptoms": [
+          "Diarrhea",
+          "Vomiting",
+          "Fever",
+          "Dehydration"
+        ]
+      },
+      "mosquito_borne_diseases": {
+        "prevention": [
+          "Use mosquito repellent",
+          "Wear long sleeves and pants",
+          "Sleep under mosquito nets",
+          "Avoid stagnant water"
+        ],
+        "symptoms": [
+          "Fever",
+          "Headache",
+          "Body aches",
+          "Rash"
+        ]
+      },
+      "heat_related_illnesses": {
+        "prevention": [
+          "Stay hydrated",
+          "Avoid peak sun hours",
+          "Wear light clothing",
+          "Take frequent breaks"
+        ],
+        "symptoms": [
+          "Dizziness",
+          "Nausea",
+          "Headache",
+          "Excessive sweating"
+        ]
+      }
+    },
+    "medical_facilities": {
+      "major_cities": {
+        "ranchi": [
+          "Rajendra Institute of Medical Sciences (RIMS)",
+          "Apollo Hospitals",
+          "Medica Superspecialty Hospital"
+        ],
+        "deoghar": [
+          "Deoghar District Hospital",
+          "Private clinics and nursing homes"
+        ],
+        "dumka": [
+          "Dumka District Hospital",
+          "Private medical facilities"
+        ]
+      },
+      "emergency_services": [
+        "108 - Medical Emergency",
+        "100 - Police",
+        "Local hospital emergency numbers",
+        "Tourist helpline"
+      ]
+    }
+  },
+  "insurance_recommendations": {
+    "travel_insurance": {
+      "coverage_required": [
+        "Medical emergencies",
+        "Trip cancellation",
+        "Lost luggage",
+        "Adventure activities",
+        "Emergency evacuation"
+      ],
+      "adventure_activities": [
+        "Trekking insurance",
+        "Wildlife safari coverage",
+        "Adventure sports insurance",
+        "High-risk activity coverage"
+      ],
+      "recommendations": [
+        "Choose comprehensive coverage",
+        "Verify adventure activity coverage",
+        "Keep insurance details handy",
+        "Inform about pre-existing conditions"
+      ]
+    }
+  }
+}

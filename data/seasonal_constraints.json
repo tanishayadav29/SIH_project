@@ -1,0 +1,292 @@
+{
+  "seasons": {
+    "monsoon": {
+      "months": ["june", "july", "august", "september"],
+      "description": "Heavy rainfall season with lush greenery but challenging travel conditions",
+      "description_hindi": "भारी वर्षा का मौसम जो हरी-भरी वनस्पति लाता है लेकिन यात्रा की चुनौतीपूर्ण स्थितियां भी",
+      "weather_conditions": {
+        "temperature": "25-35°C",
+        "humidity": "High (80-90%)",
+        "rainfall": "Heavy to very heavy",
+        "visibility": "Reduced due to fog and rain"
+      },
+      "travel_considerations": [
+        "Road conditions can be poor with landslides",
+        "Some areas may be inaccessible",
+        "National parks often closed",
+        "Waterfalls at their most spectacular",
+        "High humidity and frequent rain"
+      ],
+      "recommended_activities": [
+        "Waterfall visits (best time)",
+        "Indoor cultural activities",
+        "Museum visits",
+        "Temple visits",
+        "Handicraft workshops"
+      ],
+      "avoided_activities": [
+        "Wildlife safaris",
+        "Trekking in remote areas",
+        "Outdoor camping",
+        "Road trips to hill stations"
+      ],
+      "safety_precautions": [
+        "Carry rain gear and waterproof bags",
+        "Check road conditions before travel",
+        "Avoid river crossings",
+        "Stay updated on weather forecasts",
+        "Have emergency contacts ready"
+      ],
+      "accessibility_issues": [
+        "Some roads may be blocked",
+        "Public transport delays",
+        "Limited accommodation in remote areas",
+        "National parks closed for safety"
+      ]
+    },
+    "winter": {
+      "months": ["december", "january", "february"],
+      "description": "Cool and pleasant weather, ideal for most outdoor activities",
+      "description_hindi": "ठंडा और सुखद मौसम, अधिकांश बाहरी गतिविधियों के लिए आदर्श",
+      "weather_conditions": {
+        "temperature": "10-25°C",
+        "humidity": "Low to moderate",
+        "rainfall": "Minimal",
+        "visibility": "Excellent"
+      },
+      "travel_considerations": [
+        "Best time for wildlife safaris",
+        "Ideal for trekking and outdoor activities",
+        "Clear skies and good visibility",
+        "Pleasant weather for sightseeing",
+        "Peak tourist season"
+      ],
+      "recommended_activities": [
+        "Wildlife safaris",
+        "Trekking and hiking",
+        "National park visits",
+        "Outdoor photography",
+        "Cultural festivals"
+      ],
+      "avoided_activities": [
+        "Waterfall visits (low water)",
+        "Swimming in natural water bodies",
+        "Monsoon-specific activities"
+      ],
+      "safety_precautions": [
+        "Carry warm clothing for hill stations",
+        "Stay hydrated despite cool weather",
+        "Check for fog conditions in hills",
+        "Book accommodations in advance"
+      ],
+      "accessibility_issues": [
+        "Generally good road conditions",
+        "All major attractions accessible",
+        "Peak season crowds",
+        "Higher accommodation costs"
+      ]
+    },
+    "summer": {
+      "months": ["march", "april", "may"],
+      "description": "Hot and dry weather, good for some activities but challenging for others",
+      "description_hindi": "गर्म और शुष्क मौसम, कुछ गतिविधियों के लिए अच्छा लेकिन दूसरों के लिए चुनौतीपूर्ण",
+      "weather_conditions": {
+        "temperature": "30-45°C",
+        "humidity": "Moderate",
+        "rainfall": "Minimal",
+        "visibility": "Good"
+      },
+      "travel_considerations": [
+        "Very hot during peak hours",
+        "Good for early morning and evening activities",
+        "Hill stations provide relief",
+        "Waterfalls have less water",
+        "Wildlife viewing possible in early morning"
+      ],
+      "recommended_activities": [
+        "Early morning wildlife safaris",
+        "Hill station visits",
+        "Indoor cultural activities",
+        "Temple visits",
+        "Evening cultural programs"
+      ],
+      "avoided_activities": [
+        "Midday outdoor activities",
+        "Trekking in hot areas",
+        "Long road trips during day",
+        "Waterfall visits"
+      ],
+      "safety_precautions": [
+        "Stay hydrated and carry water",
+        "Wear light, breathable clothing",
+        "Use sunscreen and hats",
+        "Plan activities for early morning or evening",
+        "Avoid direct sun exposure"
+      ],
+      "accessibility_issues": [
+        "Generally good road conditions",
+        "All attractions accessible",
+        "Heat exhaustion risk",
+        "Limited outdoor activity time"
+      ]
+    },
+    "post_monsoon": {
+      "months": ["october", "november"],
+      "description": "Pleasant weather with lush greenery, excellent for most activities",
+      "description_hindi": "हरी-भरी वनस्पति के साथ सुखद मौसम, अधिकांश गतिविधियों के लिए उत्कृष्ट",
+      "weather_conditions": {
+        "temperature": "20-30°C",
+        "humidity": "Moderate",
+        "rainfall": "Occasional light showers",
+        "visibility": "Good"
+      },
+      "travel_considerations": [
+        "Ideal weather for all activities",
+        "Lush green landscapes",
+        "Good road conditions",
+        "Pleasant temperatures",
+        "Festival season begins"
+      ],
+      "recommended_activities": [
+        "All outdoor activities",
+        "Wildlife safaris",
+        "Trekking and hiking",
+        "Cultural festivals",
+        "Photography"
+      ],
+      "avoided_activities": [
+        "None significant",
+        "Check for occasional rain"
+      ],
+      "safety_precautions": [
+        "Carry light rain gear",
+        "Check weather forecasts",
+        "Standard safety measures apply"
+      ],
+      "accessibility_issues": [
+        "Excellent accessibility",
+        "All attractions open",
+        "Good road conditions",
+        "Peak festival season"
+      ]
+    }
+  },
+  "monthly_recommendations": {
+    "january": {
+      "season": "winter",
+      "best_for": ["Wildlife safaris", "Trekking", "Cultural festivals", "Photography"],
+      "avoid": ["Waterfall visits"],
+      "special_events": ["Republic Day celebrations", "Winter festivals"],
+      "packing": ["Warm clothing", "Comfortable shoes", "Camera gear"]
+    },
+    "february": {
+      "season": "winter",
+      "best_for": ["Wildlife safaris", "Trekking", "Cultural festivals", "Photography"],
+      "avoid": ["Waterfall visits"],
+      "special_events": ["Spring festivals preparation", "Cultural workshops"],
+      "packing": ["Warm clothing", "Comfortable shoes", "Camera gear"]
+    },
+    "march": {
+      "season": "summer",
+      "best_for": ["Early morning safaris", "Hill stations", "Cultural activities"],
+      "avoid": ["Midday outdoor activities", "Waterfall visits"],
+      "special_events": ["Holi celebrations", "Spring festivals"],
+      "packing": ["Light clothing", "Sunscreen", "Water bottles"]
+    },
+    "april": {
+      "season": "summer",
+      "best_for": ["Early morning activities", "Hill stations", "Indoor cultural activities"],
+      "avoid": ["Midday outdoor activities", "Trekking in hot areas"],
+      "special_events": ["Summer festivals", "Cultural workshops"],
+      "packing": ["Light clothing", "Sunscreen", "Water bottles", "Hats"]
+    },
+    "may": {
+      "season": "summer",
+      "best_for": ["Early morning activities", "Hill stations", "Indoor activities"],
+      "avoid": ["Midday outdoor activities", "Waterfall visits"],
+      "special_events": ["Pre-monsoon festivals", "Cultural programs"],
+      "packing": ["Light clothing", "Sunscreen", "Water bottles", "Hats"]
+    },
+    "june": {
+      "season": "monsoon",
+      "best_for": ["Waterfall visits", "Indoor cultural activities", "Museum visits"],
+      "avoid": ["Wildlife safaris", "Trekking", "Road trips"],
+      "special_events": ["Monsoon festivals", "Indoor cultural programs"],
+      "packing": ["Rain gear", "Waterproof bags", "Indoor activity items"]
+    },
+    "july": {
+      "season": "monsoon",
+      "best_for": ["Waterfall visits", "Indoor cultural activities", "Temple visits"],
+      "avoid": ["Wildlife safaris", "Trekking", "National park visits"],
+      "special_events": ["Shravan month celebrations", "Indoor workshops"],
+      "packing": ["Rain gear", "Waterproof bags", "Indoor activity items"]
+    },
+    "august": {
+      "season": "monsoon",
+      "best_for": ["Waterfall visits", "Indoor cultural activities", "Temple visits"],
+      "avoid": ["Wildlife safaris", "Trekking", "National park visits"],
+      "special_events": ["Independence Day", "Monsoon festivals"],
+      "packing": ["Rain gear", "Waterproof bags", "Indoor activity items"]
+    },
+    "september": {
+      "season": "monsoon",
+      "best_for": ["Waterfall visits", "Indoor cultural activities", "Temple visits"],
+      "avoid": ["Wildlife safaris", "Trekking", "National park visits"],
+      "special_events": ["Ganesh Chaturthi", "Cultural workshops"],
+      "packing": ["Rain gear", "Waterproof bags", "Indoor activity items"]
+    },
+    "october": {
+      "season": "post_monsoon",
+      "best_for": ["All outdoor activities", "Wildlife safaris", "Cultural festivals"],
+      "avoid": ["None significant"],
+      "special_events": ["Durga Puja", "Post-monsoon festivals"],
+      "packing": ["Comfortable clothing", "Camera gear", "Light rain gear"]
+    },
+    "november": {
+      "season": "post_monsoon",
+      "best_for": ["All outdoor activities", "Wildlife safaris", "Cultural festivals"],
+      "avoid": ["None significant"],
+      "special_events": ["Diwali celebrations", "Harvest festivals"],
+      "packing": ["Comfortable clothing", "Camera gear", "Light rain gear"]
+    },
+    "december": {
+      "season": "winter",
+      "best_for": ["Wildlife safaris", "Trekking", "Cultural festivals", "Photography"],
+      "avoid": ["Waterfall visits"],
+      "special_events": ["Christmas celebrations", "Winter festivals"],
+      "packing": ["Warm clothing", "Comfortable shoes", "Camera gear"]
+    }
+  },
+  "accessibility_matrix": {
+    "national_parks": {
+      "monsoon": "Closed",
+      "winter": "Open",
+      "summer": "Open (early morning only)",
+      "post_monsoon": "Open"
+    },
+    "waterfalls": {
+      "monsoon": "Excellent",
+      "winter": "Poor",
+      "summer": "Poor",
+      "post_monsoon": "Good"
+    },
+    "hill_stations": {
+      "monsoon": "Limited access",
+      "winter": "Excellent",
+      "summer": "Good",
+      "post_monsoon": "Excellent"
+    },
+    "temples": {
+      "monsoon": "Good",
+      "winter": "Excellent",
+      "summer": "Good",
+      "post_monsoon": "Excellent"
+    },
+    "cultural_sites": {
+      "monsoon": "Good",
+      "winter": "Excellent",
+      "summer": "Good",
+      "post_monsoon": "Excellent"
+    }
+  }
+}

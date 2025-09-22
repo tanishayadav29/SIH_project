@@ -1,0 +1,352 @@
+{
+  "languages": {
+    "english": {
+      "code": "en",
+      "name": "English",
+      "name_native": "English"
+    },
+    "hindi": {
+      "code": "hi", 
+      "name": "Hindi",
+      "name_native": "हिंदी"
+    }
+  },
+  "ui_texts": {
+    "page_title": {
+      "en": "🌿 Jharkhand Eco-Cultural Tourism Planner",
+      "hi": "🌿 झारखंड इको-सांस्कृतिक पर्यटन योजनाकार"
+    },
+    "page_subtitle": {
+      "en": "Discover the natural beauty and rich tribal heritage of Jharkhand",
+      "hi": "झारखंड की प्राकृतिक सुंदरता और समृद्ध आदिवासी विरासत की खोज करें"
+    },
+    "form_labels": {
+      "destination_focus": {
+        "en": "🎯 Destination Focus",
+        "hi": "🎯 गंतव्य फोकस"
+      },
+      "month_travel": {
+        "en": "📅 Month of Travel",
+        "hi": "📅 यात्रा का महीना"
+      },
+      "number_days": {
+        "en": "⏱️ Number of Days",
+        "hi": "⏱️ दिनों की संख्या"
+      },
+      "number_people": {
+        "en": "👥 Number of People",
+        "hi": "👥 लोगों की संख्या"
+      },
+      "tourism_type": {
+        "en": "🌿 Tourism Type",
+        "hi": "🌿 पर्यटन प्रकार"
+      },
+      "tribal_interest": {
+        "en": "🏛️ Tribal Culture Interest",
+        "hi": "🏛️ आदिवासी संस्कृति में रुचि"
+      },
+      "mobility_level": {
+        "en": "🚶 Mobility Level",
+        "hi": "🚶 गतिशीलता स्तर"
+      },
+      "accommodation": {
+        "en": "🏠 Accommodation Preference",
+        "hi": "🏠 आवास प्राथमिकता"
+      },
+      "language_preference": {
+        "en": "🗣️ Language Preference",
+        "hi": "🗣️ भाषा प्राथमिकता"
+      },
+      "budget_range": {
+        "en": "💰 Budget Range (INR)",
+        "hi": "💰 बजट सीमा (रुपये)"
+      },
+      "special_interests": {
+        "en": "✨ Special Interests",
+        "hi": "✨ विशेष रुचियां"
+      },
+      "additional_comments": {
+        "en": "💭 Additional Comments or Special Requests",
+        "hi": "💭 अतिरिक्त टिप्पणियां या विशेष अनुरोध"
+      }
+    },
+    "destination_options": {
+      "explore_general": {
+        "en": "Explore Jharkhand (General)",
+        "hi": "झारखंड का अन्वेषण (सामान्य)"
+      },
+      "ranchi_surroundings": {
+        "en": "Ranchi & Surroundings",
+        "hi": "रांची और आसपास"
+      },
+      "deoghar_pilgrimage": {
+        "en": "Deoghar Pilgrimage Circuit",
+        "hi": "देवघर तीर्थ सर्किट"
+      },
+      "netarhat_hill": {
+        "en": "Netarhat Hill Station",
+        "hi": "नेतरहाट हिल स्टेशन"
+      },
+      "betla_national_park": {
+        "en": "Betla National Park",
+        "hi": "बेतला राष्ट्रीय उद्यान"
+      },
+      "tribal_villages": {
+        "en": "Tribal Villages & Culture",
+        "hi": "आदिवासी गांव और संस्कृति"
+      },
+      "waterfalls_circuit": {
+        "en": "Waterfalls Circuit",
+        "hi": "जलप्रपात सर्किट"
+      },
+      "custom_destination": {
+        "en": "Custom Destination",
+        "hi": "कस्टम गंतव्य"
+      }
+    },
+    "tourism_types": {
+      "eco_nature": {
+        "en": "Eco-Tourism & Nature",
+        "hi": "इको-पर्यटन और प्रकृति"
+      },
+      "tribal_culture": {
+        "en": "Tribal Culture & Heritage",
+        "hi": "आदिवासी संस्कृति और विरासत"
+      },
+      "pilgrimage_spiritual": {
+        "en": "Pilgrimage & Spiritual",
+        "hi": "तीर्थयात्रा और आध्यात्मिक"
+      },
+      "adventure_trekking": {
+        "en": "Adventure & Trekking",
+        "hi": "रोमांच और ट्रेकिंग"
+      },
+      "mixed_experience": {
+        "en": "Mixed Experience",
+        "hi": "मिश्रित अनुभव"
+      },
+      "photography_wildlife": {
+        "en": "Photography & Wildlife",
+        "hi": "फोटोग्राफी और वन्यजीव"
+      }
+    },
+    "tribal_interest_levels": {
+      "low": {
+        "en": "Low",
+        "hi": "कम"
+      },
+      "medium": {
+        "en": "Medium",
+        "hi": "मध्यम"
+      },
+      "high": {
+        "en": "High",
+        "hi": "उच्च"
+      },
+      "very_high": {
+        "en": "Very High",
+        "hi": "बहुत उच्च"
+      }
+    },
+    "mobility_levels": {
+      "easy": {
+        "en": "Easy (No trekking)",
+        "hi": "आसान (कोई ट्रेकिंग नहीं)"
+      },
+      "moderate": {
+        "en": "Moderate (Light walking)",
+        "hi": "मध्यम (हल्की चलना)"
+      },
+      "active": {
+        "en": "Active (Moderate trekking)",
+        "hi": "सक्रिय (मध्यम ट्रेकिंग)"
+      },
+      "adventure": {
+        "en": "Adventure (Challenging treks)",
+        "hi": "रोमांच (चुनौतीपूर्ण ट्रेक)"
+      }
+    },
+    "accommodation_types": {
+      "homestays": {
+        "en": "Homestays (Tribal villages)",
+        "hi": "होमस्टे (आदिवासी गांव)"
+      },
+      "eco_lodges": {
+        "en": "Eco-lodges & Nature stays",
+        "hi": "इको-लॉज और प्रकृति स्टे"
+      },
+      "hotels": {
+        "en": "Hotels & Resorts",
+        "hi": "होटल और रिसॉर्ट"
+      },
+      "mixed": {
+        "en": "Mixed (Homestays + Hotels)",
+        "hi": "मिश्रित (होमस्टे + होटल)"
+      },
+      "budget": {
+        "en": "Budget-friendly options",
+        "hi": "बजट-अनुकूल विकल्प"
+      }
+    },
+    "language_options": {
+      "english": {
+        "en": "English",
+        "hi": "अंग्रेजी"
+      },
+      "hindi": {
+        "en": "Hindi",
+        "hi": "हिंदी"
+      },
+      "english_hindi": {
+        "en": "English + Hindi",
+        "hi": "अंग्रेजी + हिंदी"
+      },
+      "local_languages": {
+        "en": "Local languages welcome",
+        "hi": "स्थानीय भाषाएं स्वागत योग्य"
+      }
+    },
+    "budget_ranges": {
+      "budget": {
+        "en": "Budget (₹500-1500/day)",
+        "hi": "बजट (₹500-1500/दिन)"
+      },
+      "mid_range": {
+        "en": "Mid-Range (₹1500-3000/day)",
+        "hi": "मध्यम (₹1500-3000/दिन)"
+      },
+      "comfortable": {
+        "en": "Comfortable (₹3000-5000/day)",
+        "hi": "आरामदायक (₹3000-5000/दिन)"
+      },
+      "luxury": {
+        "en": "Luxury (₹5000+/day)",
+        "hi": "लक्जरी (₹5000+/दिन)"
+      }
+    },
+    "special_interests": {
+      "tribal_festivals": {
+        "en": "Tribal festivals & ceremonies",
+        "hi": "आदिवासी त्योहार और समारोह"
+      },
+      "handicraft_workshops": {
+        "en": "Handicraft workshops",
+        "hi": "हस्तशिल्प कार्यशालाएं"
+      },
+      "wildlife_photography": {
+        "en": "Wildlife photography",
+        "hi": "वन्यजीव फोटोग्राफी"
+      },
+      "local_cuisine": {
+        "en": "Local cuisine & cooking",
+        "hi": "स्थानीय व्यंजन और खाना पकाना"
+      },
+      "traditional_music": {
+        "en": "Traditional music & dance",
+        "hi": "पारंपरिक संगीत और नृत्य"
+      },
+      "nature_photography": {
+        "en": "Nature photography",
+        "hi": "प्रकृति फोटोग्राफी"
+      },
+      "spiritual_experiences": {
+        "en": "Spiritual experiences",
+        "hi": "आध्यात्मिक अनुभव"
+      },
+      "adventure_activities": {
+        "en": "Adventure activities",
+        "hi": "रोमांचक गतिविधियां"
+      }
+    },
+    "buttons": {
+      "generate_itinerary": {
+        "en": "🌿 Generate Jharkhand Itinerary",
+        "hi": "🌿 झारखंड यात्रा कार्यक्रम बनाएं"
+      },
+      "tribal_activities": {
+        "en": "🎯 Tribal Activities",
+        "hi": "🎯 आदिवासी गतिविधियां"
+      },
+      "local_resources": {
+        "en": "🔗 Local Resources",
+        "hi": "🔗 स्थानीय संसाधन"
+      },
+      "weather_seasons": {
+        "en": "🌤️ Weather & Seasons",
+        "hi": "🌤️ मौसम और ऋतुएं"
+      },
+      "packing_guide": {
+        "en": "🎒 Packing Guide",
+        "hi": "🎒 पैकिंग गाइड"
+      },
+      "local_cuisine": {
+        "en": "🍽️ Local Cuisine",
+        "hi": "🍽️ स्थानीय व्यंजन"
+      },
+      "safety_permits": {
+        "en": "🛡️ Safety & Permits",
+        "hi": "🛡️ सुरक्षा और परमिट"
+      },
+      "export_pdf": {
+        "en": "Export as PDF",
+        "hi": "PDF के रूप में निर्यात करें"
+      }
+    },
+    "messages": {
+      "itinerary_ready": {
+        "en": "🌿 Your Jharkhand Eco-Cultural Itinerary is Ready!",
+        "hi": "🌿 आपका झारखंड इको-सांस्कृतिक यात्रा कार्यक्रम तैयार है!"
+      },
+      "tip_check_seasonal": {
+        "en": "💡 Tip: Check the seasonal information and cultural guidelines for the best experience",
+        "hi": "💡 सुझाव: सर्वोत्तम अनुभव के लिए मौसमी जानकारी और सांस्कृतिक दिशानिर्देश देखें"
+      },
+      "cultural_focus": {
+        "en": "🏛️ **Cultural Focus**: Your itinerary emphasizes tribal culture experiences. Remember to respect local customs and traditions.",
+        "hi": "🏛️ **सांस्कृतिक फोकस**: आपका यात्रा कार्यक्रम आदिवासी संस्कृति अनुभवों पर जोर देता है। स्थानीय रीति-रिवाजों और परंपराओं का सम्मान करना याद रखें।"
+      },
+      "fill_form_generate": {
+        "en": "🌿 Fill the form above to generate your personalized Jharkhand eco-cultural itinerary!",
+        "hi": "🌿 अपना व्यक्तिगत झारखंड इको-सांस्कृतिक यात्रा कार्यक्रम बनाने के लिए ऊपर दिया गया फॉर्म भरें!"
+      },
+      "ask_jharkhand_experience": {
+        "en": "### 💬 Ask About Your Jharkhand Experience",
+        "hi": "### 💬 अपने झारखंड अनुभव के बारे में पूछें"
+      },
+      "chat_subtitle": {
+        "en": "*Get personalized advice about tribal culture, local customs, and travel tips*",
+        "hi": "*आदिवासी संस्कृति, स्थानीय रीति-रिवाजों और यात्रा सुझावों के बारे में व्यक्तिगत सलाह प्राप्त करें*"
+      },
+      "chat_placeholder": {
+        "en": "Ask about tribal culture, local customs, or travel tips...",
+        "hi": "आदिवासी संस्कृति, स्थानीय रीति-रिवाजों या यात्रा सुझावों के बारे में पूछें..."
+      }
+    },
+    "expanders": {
+      "tribal_cultural_activities": {
+        "en": "🎯 Tribal & Cultural Activities",
+        "hi": "🎯 आदिवासी और सांस्कृतिक गतिविधियां"
+      },
+      "local_resources_contacts": {
+        "en": "🔗 Local Resources & Contacts",
+        "hi": "🔗 स्थानीय संसाधन और संपर्क"
+      },
+      "weather_seasonal_conditions": {
+        "en": "🌤️ Weather & Seasonal Conditions",
+        "hi": "🌤️ मौसम और मौसमी स्थितियां"
+      },
+      "jharkhand_packing_guide": {
+        "en": "🎒 Jharkhand Packing Guide",
+        "hi": "🎒 झारखंड पैकिंग गाइड"
+      },
+      "local_cuisine_cultural_etiquette": {
+        "en": "🍽️ Local Cuisine & Cultural Etiquette",
+        "hi": "🍽️ स्थानीय व्यंजन और सांस्कृतिक शिष्टाचार"
+      },
+      "safety_guidelines_permit_requirements": {
+        "en": "🛡️ Safety Guidelines & Permit Requirements",
+        "hi": "🛡️ सुरक्षा दिशानिर्देश और परमिट आवश्यकताएं"
+      }
+    }
+  }
+}

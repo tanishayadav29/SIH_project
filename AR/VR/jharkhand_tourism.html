@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Hundru Falls — Jharkhand VR Preview</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+  <style>
+    body { margin:0; font-family: Inter, Arial, sans-serif; background:#f6f6f6; color:#222; }
+    #landing { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; }
+    h1 { margin:8px 0 4px; }
+    p.lead { margin:0 0 18px; color:#444; }
+    button { background:#02796f; color:white; border:none; padding:12px 18px; font-size:16px; border-radius:8px; cursor:pointer; }
+    button:active { transform: translateY(1px); }
+    #vr-container { display:none; width:100vw; height:100vh; }
+    #infoPanel {
+      position: absolute; left:12px; top:12px; background: rgba(0,0,0,0.6); color:#fff;
+      padding:10px 14px; border-radius:8px; max-width: 320px; display:none;
+    }
+    #attrib { position: absolute; right:12px; bottom:12px; background: rgba(255,255,255,0.9); padding:6px 10px; border-radius:6px; font-size:12px; }
+    a { color:#fff; text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Landing / Menu -->
+  <div id="landing">
+    <h1>Explore Hundru Falls — Jharkhand (VR)</h1>
+    <p class="lead">Tap <strong>Preview in VR</strong> to open a 360° panorama. Use phone motion or drag to look around. For immersive view, insert into a Cardboard viewer.</p>
+    <button id="enterBtn">Preview in VR</button>
+  </div>
+
+  <!-- VR Scene -->
+  <div id="vr-container">
+    <div id="infoPanel">
+      <strong>Hundru Falls</strong><br>
+      Ranchi district, Subarnarekha river. Tip: best visited during/after monsoon. <br><br>
+      <button onclick="closeInfo()" style="background:#fff;color:#000;padding:6px 8px;border-radius:6px;border:none;cursor:pointer">Close</button>
+    </div>
+
+    <a-scene embedded vr-mode-ui="enterVRButton: false" renderer="antialias: true">
+      <!-- Use Wikimedia-hosted 4,096×2,304 image (equirectangular) -->
+      <a-assets>
+        <img id="hundru" crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Hundru_waterfall%2C_jharkhand.jpg">
+      </a-assets>
+
+      <!-- Panorama -->
+      <a-sky id="sky" src="#hundru" rotation="0 -90 0"></a-sky>
+
+      <!-- Hotspot - a 2D plane that acts as a button -->
+      <a-entity id="hotspot"
+                geometry="primitive: plane; width: 1.2; height: 0.6"
+                material="color:#111; opacity:0.85"
+                position="0 1.6 -2.5"
+                look-at="[camera]"
+                class="clickable">
+        <a-text value="Info • Hundru Falls" align="center" color="#fff" position="0 0 0.01" width="1.8"></a-text>
+      </a-entity>
+
+      <!-- Exit (always visible at bottom center) -->
+      <a-entity id="exitBtn" geometry="primitive: plane; width: 1.6; height: 0.5"
+                material="color:#02796f" position="0 -1.8 -2.5"
+                text="value:Exit VR; align:center; color:#fff"
+                class="clickable"></a-entity>
+
+      <!-- Camera + cursor for gaze/click interactions -->
+      <a-entity id="cameraRig">
+        <a-camera id="camera" position="0 1.6 0">
+          <a-cursor id="cursor" fuse="true" fuse-timeout="800"
+                    geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
+                    material="color: #fff; shader: flat">
+          </a-cursor>
+        </a-camera>
+      </a-entity>
+
+    </a-scene>
+
+    <!-- Attribution required by CC BY-SA 4.0 -->
+    <div id="attrib">
+      Photo: Ajay Kumar / Wikimedia Commons (CC BY-SA 4.0). Source page: Wikimedia Commons.
+    </div>
+  </div>
+
+<script>
+  const enterBtn = document.getElementById('enterBtn');
+  const landing = document.getElementById('landing');
+  const vrContainer = document.getElementById('vr-container');
+  const hotspot = document.getElementById('hotspot');
+  const exitBtn = document.getElementById('exitBtn');
+  const infoPanel = document.getElementById('infoPanel');
+
+  enterBtn.onclick = () => {
+    landing.style.display = 'none';
+    vrContainer.style.display = 'block';
+    // optional: request fullscreen on mobile
+    if (document.documentElement.requestFullscreen) {
+      // do not force; keep it optional
+    }
+  };
+
+  function closeInfo() {
+    infoPanel.style.display = 'none';
+  }
+  hotspot.addEventListener('click', () => {
+    infoPanel.style.display = 'block';
+  });
+  exitBtn.addEventListener('click', () => {
+    vrContainer.style.display = 'none';
+    landing.style.display = 'flex';
+  });
+
+  // Keyboard Escape to exit
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      vrContainer.style.display = 'none';
+      landing.style.display = 'flex';
+    }
+  });
+</script>
+
+</body>
+</html>

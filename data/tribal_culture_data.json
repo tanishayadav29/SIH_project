@@ -1,0 +1,255 @@
+{
+  "tribal_communities": [
+    {
+      "name": "Santhal",
+      "name_hindi": "संथाल",
+      "population": "Largest tribal community in Jharkhand",
+      "regions": ["Dumka", "Pakur", "Godda", "Sahibganj"],
+      "language": "Santhali",
+      "cultural_practices": [
+        "Traditional dance forms like Chhau and Jhumur",
+        "Handicraft making including terracotta and bamboo work",
+        "Traditional music with indigenous instruments",
+        "Agricultural festivals and rituals"
+      ],
+      "handicrafts": [
+        "Terracotta pottery",
+        "Bamboo baskets and mats",
+        "Wooden toys and utensils",
+        "Traditional jewelry"
+      ],
+      "festivals": [
+        "Sohrai (Harvest festival)",
+        "Baha (Spring festival)",
+        "Karam (Tree worship festival)"
+      ]
+    },
+    {
+      "name": "Munda",
+      "name_hindi": "मुंडा",
+      "population": "Second largest tribal community",
+      "regions": ["Ranchi", "Khunti", "Gumla", "Simdega"],
+      "language": "Mundari",
+      "cultural_practices": [
+        "Traditional governance system (Munda Raj)",
+        "Sacred grove worship",
+        "Traditional medicine practices",
+        "Agricultural rituals and ceremonies"
+      ],
+      "handicrafts": [
+        "Traditional textiles",
+        "Wooden agricultural tools",
+        "Bamboo crafts",
+        "Traditional musical instruments"
+      ],
+      "festivals": [
+        "Mage Parab (Harvest festival)",
+        "Karam (Tree worship)",
+        "Sarhul (Spring festival)"
+      ]
+    },
+    {
+      "name": "Oraon",
+      "name_hindi": "ओरांव",
+      "population": "Significant tribal community",
+      "regions": ["Ranchi", "Gumla", "Lohardaga", "Latehar"],
+      "language": "Kurukh",
+      "cultural_practices": [
+        "Traditional dance forms",
+        "Forest-based livelihood practices",
+        "Traditional healing methods",
+        "Community-based resource management"
+      ],
+      "handicrafts": [
+        "Traditional textiles",
+        "Bamboo and cane products",
+        "Wooden crafts",
+        "Traditional pottery"
+      ],
+      "festivals": [
+        "Karma (Tree worship festival)",
+        "Sarhul (Spring festival)",
+        "Sohrai (Harvest festival)"
+      ]
+    }
+  ],
+  "cultural_festivals": [
+    {
+      "name": "Sohrai Festival",
+      "name_hindi": "सोहराई त्योहार",
+      "month": "November",
+      "description": "Harvest festival celebrated by Santhal and other tribes",
+      "description_hindi": "संथाल और अन्य जनजातियों द्वारा मनाया जाने वाला फसल त्योहार",
+      "activities": [
+        "Traditional dance performances",
+        "Handicraft exhibitions",
+        "Traditional food stalls",
+        "Cultural workshops"
+      ],
+      "best_locations": ["Dumka", "Pakur", "Godda"],
+      "duration": "3-5 days",
+      "visitor_experience": "Excellent opportunity to witness tribal culture and traditions"
+    },
+    {
+      "name": "Karam Festival",
+      "name_hindi": "करम त्योहार",
+      "month": "August-September",
+      "description": "Tree worship festival celebrated across tribal communities",
+      "description_hindi": "जनजातीय समुदायों में मनाया जाने वाला वृक्ष पूजा त्योहार",
+      "activities": [
+        "Tree worship ceremonies",
+        "Traditional music and dance",
+        "Community feasts",
+        "Cultural storytelling"
+      ],
+      "best_locations": ["Ranchi", "Gumla", "Khunti"],
+      "duration": "2-3 days",
+      "visitor_experience": "Deep cultural immersion in tribal traditions"
+    },
+    {
+      "name": "Sarhul Festival",
+      "name_hindi": "सरहुल त्योहार",
+      "month": "March-April",
+      "description": "Spring festival celebrating nature and new beginnings",
+      "description_hindi": "प्रकृति और नई शुरुआत का जश्न मनाने वाला वसंत त्योहार",
+      "activities": [
+        "Flower worship",
+        "Traditional dances",
+        "Nature walks",
+        "Cultural performances"
+      ],
+      "best_locations": ["Ranchi", "Khunti", "Gumla"],
+      "duration": "2-3 days",
+      "visitor_experience": "Beautiful spring celebration with nature focus"
+    }
+  ],
+  "handicraft_workshops": [
+    {
+      "name": "Santhal Terracotta Workshop",
+      "name_hindi": "संथाल टेराकोटा कार्यशाला",
+      "location": "Dumka",
+      "craft_type": "Terracotta Pottery",
+      "description": "Learn traditional terracotta making techniques from Santhal artisans",
+      "description_hindi": "संथाल कारीगरों से पारंपरिक टेराकोटा बनाने की तकनीक सीखें",
+      "duration": "2-3 hours",
+      "cost": "500-800 INR",
+      "group_size": "5-10 people",
+      "season": "October to March",
+      "booking_required": true,
+      "contact": "Local tourism office or homestay"
+    },
+    {
+      "name": "Bamboo Craft Workshop",
+      "name_hindi": "बांस शिल्प कार्यशाला",
+      "location": "Ranchi",
+      "craft_type": "Bamboo Weaving",
+      "description": "Traditional bamboo basket and mat weaving workshop",
+      "description_hindi": "पारंपरिक बांस की टोकरी और चटाई बुनाई कार्यशाला",
+      "duration": "3-4 hours",
+      "cost": "600-1000 INR",
+      "group_size": "4-8 people",
+      "season": "October to April",
+      "booking_required": true,
+      "contact": "Tribal Research Institute, Ranchi"
+    },
+    {
+      "name": "Traditional Textile Workshop",
+      "name_hindi": "पारंपरिक वस्त्र कार्यशाला",
+      "location": "Khunti",
+      "craft_type": "Traditional Weaving",
+      "description": "Learn traditional textile weaving and dyeing techniques",
+      "description_hindi": "पारंपरिक वस्त्र बुनाई और रंगाई तकनीक सीखें",
+      "duration": "4-6 hours",
+      "cost": "800-1200 INR",
+      "group_size": "3-6 people",
+      "season": "November to March",
+      "booking_required": true,
+      "contact": "Local women's cooperative"
+    }
+  ],
+  "homestay_options": [
+    {
+      "name": "Santhal Village Homestay",
+      "name_hindi": "संथाल गांव होमस्टे",
+      "location": "Dumka",
+      "community": "Santhal",
+      "description": "Authentic village experience with Santhal family",
+      "description_hindi": "संथाल परिवार के साथ प्रामाणिक गांव का अनुभव",
+      "amenities": ["Traditional meals", "Cultural activities", "Village tours", "Handicraft sessions"],
+      "cost_per_night": "800-1200 INR",
+      "capacity": "4-6 people",
+      "contact": "Local tourism office",
+      "season": "October to March",
+      "special_features": ["Traditional cooking classes", "Village walks", "Cultural performances"]
+    },
+    {
+      "name": "Munda Heritage Homestay",
+      "name_hindi": "मुंडा विरासत होमस्टे",
+      "location": "Khunti",
+      "community": "Munda",
+      "description": "Experience Munda culture and traditions",
+      "description_hindi": "मुंडा संस्कृति और परंपराओं का अनुभव",
+      "amenities": ["Traditional meals", "Cultural workshops", "Nature walks", "Music sessions"],
+      "cost_per_night": "1000-1500 INR",
+      "capacity": "6-8 people",
+      "contact": "Community tourism coordinator",
+      "season": "October to April",
+      "special_features": ["Traditional medicine workshops", "Sacred grove visits", "Cultural storytelling"]
+    }
+  ],
+  "local_guides": [
+    {
+      "name": "Tribal Culture Specialists",
+      "name_hindi": "आदिवासी संस्कृति विशेषज्ञ",
+      "specialization": "Cultural tours and tribal village visits",
+      "languages": ["Hindi", "English", "Local tribal languages"],
+      "experience": "5+ years",
+      "cost_per_day": "1500-2500 INR",
+      "services": [
+        "Village tours",
+        "Cultural interpretation",
+        "Festival guidance",
+        "Handicraft demonstrations"
+      ],
+      "contact": "Local tourism office or community leaders"
+    },
+    {
+      "name": "Nature and Wildlife Guides",
+      "name_hindi": "प्रकृति और वन्यजीव गाइड",
+      "specialization": "National parks and wildlife safaris",
+      "languages": ["Hindi", "English"],
+      "experience": "3+ years",
+      "cost_per_day": "2000-3000 INR",
+      "services": [
+        "Wildlife safaris",
+        "Bird watching",
+        "Nature photography",
+        "Trekking guidance"
+      ],
+      "contact": "Forest department or park authorities"
+    }
+  ],
+  "cultural_etiquette": {
+    "general_guidelines": [
+      "Respect local customs and traditions",
+      "Ask permission before photographing people",
+      "Dress modestly, especially in religious places",
+      "Remove shoes before entering homes or temples",
+      "Learn basic greetings in local languages"
+    ],
+    "festival_participation": [
+      "Follow local dress codes during festivals",
+      "Participate respectfully in ceremonies",
+      "Ask before joining traditional dances",
+      "Respect sacred spaces and rituals",
+      "Contribute to community meals if invited"
+    ],
+    "village_visits": [
+      "Greet elders first",
+      "Bring small gifts for host families",
+      "Participate in daily activities respectfully",
+      "Learn about local customs before visiting",
+      "Support local artisans by purchasing handicrafts"
+    ]
+  }
+}

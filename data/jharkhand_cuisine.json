@@ -1,0 +1,249 @@
+{
+  "cuisine_overview": {
+    "description": "Jharkhand's cuisine reflects its tribal heritage, forest resources, and agricultural traditions. The food is simple, nutritious, and deeply connected to the land and seasons.",
+    "description_hindi": "झारखंड का व्यंजन इसकी आदिवासी विरासत, वन संसाधनों और कृषि परंपराओं को दर्शाता है। भोजन सरल, पौष्टिक और भूमि और मौसमों से गहराई से जुड़ा हुआ है।",
+    "key_characteristics": [
+      "Forest-based ingredients (mahua, bamboo shoots, wild mushrooms)",
+      "Traditional cooking methods (clay pots, wood fire)",
+      "Seasonal and local ingredients",
+      "Minimal use of spices, emphasis on natural flavors",
+      "Tribal cooking techniques and recipes"
+    ]
+  },
+  "traditional_dishes": [
+    {
+      "name": "Dhuska",
+      "name_hindi": "ढुस्का",
+      "name_local": "ढुस्का",
+      "category": "main_course",
+      "description": "Deep-fried rice and lentil pancakes, crispy outside and soft inside",
+      "description_hindi": "चावल और दाल के गहरे तले हुए पैनकेक, बाहर से कुरकुरे और अंदर से नरम",
+      "ingredients": ["Rice flour", "Lentil flour", "Onions", "Green chilies", "Oil"],
+      "origin": "Santhal tribe",
+      "best_served_with": "Aloo chokha (mashed potatoes) or ghugni (spiced chickpeas)",
+      "seasonal": "Year-round",
+      "cultural_significance": "Traditional breakfast dish, often served during festivals",
+      "where_to_find": "Local markets, tribal villages, homestays"
+    },
+    {
+      "name": "Handia",
+      "name_hindi": "हंडिया",
+      "name_local": "हंडिया",
+      "category": "beverage",
+      "description": "Traditional rice beer made by tribal communities using natural fermentation",
+      "description_hindi": "आदिवासी समुदायों द्वारा प्राकृतिक किण्वन का उपयोग करके बनाई जाने वाली पारंपरिक चावल की बीयर",
+      "ingredients": ["Rice", "Herbs", "Natural yeast"],
+      "origin": "Munda and Oraon tribes",
+      "best_served_with": "Traditional meals, festivals",
+      "seasonal": "Year-round",
+      "cultural_significance": "Sacred drink used in religious ceremonies and social gatherings",
+      "where_to_find": "Tribal villages, cultural festivals, some homestays"
+    },
+    {
+      "name": "Chilka Roti",
+      "name_hindi": "चिलका रोटी",
+      "name_local": "चिलका रोटी",
+      "category": "bread",
+      "description": "Thin, crispy rice flour bread cooked on clay tawa",
+      "description_hindi": "मिट्टी की तवा पर पकाई जाने वाली पतली, कुरकुरी चावल के आटे की रोटी",
+      "ingredients": ["Rice flour", "Water", "Salt"],
+      "origin": "Santhal tribe",
+      "best_served_with": "Vegetable curries, dal, or meat dishes",
+      "seasonal": "Year-round",
+      "cultural_significance": "Daily bread for tribal communities, represents simplicity and tradition",
+      "where_to_find": "Tribal villages, local restaurants, homestays"
+    },
+    {
+      "name": "Bamboo Shoot Curry",
+      "name_hindi": "बांस के अंकुर की सब्जी",
+      "name_local": "बांस के अंकुर की सब्जी",
+      "category": "vegetable_curry",
+      "description": "Tender bamboo shoots cooked with minimal spices, highlighting natural flavors",
+      "description_hindi": "कम मसालों के साथ पकाए गए नरम बांस के अंकुर, प्राकृतिक स्वाद को उजागर करते हैं",
+      "ingredients": ["Bamboo shoots", "Onions", "Garlic", "Turmeric", "Mustard oil"],
+      "origin": "Forest-based communities",
+      "best_served_with": "Rice, roti, or dhuska",
+      "seasonal": "Monsoon season (best quality)",
+      "cultural_significance": "Represents forest-based lifestyle and sustainable food practices",
+      "where_to_find": "Forest areas, tribal villages, eco-lodges"
+    },
+    {
+      "name": "Mahua Ladoo",
+      "name_hindi": "महुआ लड्डू",
+      "name_local": "महुआ लड्डू",
+      "category": "dessert",
+      "description": "Sweet balls made from mahua flowers, a traditional tribal delicacy",
+      "description_hindi": "महुआ के फूलों से बने मीठे गोले, एक पारंपरिक आदिवासी व्यंजन",
+      "ingredients": ["Mahua flowers", "Jaggery", "Coconut", "Cardamom"],
+      "origin": "Santhal and Munda tribes",
+      "best_served_with": "Tea, as dessert after meals",
+      "seasonal": "Spring (when mahua flowers bloom)",
+      "cultural_significance": "Sacred flower used in religious ceremonies, represents tribal connection to nature",
+      "where_to_find": "Tribal villages, local markets, cultural festivals"
+    },
+    {
+      "name": "Aloo Chokha",
+      "name_hindi": "आलू चोखा",
+      "name_local": "आलू चोखा",
+      "category": "side_dish",
+      "description": "Mashed potatoes with onions, green chilies, and mustard oil",
+      "description_hindi": "प्याज, हरी मिर्च और सरसों के तेल के साथ मैश किए गए आलू",
+      "ingredients": ["Potatoes", "Onions", "Green chilies", "Mustard oil", "Salt"],
+      "origin": "Common across Jharkhand",
+      "best_served_with": "Dhuska, rice, or roti",
+      "seasonal": "Year-round",
+      "cultural_significance": "Comfort food representing home cooking and simplicity",
+      "where_to_find": "Everywhere - homes, restaurants, street food"
+    },
+    {
+      "name": "Pitha",
+      "name_hindi": "पिठा",
+      "name_local": "पिठा",
+      "category": "snack",
+      "description": "Steamed rice cakes with sweet or savory fillings",
+      "description_hindi": "मीठे या नमकीन भरावन के साथ भाप में पकाए गए चावल के केक",
+      "ingredients": ["Rice flour", "Jaggery", "Coconut", "Cardamom", "Oil"],
+      "origin": "Santhal tribe",
+      "best_served_with": "Tea, as snack",
+      "seasonal": "Festivals and special occasions",
+      "cultural_significance": "Traditional festival food, represents celebration and community",
+      "where_to_find": "Festivals, tribal villages, local markets"
+    },
+    {
+      "name": "Kadhi Badi",
+      "name_hindi": "कढ़ी बड़ी",
+      "name_local": "कढ़ी बड़ी",
+      "category": "curry",
+      "description": "Yogurt-based curry with fried lentil dumplings",
+      "description_hindi": "तले हुए दाल के गोले के साथ दही आधारित करी",
+      "ingredients": ["Yogurt", "Lentil flour", "Besan", "Turmeric", "Cumin"],
+      "origin": "Common across Jharkhand",
+      "best_served_with": "Rice, roti",
+      "seasonal": "Year-round",
+      "cultural_significance": "Comfort food, often served during family gatherings",
+      "where_to_find": "Restaurants, homes, local eateries"
+    }
+  ],
+  "regional_specialties": {
+    "ranchi": [
+      "Street food: Samosa, Kachori, Jalebi",
+      "Local restaurants serving traditional Jharkhand cuisine",
+      "Modern fusion restaurants"
+    ],
+    "deoghar": [
+      "Prasad at temples (especially Baidyanath Temple)",
+      "Traditional sweets: Peda, Ladoo",
+      "Pilgrimage food stalls"
+    ],
+    "dumka": [
+      "Authentic Santhal cuisine",
+      "Traditional cooking workshops",
+      "Local markets with tribal food"
+    ],
+    "netarhat": [
+      "Hill station cuisine with local ingredients",
+      "Fresh produce from local farms",
+      "Traditional cooking in homestays"
+    ]
+  },
+  "dining_etiquette": {
+    "general_guidelines": [
+      "Wash hands before eating (traditional practice)",
+      "Use right hand for eating (left hand is considered unclean)",
+      "Don't waste food (respect for resources)",
+      "Try to eat with locals when possible",
+      "Ask about ingredients if you have allergies"
+    ],
+    "tribal_customs": [
+      "Remove shoes before entering homes",
+      "Accept food graciously when offered",
+      "Don't refuse traditional drinks like Handia",
+      "Participate in communal eating when invited",
+      "Learn basic greetings in local languages"
+    ],
+    "religious_considerations": [
+      "Many tribal communities are vegetarian",
+      "Respect dietary restrictions during festivals",
+      "Don't consume alcohol in sacred spaces",
+      "Follow local customs during religious ceremonies"
+    ]
+  },
+  "food_markets": [
+    {
+      "name": "Ranchi Main Market",
+      "location": "Ranchi",
+      "description": "Large market with traditional Jharkhand ingredients and street food",
+      "best_time": "Early morning (6-10 AM)",
+      "specialties": ["Fresh vegetables", "Traditional spices", "Street food"]
+    },
+    {
+      "name": "Tribal Village Markets",
+      "location": "Various tribal villages",
+      "description": "Authentic tribal food ingredients and traditional crafts",
+      "best_time": "Weekly markets (varies by village)",
+      "specialties": ["Mahua flowers", "Bamboo shoots", "Traditional grains"]
+    },
+    {
+      "name": "Deoghar Food Market",
+      "location": "Deoghar",
+      "description": "Pilgrimage food market with traditional sweets and snacks",
+      "best_time": "Morning and evening",
+      "specialties": ["Temple prasad", "Traditional sweets", "Pilgrimage snacks"]
+    }
+  ],
+  "cooking_experiences": [
+    {
+      "name": "Tribal Cooking Workshop",
+      "location": "Dumka",
+      "description": "Learn traditional Santhal cooking methods and recipes",
+      "duration": "2-3 hours",
+      "cost": "₹800-1200",
+      "includes": ["Hands-on cooking", "Recipe sharing", "Traditional meal"],
+      "season": "October to March"
+    },
+    {
+      "name": "Forest Food Experience",
+      "location": "Betla National Park area",
+      "description": "Learn about forest-based ingredients and traditional cooking",
+      "duration": "Half day",
+      "cost": "₹1000-1500",
+      "includes": ["Forest walk", "Ingredient collection", "Cooking demonstration"],
+      "season": "November to February"
+    },
+    {
+      "name": "Homestay Cooking Class",
+      "location": "Various tribal villages",
+      "description": "Cook with local families and learn traditional recipes",
+      "duration": "3-4 hours",
+      "cost": "₹600-1000",
+      "includes": ["Family cooking", "Cultural exchange", "Traditional meal"],
+      "season": "Year-round"
+    }
+  ],
+  "dietary_considerations": {
+    "vegetarian_options": [
+      "Most traditional dishes are vegetarian",
+      "Rich variety of vegetable curries",
+      "Traditional breads and rice dishes",
+      "Forest-based vegetarian ingredients"
+    ],
+    "vegan_options": [
+      "Many traditional dishes are naturally vegan",
+      "Rice-based dishes without dairy",
+      "Forest ingredients and vegetables",
+      "Traditional cooking oils (mustard oil)"
+    ],
+    "gluten_free": [
+      "Rice-based dishes are naturally gluten-free",
+      "Traditional breads made from rice flour",
+      "Most vegetable curries are gluten-free",
+      "Forest-based ingredients"
+    ],
+    "allergies": [
+      "Common allergens: Mustard oil, certain forest ingredients",
+      "Always ask about ingredients",
+      "Traditional cooking uses minimal processed ingredients",
+      "Local knowledge about food safety"
+    ]
+  }
+}
