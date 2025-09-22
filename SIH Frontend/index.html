@@ -277,6 +277,43 @@
         </div>
     </section>
 
+    <section id="dokra" class="tab-content max-w-7xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Dokra Art</h1>
+            
+            <div class="md:flex gap-8 items-center">
+                <div class="md:w-1/2">
+                    <img src="images/dokra.jpg" alt="Handmade Dokra" class="w-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
+                    <h2 class="text-2xl font-bold">Dokra Handicraft</h2>
+                    <p class="text-3xl font-semibold text-emerald-600">₹1200</p>
+                    <p class="text-sm text-gray-500 line-through">₹1333</p>
+                    <div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
+                    <div class="flex gap-4">
+                        <button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition">Buy Now</button>
+                        <button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
+                    </div>
+                    <div>
+                        <label for="coupon" class="block text-gray-700">Have a coupon code?</label>
+                        <div class="flex mt-1">
+                            <input type="text" id="coupon" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
+                            <button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Dokra Art</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                **Dokra** is an ancient art of metal casting using the lost-wax technique. It's one of the oldest forms of this craft, with a history spanning over 4,000 years. The artisans, mainly from the Malhar and Dhokra Damar tribes of Jharkhand, create intricate and beautiful figures of animals, deities, and tribal life. The art is known for its primitive simplicity and folk motifs. Each piece is unique because the mold is broken after casting.
+            </p>
+            <div class="mt-8">
+                <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
+            </div>
+        </div>
+    </section>
+
     <section id="map" class="tab-content max-w-7xl mx-auto p-8">
         <h2 class="text-2xl font-bold mb-6">Interactive Map</h2>
         <iframe class="w-full h-96 rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14687.57008539462!2d85.321!3d23.3441" allowfullscreen></iframe>
@@ -293,15 +330,21 @@
     <section id="marketplace" class="tab-content max-w-7xl mx-auto p-8">
         <h2 class="text-2xl font-bold mb-6">Marketplace</h2>
         <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white p-4 rounded shadow">
+            <button onclick="openTab('dokra')" class="bg-white p-4 rounded shadow text-left">
                 <img src="images/dokra.jpg" class="h-36 w-full object-cover rounded" />
                 <h4 class="mt-2 font-medium">Handmade Dokra</h4>
-                <p class="font-semibold">₹1200</p>
-            </div>
+                <div class="flex items-center gap-2 mt-1">
+                    <p class="font-semibold text-emerald-600">₹1200</p>
+                    <p class="text-sm text-gray-500 line-through">₹1333</p>
+                </div>
+            </button>
             <div class="bg-white p-4 rounded shadow">
                 <img src="images/shawl.jpeg" class="h-36 w-full object-cover rounded" />
                 <h4 class="mt-2 font-medium">Tribal Shawl</h4>
-                <p class="font-semibold">₹800</p>
+                <div class="flex items-center gap-2 mt-1">
+                    <p class="font-semibold text-emerald-600">₹800</p>
+                    <p class="text-sm text-gray-500 line-through">₹888</p>
+                </div>
             </div>
         </div>
     </section>
