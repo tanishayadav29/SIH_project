@@ -845,13 +845,14 @@
     <section id="user" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
         <h2 class="heading-main mb-8 section-title">User Dashboard</h2>
         <div class="bg-white p-6 rounded shadow">
-            <div class="flex items-center gap-4 mb-6">
+            <div class="flex items-center gap-4 mb-4">
                 <div id="userAvatar" class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-semibold select-none">U</div>
                 <div>
                     <div class="text-lg font-semibold" id="userDisplayName">Your Name</div>
                     <div class="text-sm text-gray-500" id="userDisplayEmail">you@example.com</div>
                 </div>
             </div>
+            <h3 class="heading-sub mb-3 section-title">Profile</h3>
             <div class="grid md:grid-cols-2 gap-4">
                 <label class="block"><span class="font-medium">User Name</span>
                     <input id="username" class="border rounded p-2 w-full mt-1" type="text" placeholder="Enter your name">
@@ -862,11 +863,12 @@
                 <label class="block"><span class="font-medium">User ID</span>
                     <input id="userid" class="border rounded p-2 w-full mt-1" type="text" disabled>
                 </label>
-                <div class="flex items-end">
-                    <button onclick="saveUser()" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Save</button>
+                <div class="md:col-span-2 flex justify-end">
+                    <button onclick="saveUser()" class="bg-emerald-600 text-white px-6 py-2 rounded">Save changes</button>
                 </div>
             </div>
             <hr class="my-6">
+            <h3 class="heading-sub mb-3 section-title">Trips & activity</h3>
             <div class="grid md:grid-cols-2 gap-4">
                 <div class="bg-gray-50 p-4 rounded border">Upcoming Trip: Betla Safari</div>
                 <div class="bg-gray-50 p-4 rounded border">Saved: Netarhat Sunrise</div>
