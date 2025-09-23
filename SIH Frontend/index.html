@@ -1,1290 +1,1221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jharkhand 360</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="./analytics.js" defer></script>
-    <script>
-      window.addEventListener('DOMContentLoaded', async () => {
-        const apiRoot = (typeof apiBase !== 'undefined') ? apiBase : '';
-        const dataFetcher = async () => {
-          const res = await fetch(`${apiRoot}/api/analytics`);
-          if (!res.ok) throw new Error('Failed to load analytics');
-          return await res.json();
-        };
-        window.initAnalyticsDashboard('#analytics-root', dataFetcher);
-      });
-    </script>
-    <style>
-        html, body {
-            height: 100%;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f0fff0;
-        }
-        main { flex: 1; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .tab-btn {
-            transition: background-color 0.2s;
-        }
-        .tab-btn:hover { background-color: #34d399; }
-        .tab-btn.active { background-color: #059669; color: white; }
-        #carousel { display: flex; transition: transform 0.7s ease; }
-
-        /* Modal specific styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* UI polish */
-        * { scroll-behavior: smooth; }
-        .no-scrollbar { scrollbar-width: none; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .section-title {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-            padding-bottom: 6px;
-        }
-        .section-title::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 64px;
-            height: 3px;
-            background: #059669;
-            border-radius: 9999px;
-        }
-        .heading-main {
-            font-weight: 700;
-            font-size: clamp(1.75rem, 1.2rem + 1.2vw, 2.25rem);
-            line-height: 1.2;
-            color: #0f172a;
-        }
-        .heading-sub {
-            font-weight: 600;
-            font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
-            line-height: 1.3;
-            color: #111827;
-        }
-        .card-soft {
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08);
-        }
-        input[type="text"], input[type="email"], input[type="number"], select, textarea {
-            transition: box-shadow 0.2s ease, border-color 0.2s ease;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
-        }
-        /* Destination tiles hover */
-        #destinations button.bg-white {
-            transition: transform 0.15s ease, box-shadow 0.2s ease;
-        }
-        #destinations button.bg-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jharkhand 360</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="./analytics.js" defer></script>
+<script>
+window.addEventListener('DOMContentLoaded', async () => {
+const apiRoot = (typeof apiBase !== 'undefined') ? apiBase : '';
+const dataFetcher = async () => {
+const res = await fetch(`${apiRoot}/api/analytics`);
+if (!res.ok) throw new Error('Failed to load analytics');
+return await res.json();
+};
+window.initAnalyticsDashboard('#analytics-root', dataFetcher);
+});
+</script>
+<style>
+html, body {
+height: 100%;
+}
+body {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+background-color: #f0fff0;
+}
+main { flex: 1; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-btn {
+transition: background-color 0.2s;
+}
+.tab-btn:hover { background-color: #34d399; }
+.tab-btn.active { background-color: #059669; color: white; }
+#carousel { display: flex; transition: transform 0.7s ease; }
+/* Modal specific styles */
+.modal {
+display: none; /* Hidden by default */
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+background-color: #fff;
+margin: 10% auto;
+padding: 20px;
+border-radius: 8px;
+width: 90%;
+max-width: 500px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.close-btn {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+.close-btn:hover,
+.close-btn:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+/* UI polish */
+* { scroll-behavior: smooth; }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.section-title {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+position: relative;
+padding-bottom: 6px;
+}
+.section-title::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: 0;
+width: 64px;
+height: 3px;
+background: #059669;
+border-radius: 9999px;
+}
+.heading-main {
+font-weight: 700;
+font-size: clamp(1.75rem, 1.2rem + 1.2vw, 2.25rem);
+line-height: 1.2;
+color: #0f172a;
+}
+.heading-sub {
+font-weight: 600;
+font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+line-height: 1.3;
+color: #111827;
+}
+.card-soft {
+border: 1px solid #e5e7eb;
+box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08);
+}
+input[type="text"], input[type="email"], input[type="number"], select, textarea {
+transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+input:focus, select:focus, textarea:focus {
+outline: none;
+border-color: #10b981;
+box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+/* Destination tiles hover */
+#destinations button.bg-white {
+transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+#destinations button.bg-white:hover {
+transform: translateY(-2px);
+box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+.sub-tab-content { display: none; }
+.sub-tab-content.active { display: block; }
+</style>
 </head>
 <body>
-
-    <nav class="bg-white shadow sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between py-3 gap-2">
-                <div class="flex items-center gap-4 shrink-0">
-                    <img src="images/betla.jpg" alt="emblem" class="w-10 h-10 rounded-full" />
-                    <span class="font-bold text-xl md:text-2xl">Jharkhand 360</span>
-                </div>
-                <div class="flex-1 min-w-0 flex gap-3 flex-nowrap md:flex-wrap overflow-x-auto no-scrollbar items-center justify-end">
-                    <button onclick="openTab('home', this)" class="tab-btn px-3 py-2 rounded active">Home</button>
-                    <button onclick="openTab('destinations', this)" class="tab-btn px-3 py-2 rounded">Destinations</button>
-                    <button onclick="openTab('culture', this)" class="tab-btn px-3 py-2 rounded">Culture</button>
-                    <button onclick="openTab('map', this)" class="tab-btn px-3 py-2 rounded">Map</button>
-                    <button onclick="openTab('itinerary', this)" class="tab-btn px-3 py-2 rounded">Trip Planner</button>
-                    <button onclick="openTab('marketplace', this)" class="tab-btn px-3 py-2 rounded">Local Market</button>
-                    <button onclick="openTab('analytics', this)" class="tab-btn px-3 py-2 rounded">Analytics</button>
-                    <button onclick="openTab('user', this)" class="tab-btn px-3 py-2 rounded">User</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-    <section id="home" class="tab-content active max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5 space-y-8">
-        <div class="bg-emerald-700 text-white p-16 text-center rounded-lg shadow-lg card-soft">
-            <h1 class="text-5xl font-bold">Welcome to Jharkhand Tourism</h1>
-            <p class="mt-4 text-lg md:text-xl">Discover the natural beauty, rich culture, and heritage of Jharkhand.</p>
-        </div>
-        <div class="bg-white p-8 rounded-lg shadow text-gray-700 card-soft">
-            <h2 class="text-3xl font-bold mb-4">About Jharkhand</h2>
-            <p class="text-lg leading-relaxed">
-                Jharkhand, known as the "Land of Forests", is a treasure of scenic waterfalls, 
-                dense forests, wildlife sanctuaries, and rich tribal culture. From the sunrise 
-                points at Netarhat to the spiritual vibes of Baidyanath Temple, Jharkhand offers 
-                a diverse experience for travelers seeking nature, adventure, and heritage.
-            </p>
-        </div>
-        <div class="relative w-full overflow-hidden rounded-lg shadow">
-            <div id="carousel">
-                <img src="images/betla.jpg" class="w-full object-cover" alt="Betla National Park">
-                <img src="images/baidyanath.jpg" class="w-full object-cover" alt="Baidyanath Temple">
-                <img src="images/netarhat.jpg" class="w-full object-cover" alt="Netarhat Sunrise">
-                <img src="images/tribal.jpg" class="w-full object-cover" alt="Tribal Festival">
-                <img src="images/handicraft.jpg" class="w-full object-cover" alt="Handicraft">
-            </div>
-
-            <button id="prev" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80 p-2 rounded-full">❮</button>
-            <button id="next" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80 p-2 rounded-full">❯</button>
-
-            <div id="indicators" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2"></div>
-        </div>
-    </section>
-
-    <section id="destinations" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <h2 class="heading-main mb-8 section-title">Top Destinations</h2>
-        <!-- AI Destination Helpers -->
-        <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <!-- Activities Recommender -->
-            <div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
-                <h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
-                    </svg>
-                    AI Activities Recommender
-                </h3>
-                <p class="text-sm text-gray-600 mb-3">Ask for activities to do at a place and suggested timings.</p>
-                <textarea id="activitiesPrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Things to do in Netarhat over a weekend"></textarea>
-                <button id="activitiesGenBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Activities</button>
-                <div class="mt-3 text-sm">
-                    <div id="activitiesError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
-                    <pre id="activitiesResult" class="whitespace-pre-wrap text-gray-700"></pre>
-                </div>
-            </div>
-
-            <!-- Safety + Constraints Advisor -->
-            <div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
-                <h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 4.93a10 10 0 1114.14 14.14A10 10 0 014.93 4.93z" />
-                    </svg>
-                    AI Safety & Constraints Advisor
-                </h3>
-                <p class="text-sm text-gray-600 mb-3">Ask for safety tips, permits, timings, and do/don'ts for a place.</p>
-                <textarea id="safetyPrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Safety tips for trekking around Betla National Park"></textarea>
-                <button id="safetyGenBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded w-full">Generate Safety Guidance</button>
-                <div class="mt-3 text-sm">
-                    <div id="safetyError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
-                    <pre id="safetyResult" class="whitespace-pre-wrap text-gray-700"></pre>
-                </div>
-            </div>
-        </div>
-        <h3 class="heading-sub mb-6 section-title">Explore more places</h3>
-        <div class="grid md:grid-cols-3 gap-6">
-            <button onclick="openTab('betla')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="images/betla.jpg" class="h-48 w-full object-cover" alt="Betla National Park">
-                <div class="p-4"><h3 class="font-bold">Betla National Park</h3><p class="text-sm text-gray-600">Wildlife safari and nature.</p></div>
-            </button>
-            <button onclick="openTab('baidyanath')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="images/baidyanath.jpg" class="h-48 w-full object-cover" alt="Baidyanath Temple">
-                <div class="p-4"><h3 class="font-bold">Baidyanath Temple</h3><p class="text-sm text-gray-600">Pilgrimage site in Deoghar.</p></div>
-            </button>
-            <button onclick="openTab('netarhat')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="images/netarhat.jpg" class="h-48 w-full object-cover" alt="Netarhat Sunrise">
-                <div class="p-4"><h3 class="font-bold">Netarhat Sunrise</h3><p class="text-sm text-gray-600">Scenic sunrise viewpoint.</p></div>
-            </button>
-            <button onclick="openTab('jonha-falls')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="https://via.placeholder.com/400x250.png?text=Jonha+Falls" class="h-48 w-full object-cover" alt="Jonha Falls">
-                <div class="p-4"><h3 class="font-bold">Jonha Falls</h3><p class="text-sm text-gray-600">Beautiful waterfalls.</p></div>
-            </button>
-            <button onclick="openTab('dassam-falls')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="https://via.placeholder.com/400x250.png?text=Dassam+Falls" class="h-48 w-full object-cover" alt="Dassam Falls">
-                <div class="p-4"><h3 class="font-bold">Dassam Falls</h3><p class="text-sm text-gray-600">Ten streams waterfall.</p></div>
-            </button>
-            <button onclick="openTab('dalma-wildlife')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="https://via.placeholder.com/400x250.png?text=Dalma+Wildlife+Sanctuary" class="h-48 w-full object-cover" alt="Dalma Wildlife Sanctuary">
-                <div class="p-4"><h3 class="font-bold">Dalma Wildlife Sanctuary</h3><p class="text-sm text-gray-600">Elephant reserve.</p></div>
-            </button>
-            <button onclick="openTab('parasnath-hill')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="https://via.placeholder.com/400x250.png?text=Parasnath+Hill" class="h-48 w-full object-cover" alt="Parasnath Hill">
-                <div class="p-4"><h3 class="font-bold">Parasnath Hill</h3><p class="text-sm text-gray-600">Jain pilgrimage site.</p></div>
-            </button>
-            <button onclick="openTab('hundru-falls')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="https://via.placeholder.com/400x250.png?text=Hundru+Falls" class="h-48 w-full object-cover" alt="Hundru Falls">
-                <div class="p-4"><h3 class="font-bold">Hundru Falls</h3><p class="text-sm text-gray-600">Scenic cascade.</p></div>
-            </button>
-            <button onclick="openTab('tagore-hill')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="https://via.placeholder.com/400x250.png?text=Tagore+Hill" class="h-48 w-full object-cover" alt="Tagore Hill">
-                <div class="p-4"><h3 class="font-bold">Tagore Hill</h3><p class="text-sm text-gray-600">Historical viewpoint.</p></div>
-            </button>
-            <button onclick="openTab('patratu-valley')" class="bg-white rounded shadow overflow-hidden text-left">
-                <img src="https://via.placeholder.com/400x250.png?text=Patratu+Valley" class="h-48 w-full object-cover" alt="Patratu Valley">
-                <div class="p-4"><h3 class="font-bold">Patratu Valley</h3><p class="text-sm text-gray-600">Lush green valley.</p></div>
-            </button>
-        </div>
-    </section>
-
-    <section id="betla" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Betla National Park</h1>
-            <img src="images/betla.jpg" alt="Betla National Park" class="w-full h-80 object-cover rounded-lg mb-6">
-            
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Betla National Park, located in the Latehar district of Jharkhand, is one of India's earliest tiger reserves. It is renowned for its diverse flora and fauna, offering a thrilling wildlife safari experience. Spread across a vast area, the park is a prime example of successful wildlife conservation efforts in the region.
-            </p>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Features and Attractions</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
-                <li><strong>Wildlife:</strong> Home to tigers, leopards, elephants, gaurs (Indian bison), sambar deer, chital, and a wide variety of birds.</li>
-                <li><strong>Jungle Safari:</strong> Experience the thrill of a safari through the dense forest, providing a chance to spot animals in their natural habitat.</li>
-                <li><strong>Waterfalls:</strong> The park is also known for its scenic waterfalls and streams, which add to its natural beauty.</li>
-                <li><strong>Historical Sites:</strong> The ruins of two historic forts, built by the Chero kings, are situated within the park, offering a glimpse into the region's rich history.</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Planning Your Visit</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600">
-                <li><strong>Location:</strong> Palamu district, Latehar, Jharkhand, India</li>
-                <li><strong>Best Time to Visit:</strong> The ideal time is from October to March when the weather is cool and dry, making wildlife sightings more frequent.</li>
-                <li><strong>Entry Timings:</strong> The park is generally open from 6:00 AM to 5:00 PM. Safari timings are usually divided into morning and afternoon slots.</li>
-                <li><strong>How to Reach:</strong> The nearest railway station is Barwadih and the nearest airport is Ranchi. The park is well-connected by road.</li>
-            </ul>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-    
-    <section id="baidyanath" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Baidyanath Temple</h1>
-            <img src="images/baidyanath.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
-            
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Baidyanath Temple, located in Deoghar, is one of the twelve sacred Jyotirlingas of Shiva and a revered pilgrimage site. It is believed that the temple was built at the spot where the demon king Ravana offered his ten heads to Shiva as a sacrifice. The temple's spiritual significance attracts millions of devotees every year.
-            </p>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Features and Attractions</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
-                <li><strong>Jyotirlinga:</strong> It is one of the 12 Jyotirlingas, making it a crucial pilgrimage for followers of Shiva.</li>
-                <li><strong>Spiritual Atmosphere:</strong> The temple complex is filled with a serene and devout ambiance, especially during the Sawan Mela festival.</li>
-                <li><strong>History:</strong> The temple has a rich history with legends and stories dating back to ancient Hindu mythology.</li>
-                <li><strong>Surrounding Temples:</strong> The main temple is surrounded by a cluster of other temples dedicated to various Hindu gods and goddesses.</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Planning Your Visit</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600">
-                <li><strong>Location:</strong> Deoghar, Jharkhand, India</li>
-                <li><strong>Best Time to Visit:</strong> The months of October to February offer pleasant weather. The Sawan Mela (July-August) is a major festival but the temple is very crowded.</li>
-                <li><strong>Entry Timings:</strong> The temple is open from early morning to late evening, with breaks for rituals.</li>
-                <li><strong>Dress Code:</strong> Devotees are advised to wear traditional and modest clothing.</li>
-            </ul>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="netarhat" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Netarhat Sunrise</h1>
-            <img src="images/netarhat.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
-            
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Netarhat, also known as the "Queen of Chotanagpur," is a beautiful hill station famous for its breathtaking sunrise and sunset views. The panoramic view of the sun rising from behind the hills and illuminating the valley below is an unforgettable experience for tourists.
-            </p>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Features and Attractions</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
-                <li><strong>Sunrise Point:</strong> The main attraction is the majestic sunrise view from the designated viewpoint, offering a spectacular display of colors.</li>
-                <li><strong>Pine Forests:</strong> The area is covered with dense pine forests, making it a perfect spot for nature walks and picnics.</li>
-                <li><strong>Waterfalls:</strong> Nearby attractions include Magnolia Point and various waterfalls like Sadni Falls and Lodh Falls.</li>
-                <li><strong>Cool Climate:</strong> Due to its elevation, Netarhat offers a pleasant climate throughout the year, making it a popular getaway.</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Planning Your Visit</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600">
-                <li><strong>Location:</strong> Latehar district, Jharkhand, India</li>
-                <li><strong>Best Time to Visit:</strong> The winter months from October to March are ideal for clear skies and stunning views.</li>
-                <li><strong>Timings:</strong> The sunrise point can be visited from early morning. It is recommended to reach before sunrise for the best experience.</li>
-                <li><strong>Accommodation:</strong> There are several guesthouses and hotels available in Netarhat for an overnight stay.</li>
-            </ul>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="jonha-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Jonha Falls</h1>
-            <img src="https://via.placeholder.com/600x400.png?text=Jonha+Falls" alt="Jonha Falls" class="w-full h-80 object-cover rounded-lg mb-6">
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Jonha Falls is a beautiful waterfall located near Ranchi. It is also known as Gautamdhara, as there is a temple dedicated to Lord Buddha nearby. The water falls from a height of 43 meters, and visitors have to descend 722 steps to reach the base of the waterfall.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="dassam-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dassam Falls</h1>
-            <img src="https://via.placeholder.com/600x400.png?text=Dassam+Falls" alt="Dassam Falls" class="w-full h-80 object-cover rounded-lg mb-6">
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Dassam Falls is a stunning waterfall created by the Kanchi River, a tributary of the Subarnarekha River. It is famous for its natural beauty and the sound of ten streams of water cascading down. It is a popular picnic and photography spot, but tourists are advised to be careful as the rocks can be slippery.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="dalma-wildlife" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dalma Wildlife Sanctuary</h1>
-            <img src="https://via.placeholder.com/600x400.png?text=Dalma+Wildlife+Sanctuary" alt="Dalma Wildlife Sanctuary" class="w-full h-80 object-cover rounded-lg mb-6">
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Located near Jamshedpur, Dalma Wildlife Sanctuary is a must-visit for wildlife lovers. It is particularly known for its high population of elephants. The sanctuary also houses a wide range of animals like barking deer, wild boars, and various bird species. The sanctuary offers a great trekking experience up the hills.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="parasnath-hill" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Parasnath Hill</h1>
-            <img src="https://via.placeholder.com/600x400.png?text=Parasnath+Hill" alt="Parasnath Hill" class="w-full h-80 object-cover rounded-lg mb-6">
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Parasnath Hill is a prominent Jain pilgrimage site and the highest peak in Jharkhand. It is believed that 20 of the 24 Jain Tirthankaras attained moksha here. The hill is home to several Jain temples (known as gaddis). Pilgrims and tourists undertake a challenging trek to reach the temples at the top, which offers a serene and spiritual experience.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="hundru-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Hundru Falls</h1>
-            <img src="https://via.placeholder.com/600x400.png?text=Hundru+Falls" alt="Hundru Falls" class="w-full h-80 object-cover rounded-lg mb-6">
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Hundru Falls is one of the most famous waterfalls in Jharkhand. Created by the Subarnarekha River, the water falls from a height of 98 meters, making it one of the highest waterfalls in the state. The sight of the water cascading down is truly spectacular, and the surrounding area is perfect for a day trip.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="tagore-hill" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Tagore Hill</h1>
-            <img src="https://via.placeholder.com/600x400.png?text=Tagore+Hill" alt="Tagore Hill" class="w-full h-80 object-cover rounded-lg mb-6">
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Named after Rabindranath Tagore, this hill near Ranchi is known for its serene atmosphere and historical significance. The hill offers a magnificent panoramic view of the city. It is said that Tagore used to visit this place often for his writings. The hill also houses the Ramakrishna Mission Ashram.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="patratu-valley" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Patratu Valley</h1>
-            <img src="https://via.placeholder.com/600x400.png?text=Patratu+Valley" alt="Patratu Valley" class="w-full h-80 object-cover rounded-lg mb-6">
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Patratu Valley is famous for its stunning scenic drive and the horseshoe-shaped Patratu Dam. The winding roads of the valley offer a thrilling ride with panoramic views of the lush green hills and the tranquil lake. It is a popular spot for picnics and boat rides, and an ideal weekend getaway.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
-            </div>
-        </div>
-    </section>
-    
-    <section id="culture" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <h2 class="heading-main mb-8 section-title">Culture & Traditions</h2>
-
-        <!-- AI Recommendation Agents -->
-        <div class="grid md:grid-cols-2 gap-6 mb-8">
-            <!-- Culture Recommendation Agent -->
-            <div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
-                <h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
-                    </svg>
-                    AI Culture Recommendations
-                </h3>
-                <p class="text-sm text-gray-600 mb-3">Ask for cultural experiences, events, dances, arts, and village visits.</p>
-                <textarea id="culturePrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Suggest a 1-day cultural experience near Ranchi"></textarea>
-                <button id="cultureGenBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Culture Plan</button>
-                <div class="mt-3 text-sm">
-                    <div id="cultureError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
-                    <pre id="cultureResult" class="whitespace-pre-wrap text-gray-700"></pre>
-                </div>
-            </div>
-
-            <!-- Food Recommendation Agent -->
-            <div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
-                <h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M10 14h4M12 18h.01" />
-                    </svg>
-                    AI Food Recommendations
-                </h3>
-                <p class="text-sm text-gray-600 mb-3">Ask for local dishes, restaurants, stalls, and seasonal specialties.</p>
-                <textarea id="foodPrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Recommend authentic Jharkhand dishes in Ranchi"></textarea>
-                <button id="foodGenBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded w-full">Generate Food Picks</button>
-                <div class="mt-3 text-sm">
-                    <div id="foodError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
-                    <pre id="foodResult" class="whitespace-pre-wrap text-gray-700"></pre>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="heading-sub mb-6 section-title">Explore more</h3>
-        <div class="grid md:grid-cols-3 gap-6">
-            <button onclick="openTab('tribal-dance')" class="bg-white rounded shadow p-4 text-left">
-                <img src="images/tribaldance.jpg" class="h-36 w-full object-cover rounded" />
-                <h3 class="mt-2 font-semibold">Tribal Dance</h3>
-                <p class="text-sm text-gray-600">Celebration of heritage.</p>
-            </button>
-            <button onclick="openTab('festivals')" class="bg-white rounded shadow p-4 text-left">
-                <img src="images/festival.jpg" class="h-36 w-full object-cover rounded" />
-                <h3 class="mt-2 font-semibold">Festivals</h3>
-                <p class="text-sm text-gray-600">Sarhul, Karma, Tusu.</p>
-            </button>
-            <button onclick="openTab('handicrafts')" class="bg-white rounded shadow p-4 text-left">
-                <img src="images/handicraft2.jpg" class="h-36 w-full object-cover rounded" />
-                <h3 class="mt-2 font-semibold">Handicrafts</h3>
-                <p class="text-sm text-gray-600">Dokra, Sohrai painting.</p>
-            </button>
-        </div>
-    </section>
-
-    <section id="tribal-dance" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Tribal Dances</h1>
-            <img src="images/tribaldance.jpg" alt="Tribal Dance" class="w-full h-80 object-cover rounded-lg mb-6">
-            
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Jharkhand's tribal dances are a vibrant expression of their rich culture and daily life. These dances are performed during festivals, harvests, and other special occasions. Some of the well-known dance forms include **Chhau**, a UNESCO-recognized martial art dance; **Paika**, a dance symbolizing battle art; and **Karma**, a harvest festival dance. They often use bows, arrows, and traditional musical instruments like the Dhol and Nagara.
-            </p>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Dance Forms for Kids</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
-                <li><strong>Chhau Dance:</strong> A semi-classical dance with martial and folk traditions. Dancers wear bright costumes and sometimes masks.</li>
-                <li><strong>Paika Dance:</strong> This dance is performed to welcome guests or during processions. Dancers carry shields and swords, mimicking battle movements.</li>
-                <li><strong>Karam Dance:</strong> A joyful harvest festival dance performed to worship the god of power and youth.</li>
-            </ul>
-
-            <div class="mt-8">
-                <button onclick="openTab('culture')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Culture</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="festivals" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Festivals</h1>
-            <img src="images/festival.jpg" alt="Festivals" class="w-full h-80 object-cover rounded-lg mb-6">
-            
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Jharkhand is a land of many vibrant festivals, most of which are deeply connected to nature and tribal traditions. These festivals are celebrated with great enthusiasm, involving dance, music, and special rituals. Some popular ones include **Sarhul**, which celebrates the spring season and the worship of the Sal tree; **Sohrai**, a festival for domestic animals; and **Tusu Parab**, a harvest festival for unmarried girls.
-            </p>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Festivals for Kids</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
-                <li><strong>Sarhul:</strong> A festival of flowers where people thank the deities for protecting the village. Kids can learn about the importance of trees and nature.</li>
-                <li><strong>Karma:</strong> A festival where young girls celebrate for the well-being of their brothers. They plant grains in a small basket, teaching them about farming and new life.</li>
-                <li><strong>Jitiya:</strong> A 35-hour dry fast observed by mothers for the longevity of their children, a great way for kids to learn about unconditional love and devotion.</li>
-            </ul>
-
-            <div class="mt-8">
-                <button onclick="openTab('culture')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Culture</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="handicrafts" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handicrafts</h1>
-            <img src="images/handicraft.jpg" alt="Handicrafts" class="w-full h-80 object-cover rounded-lg mb-6">
-            
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                The **art and handicrafts** of Jharkhand reflect the state's natural resources and rich tribal heritage. Artisans use traditional techniques to create beautiful and unique items. These crafts include **Dokra art**, an ancient metal casting technique; **Sohrai and Khovar paintings**, which are traditional wall murals; and various crafts made from bamboo and wood.
-            </p>
-
-            <h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Handicrafts for Kids</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
-                <li><strong>Dokra Art:</strong> Learn about the "lost-wax technique" used to create intricate metal sculptures of animals and figures.</li>
-                <li><strong>Sohrai Painting:</strong> This art form uses natural pigments and bold lines to create beautiful paintings on walls, often as part of a festival.</li>
-                <li><strong>Bamboo Crafts:</strong> Kids can learn how artisans weave and shape bamboo into useful items like baskets and mats, and even toys.</li>
-            </ul>
-
-            <div class="mt-8">
-                <button onclick="openTab('culture')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Culture</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="dokra" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Dokra Art</h1>
-            
-            <div class="md:flex gap-8 items-center">
-                <div class="md:w-1/2">
-                    <img src="images/dokra.jpg" alt="Handmade Dokra" class="w-full object-cover rounded-lg shadow-lg">
-                </div>
-                <div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
-                    <h2 class="text-2xl font-bold">Dokra Handicraft</h2>
-                    <p class="text-3xl font-semibold text-emerald-600">₹1200</p>
-                    <p class="text-sm text-gray-500 line-through">₹1333</p>
-                    <div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
-                    <div class="flex gap-4">
-                        <button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition" onclick="showReceipt('Dokra Handicraft', 1200)">Buy Now</button>
-                        <button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
-                    </div>
-                    <div>
-                        <label for="coupon" class="block text-gray-700">Have a coupon code?</label>
-                        <div class="flex mt-1">
-                            <input type="text" id="coupon" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
-                            <button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Dokra Art</h2>
-            <p class="text-lg text-gray-700 leading-relaxed">
-                **Dokra** is an ancient art of metal casting using the lost-wax technique. It's one of the oldest forms of this craft, with a history spanning over 4,000 years. The artisans, mainly from the Malhar and Dhokra Damar tribes of Jharkhand, create intricate and beautiful figures of animals, deities, and tribal life. The art is known for its primitive simplicity and folk motifs. Each piece is unique because the mold is broken after casting.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="tribal-shawl" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
-            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Tribal Shawl</h1>
-            
-            <div class="md:flex gap-8 items-center">
-                <div class="md:w-1/2">
-                    <img src="images/shawl.jpeg" alt="Tribal Shawl" class="w-full h-80 object-cover rounded-lg shadow-lg">
-                </div>
-                <div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
-                    <h2 class="text-2xl font-bold">Tribal Shawl</h2>
-                    <p class="text-3xl font-semibold text-emerald-600">₹800</p>
-                    <p class="text-sm text-gray-500 line-through">₹888</p>
-                    <div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
-                    <div class="flex gap-4">
-                        <button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition" onclick="showReceipt('Tribal Shawl', 800)">Buy Now</button>
-                        <button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
-                    </div>
-                    <div>
-                        <label for="coupon2" class="block text-gray-700">Have a coupon code?</label>
-                        <div class="flex mt-1">
-                            <input type="text" id="coupon2" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
-                            <button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Tribal Shawls</h2>
-            <p class="text-lg text-gray-700 leading-relaxed">
-                Jharkhand's tribal shawls are more than just clothing; they are a symbol of culture, tradition, and artistry. Hand-woven by local tribes, these shawls feature intricate designs and vibrant colors, often depicting elements from nature and tribal folklore. They are made from natural fibers, making them soft, comfortable, and durable. Each shawl tells a unique story and is a testament to the skill of the artisans.
-            </p>
-            <div class="mt-8">
-                <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="map" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <h2 class="heading-main mb-8 section-title">Interactive Map</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <!-- Weather Forecaster AI -->
-            <div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
-                <h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16a4 4 0 104 4h10a4 4 0 100-8 6 6 0 10-12 0 4 4 0 00-2 4z" />
-                    </svg>
-                    AI Weather Forecaster
-                </h3>
-                <p class="text-sm text-gray-600 mb-3">Get a short-term forecast and travel advice.</p>
-                <div class="grid gap-3 mb-3">
-                    <input id="weatherLocation" class="border rounded p-2 w-full" placeholder="Enter location (e.g., Ranchi)" />
-                    <input id="weatherDate" type="date" class="border rounded p-2 w-full" />
-                </div>
-                <button id="weatherBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Get Forecast</button>
-                <div class="mt-3 text-sm">
-                    <div id="weatherError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
-                    <pre id="weatherResult" class="whitespace-pre-wrap text-gray-700"></pre>
-                </div>
-            </div>
-
-            <!-- Live Map Placeholder -->
-            <div class="bg-gray-50 rounded border border-dashed border-gray-300 p-6 flex items-center justify-center text-gray-600 text-center">
-                <div>
-                    <div class="font-semibold mb-1">Live interactive map</div>
-                    <div class="text-sm">Will be added</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-  <!-- Itinerary Section -->
-    <section id="itinerary" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <h2 class="heading-main mb-8 section-title">Trip Planner</h2>
-        <div class="grid md:grid-cols-2 gap-6 items-stretch">
-            <!-- Trip Planner Card -->
-            <div class="bg-white p-4 rounded shadow border-t-4 border-emerald-600 h-full min-h-[520px] flex flex-col">
-                <h3 class="font-semibold mb-2 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8m-4-4v4m8-10a8 8 0 11-16 0 8 8 0 0116 0z" />
-                    </svg>
-                    Plan your trip
-                </h3>
-                <div class="space-y-3 flex-1 overflow-auto">
-                    <label class="block">Destination
-                        <select id="destSel" class="border rounded p-2 w-full mt-1">
-                            <option>Explore Jharkhand (General)</option>
-                            <option>Ranchi & Surroundings</option>
-                            <option>Deoghar Pilgrimage Circuit</option>
-                            <option>Netarhat Hill Station</option>
-                            <option>Betla National Park</option>
-                            <option>Tribal Villages & Culture</option>
-                            <option>Waterfalls Circuit</option>
-                            <option>Custom Destination</option>
-                        </select>
-                        <input id="destCustom" class="border rounded p-2 w-full mt-2 hidden" placeholder="Specify your destination" />
-                    </label>
-                    <label class="block">Month
-                        <select id="month" class="border rounded p-2 w-full mt-1">
-                            <option>January</option><option>February</option><option>March</option><option>April</option>
-                            <option>May</option><option>June</option><option>July</option><option>August</option>
-                            <option>September</option><option>October</option><option>November</option><option>December</option>
-                        </select>
-                    </label>
-                    <label class="block">Duration (days)
-                        <input id="duration" type="number" min="1" max="30" value="7" class="border rounded p-2 w-full mt-1" />
-                    </label>
-                    <label class="block">People
-                        <select id="people" class="border rounded p-2 w-full mt-1">
-                            <option>1</option><option>2</option><option>3</option><option>4-6</option><option>7-10</option><option>10+</option>
-                        </select>
-                    </label>
-                    <label class="block">Tourism Type
-                        <select id="tourism" class="border rounded p-2 w-full mt-1">
-                            <option>Eco-Tourism & Nature</option>
-                            <option>Tribal Culture & Heritage</option>
-                            <option>Pilgrimage & Spiritual</option>
-                            <option>Adventure & Trekking</option>
-                            <option>Mixed Experience</option>
-                            <option>Photography & Wildlife</option>
-                        </select>
-                    </label>
-                    <label class="block">Tribal Interest
-                        <select id="tribal" class="border rounded p-2 w-full mt-1">
-                            <option>Low</option><option selected>Medium</option><option>High</option><option>Very High</option>
-                        </select>
-                    </label>
-                    <label class="block">Mobility Level
-                        <select id="mobility" class="border rounded p-2 w-full mt-1">
-                            <option>Easy (No trekking)</option>
-                            <option>Moderate (Light walking)</option>
-                            <option>Active (Moderate trekking)</option>
-                            <option>Adventure (Challenging treks)</option>
-                        </select>
-                    </label>
-                    <label class="block">Accommodation
-                        <select id="accommodation" class="border rounded p-2 w-full mt-1">
-                            <option>Homestays (Tribal villages)</option>
-                            <option>Eco-lodges & Nature stays</option>
-                            <option>Hotels & Resorts</option>
-                            <option>Mixed (Homestays + Hotels)</option>
-                            <option>Budget-friendly options</option>
-                        </select>
-                    </label>
-                    <label class="block">Language
-                        <select id="language" class="border rounded p-2 w-full mt-1">
-                            <option>English</option>
-                            <option>Hindi</option>
-                            <option>English + Hindi</option>
-                            <option>Local languages welcome</option>
-                        </select>
-                    </label>
-                    <label class="block">Budget
-                        <select id="budget" class="border rounded p-2 w-full mt-1">
-                            <option>Budget (₹500-1500/day)</option>
-                            <option>Mid-Range (₹1500-3000/day)</option>
-                            <option>Comfortable (₹3000-5000/day)</option>
-                            <option>Luxury (₹5000+/day)</option>
-                        </select>
-                    </label>
-                    <label class="block">Special Interests (comma separated)
-                        <input id="interests" class="border rounded p-2 w-full mt-1" placeholder="Wildlife photography, Handicraft workshops" />
-                    </label>
-                    <label class="block">Comments
-                        <textarea id="comments" class="border rounded p-2 w-full mt-1" rows="2"></textarea>
-                    </label>
-                    <button id="generateBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Itinerary</button>
-
-                    <div class="pt-3 text-sm">
-                        <div class="font-semibold mb-2">Result</div>
-                        <div id="itineraryResult" class="prose max-w-none whitespace-pre-wrap text-sm"></div>
-                        <div id="errorBox" class="hidden mt-2 p-2 bg-red-50 text-red-700 rounded text-sm"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pack List Generator Card -->
-            <div class="bg-white p-4 rounded shadow border-t-4 border-emerald-600">
-                <h3 class="font-semibold mb-2 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M6 7l.894-1.788A2 2 0 018.618 4h6.764a2 2 0 011.724 1.212L18 7m-2 0v10a2 2 0 01-2 2H10a2 2 0 01-2-2V7" />
-                    </svg>
-                    Essential things pack list generator
-                </h3>
-                <p class="text-sm text-gray-600 mb-3">Generate a packing list based on trip details.</p>
-                <div class="grid gap-3">
-                    <input id="packDestination" class="border rounded p-2 w-full" placeholder="Destination (e.g., Netarhat)" />
-                    <select id="packSeason" class="border rounded p-2 w-full">
-                        <option value="Winter">Winter</option>
-                        <option value="Monsoon">Monsoon</option>
-                        <option value="Summer">Summer</option>
-                        <option value="Mixed" selected>Mixed</option>
-                    </select>
-                    <select id="packActivities" class="border rounded p-2 w-full">
-                        <option>Sightseeing</option>
-                        <option>Trekking</option>
-                        <option>Pilgrimage</option>
-                        <option>Wildlife Safari</option>
-                        <option>Mixed</option>
-                    </select>
-                    <input id="packDays" type="number" min="1" value="5" class="border rounded p-2 w-full" placeholder="Days" />
-                </div>
-                <button id="packGenBtn" class="mt-3 bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Pack List</button>
-                <div class="mt-3 text-sm">
-                    <div id="packError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
-                    <pre id="packResult" class="whitespace-pre-wrap text-gray-700"></pre>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marketplace Section -->
-    <section id="marketplace" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <h2 class="heading-main mb-8 section-title">Local Market</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white p-4 rounded shadow">
-                <img src="images/dokra.jpg" class="h-36 w-full object-cover rounded" />
-                <h4 class="mt-2 font-medium">Handmade Dokra</h4>
-                <p class="font-semibold">₹1200</p>
-            </div>
-            <div class="bg-white p-4 rounded shadow">
-                <img src="images/shawl.jpeg" class="h-36 w-full object-cover rounded" />
-                <h4 class="mt-2 font-medium">Tribal Shawl</h4>
-                <p class="font-semibold">₹800</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Analytics Section -->
-    <section id="analytics" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-      <h2 class="heading-main mb-8 section-title">Analytics Dashboard</h2>
-      <div id="analytics-root"></div>
-    </section>
-
-    <!-- User Section -->
-    <section id="user" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
-        <h2 class="heading-main mb-8 section-title">User Dashboard</h2>
-        <div class="bg-white p-6 rounded shadow">
-            <div class="flex items-center gap-4 mb-4">
-                <div id="userAvatar" class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-semibold select-none">U</div>
-                <div>
-                    <div class="text-lg font-semibold" id="userDisplayName">Your Name</div>
-                    <div class="text-sm text-gray-500" id="userDisplayEmail">you@example.com</div>
-                </div>
-            </div>
-            <h3 class="heading-sub mb-3 section-title">Profile</h3>
-            <div class="grid md:grid-cols-2 gap-4">
-                <label class="block"><span class="font-medium">User Name</span>
-                    <input id="username" class="border rounded p-2 w-full mt-1" type="text" placeholder="Enter your name">
-                </label>
-                <label class="block"><span class="font-medium">Email</span>
-                    <input id="email" class="border rounded p-2 w-full mt-1" type="email" placeholder="you@example.com">
-                </label>
-                <label class="block"><span class="font-medium">User ID</span>
-                    <input id="userid" class="border rounded p-2 w-full mt-1" type="text" disabled>
-                </label>
-                <div class="md:col-span-2 flex justify-end">
-                    <button onclick="saveUser()" class="bg-emerald-600 text-white px-6 py-2 rounded">Save changes</button>
-                </div>
-            </div>
-            <hr class="my-6">
-            <h3 class="heading-sub mb-3 section-title">Trips & activity</h3>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="bg-gray-50 p-4 rounded border">Upcoming Trip: Betla Safari</div>
-                <div class="bg-gray-50 p-4 rounded border">Saved: Netarhat Sunrise</div>
-                <div class="bg-gray-50 p-4 rounded border">Past Bookings</div>
-                <div class="bg-gray-50 p-4 rounded border">Feedback & Reviews</div>
-            </div>
-        </div>
-    </section>
-    </main>
-
-    <div id="receipt-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeReceipt()">×</span>
-            <div id="receipt-details"></div>
-        </div>
-    </div>
-
-    <section id="payment-page" class="tab-content fixed inset-0 z-50 bg-white p-8 overflow-auto hidden">
-        <div class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-lg text-center">
-            <h2 class="text-2xl font-bold mb-4">Payment Gateway</h2>
-            <img src="https://via.placeholder.com/300x150.png?text=UPI+QR+Code" alt="UPI QR Code" class="w-full h-40 object-contain rounded mb-4">
-            <p class="mb-4 text-lg">Scan to Pay: <strong id="payment-amount"></strong></p>
-            <p class="text-sm text-gray-500">
-                This is a mock payment interface. Please do not enter real payment details.
-            </p>
-            <div class="flex justify-center gap-4 mt-6">
-                <button onclick="openTab('user')" class="bg-emerald-600 text-white px-6 py-2 rounded-lg">Go to Profile</button>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-emerald-700 text-white text-center py-4 mt-8">
-        © 2025 Jharkhand Tourism Portal
-    </footer>
-
-    <!-- Floating Chat Widget -->
-    <div id="chat-widget">
-        <button id="chat-toggle" class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center" aria-label="Open chat">
-            <!-- Chat icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.1 0-2.15-.16-3.12-.45-.32-.1-.48-.15-.63-.17a2 2 0 0 0-.91.09l-2.33.78a1 1 0 0 1-1.27-1.27l.78-2.33c.11-.34.16-.51.17-.63a3 3 0 0 0-.17-.75C3.2 14.84 3 13.94 3 13c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-        </button>
-
-        <div id="chat-box" class="hidden fixed bottom-24 right-6 z-50 w-80 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden">
-            <div class="bg-emerald-600 text-white px-4 py-2 flex items-center justify-between">
-                <span class="font-semibold text-sm">AI Assistant</span>
-                <button id="chat-close" class="text-white/80 hover:text-white" aria-label="Close chat">×</button>
-            </div>
-            <div class="p-3 text-sm text-gray-600">
-                Hi! How can I help you explore Jharkhand today?
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openTab(tabId, btn) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            const target = document.getElementById(tabId);
-            if (target) {
-                target.classList.add('active');
-            }
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            if (btn) {
-                btn.classList.add('active');
-            }
-            const payment = document.getElementById('payment-page');
-            if (payment) {
-                if (tabId === 'payment-page') {
-                    payment.classList.remove('hidden');
-                } else {
-                    payment.classList.add('hidden');
-                }
-            }
-        }
-
-        const carousel = document.getElementById('carousel');
-        const slides = carousel.children;
-        let index = 0;
-        const total = slides.length;
-        const indicatorsContainer = document.getElementById('indicators');
-
-        for(let i=0; i<total; i++){
-            const dot = document.createElement('button');
-            dot.className = "w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-80";
-            dot.addEventListener('click', () => { index=i; updateCarousel(); resetInterval(); });
-            indicatorsContainer.appendChild(dot);
-        }
-
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${index*100}%)`;
-            Array.from(indicatorsContainer.children).forEach((dot,i)=>dot.style.backgroundColor = i===index ? "#059669" : "rgba(255,255,255,0.5)");
-        }
-
-        document.getElementById('prev').addEventListener('click', ()=>{ index=(index-1+total)%total; updateCarousel(); resetInterval(); });
-        document.getElementById('next').addEventListener('click', ()=>{ index=(index+1)%total; updateCarousel(); resetInterval(); });
-
-        let interval = setInterval(()=>{ index=(index+1)%total; updateCarousel(); }, 3000);
-        function resetInterval(){ clearInterval(interval); interval=setInterval(()=>{index=(index+1)%total; updateCarousel();},3000);}
-        updateCarousel();
-
-        // Itinerary generator (calls backend)
-        const apiBase = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://127.0.0.1:8000' : '';
-
-        // Toggle custom destination input
-        const destSel = document.getElementById('destSel');
-        const destCustom = document.getElementById('destCustom');
-        if (destSel && destCustom) {
-            destSel.addEventListener('change', () => {
-                if (destSel.value === 'Custom Destination') {
-                    destCustom.classList.remove('hidden');
-                } else {
-                    destCustom.classList.add('hidden');
-                }
-            });
-        }
-
-        const generateBtn = document.getElementById('generateBtn');
-        if (generateBtn) {
-            generateBtn.addEventListener('click', async () => {
-                const btn = generateBtn;
-                const resultBox = document.getElementById('itineraryResult');
-                const errorBox = document.getElementById('errorBox');
-                if (errorBox) errorBox.classList.add('hidden');
-                if (resultBox) resultBox.textContent = '';
-                btn.disabled = true; btn.textContent = 'Generating...';
-                try {
-                    const selectedDestination = destSel && destSel.value === 'Custom Destination'
-                        ? ((destCustom && destCustom.value) || 'Explore Jharkhand (General)')
-                        : (destSel ? destSel.value : 'Explore Jharkhand (General)');
-                    const payload = {
-                        preferences: {
-                            destination: selectedDestination,
-                            month: document.getElementById('month').value,
-                            duration: parseInt(document.getElementById('duration').value || '7'),
-                            num_people: document.getElementById('people').value,
-                            tourism_type: document.getElementById('tourism').value,
-                            tribal_interest: document.getElementById('tribal').value,
-                            mobility_level: document.getElementById('mobility').value,
-                            accommodation_type: document.getElementById('accommodation').value,
-                            language_preference: document.getElementById('language').value,
-                            budget_range: document.getElementById('budget').value,
-                            special_interests: (document.getElementById('interests').value || '').split(',').map(s=>s.trim()).filter(Boolean),
-                            comments: document.getElementById('comments').value || ''
-                        }
-                    };
-                    const res = await fetch(`${apiBase}/api/generate_itinerary`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!res.ok) throw new Error(`API ${res.status}`);
-                    const data = await res.json();
-                    if (resultBox) resultBox.textContent = data.itinerary || 'No itinerary returned.';
-                } catch (err) {
-                    if (errorBox) {
-                        errorBox.textContent = `Failed to generate itinerary: ${err.message || err}`;
-                        errorBox.classList.remove('hidden');
-                    }
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Generate Itinerary';
-                }
-            });
-        }
-
-        function saveUser() {
-            const name = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            // Update display name and email
-            const displayName = document.getElementById('userDisplayName');
-            const displayEmail = document.getElementById('userDisplayEmail');
-            if (displayName) displayName.textContent = name || 'Your Name';
-            if (displayEmail) displayEmail.textContent = email || 'you@example.com';
-            // Update initials avatar
-            const avatar = document.getElementById('userAvatar');
-            if (avatar) {
-                const initials = (name || 'User')
-                    .split(/\s+/)
-                    .filter(Boolean)
-                    .slice(0, 2)
-                    .map(part => part[0]?.toUpperCase() || '')
-                    .join('') || 'U';
-                avatar.textContent = initials;
-            }
-            alert(`Saved! Name: ${name || 'Your Name'}, Email: ${email || 'you@example.com'}`);
-        }
-
-        const receiptModal = document.getElementById('receipt-modal');
-        const receiptDetails = document.getElementById('receipt-details');
-
-        function showReceipt(itemName, price) {
-            receiptDetails.innerHTML = `
-                <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
-                <div class="border-b pb-4 mb-4">
-                    <p class="text-lg">Item: <strong class="text-emerald-700">${itemName}</strong></p>
-                    <p class="text-lg">Total: <strong class="text-orange-500">₹${price}</strong></p>
-                </div>
-                <div class="space-y-2">
-                    <button onclick="showPayment('${price}')" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">Proceed to Payment</button>
-                    <button onclick="showAddressForm()" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Add Address</button>
-                    <button onclick="closeReceipt()" class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">Cancel</button>
-                </div>
-            `;
-            receiptModal.style.display = 'block';
-        }
-
-        function closeReceipt() {
-            receiptModal.style.display = 'none';
-        }
-
-        function showPayment(amount) {
-            closeReceipt();
-            openTab('payment-page');
-            document.getElementById('payment-amount').innerText = `₹${amount}`;
-        }
-        
-        function showAddressForm() {
-            alert('Address form would appear here!');
-        }
-
-        window.onclick = function(event) {
-            if (event.target == receiptModal) {
-                closeReceipt();
-            }
-        }
-
-        // Chat widget toggle
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatBox = document.getElementById('chat-box');
-        const chatClose = document.getElementById('chat-close');
-        if (chatToggle && chatBox) {
-            chatToggle.addEventListener('click', () => {
-                chatBox.classList.toggle('hidden');
-            });
-        }
-        if (chatClose && chatBox) {
-            chatClose.addEventListener('click', () => {
-                chatBox.classList.add('hidden');
-            });
-        }
-
-        // Culture & Food AI agents (frontend wiring)
-        const cultureGenBtn = document.getElementById('cultureGenBtn');
-        const culturePrompt = document.getElementById('culturePrompt');
-        const cultureResult = document.getElementById('cultureResult');
-        const cultureError = document.getElementById('cultureError');
-
-        const foodGenBtn = document.getElementById('foodGenBtn');
-        const foodPrompt = document.getElementById('foodPrompt');
-        const foodResult = document.getElementById('foodResult');
-        const foodError = document.getElementById('foodError');
-
-        async function callAgent(endpoint, prompt) {
-            const url = `${apiBase}${endpoint}`;
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt })
-            });
-            if (!response.ok) throw new Error(`API ${response.status}`);
-            return response.json();
-        }
-
-        if (cultureGenBtn) {
-            cultureGenBtn.addEventListener('click', async () => {
-                const btn = cultureGenBtn;
-                const prompt = (culturePrompt && culturePrompt.value.trim()) || 'Recommend a cultural experience in Jharkhand';
-                if (cultureError) cultureError.classList.add('hidden');
-                if (cultureResult) cultureResult.textContent = '';
-                btn.disabled = true; btn.textContent = 'Generating...';
-                try {
-                    const data = await callAgent('/api/culture_recommendations', prompt);
-                    if (cultureResult) cultureResult.textContent = data.recommendations || data.result || 'No recommendations returned.';
-                } catch (err) {
-                    if (cultureError) { cultureError.textContent = `Failed: ${err.message || err}`; cultureError.classList.remove('hidden'); }
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Generate Culture Plan';
-                }
-            });
-        }
-
-        if (foodGenBtn) {
-            foodGenBtn.addEventListener('click', async () => {
-                const btn = foodGenBtn;
-                const prompt = (foodPrompt && foodPrompt.value.trim()) || 'Recommend authentic Jharkhand dishes and places to try them';
-                if (foodError) foodError.classList.add('hidden');
-                if (foodResult) foodResult.textContent = '';
-                btn.disabled = true; btn.textContent = 'Generating...';
-                try {
-                    const data = await callAgent('/api/food_recommendations', prompt);
-                    if (foodResult) foodResult.textContent = data.recommendations || data.result || 'No recommendations returned.';
-                } catch (err) {
-                    if (foodError) { foodError.textContent = `Failed: ${err.message || err}`; foodError.classList.remove('hidden'); }
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Generate Food Picks';
-                }
-            });
-        }
-
-        // Destinations: Activities & Safety agents
-        const activitiesGenBtn = document.getElementById('activitiesGenBtn');
-        const activitiesPrompt = document.getElementById('activitiesPrompt');
-        const activitiesResult = document.getElementById('activitiesResult');
-        const activitiesError = document.getElementById('activitiesError');
-
-        const safetyGenBtn = document.getElementById('safetyGenBtn');
-        const safetyPrompt = document.getElementById('safetyPrompt');
-        const safetyResult = document.getElementById('safetyResult');
-        const safetyError = document.getElementById('safetyError');
-
-        if (activitiesGenBtn) {
-            activitiesGenBtn.addEventListener('click', async () => {
-                const btn = activitiesGenBtn;
-                const prompt = (activitiesPrompt && activitiesPrompt.value.trim()) || 'Suggest activities and timings for a Jharkhand destination';
-                if (activitiesError) activitiesError.classList.add('hidden');
-                if (activitiesResult) activitiesResult.textContent = '';
-                btn.disabled = true; btn.textContent = 'Generating...';
-                try {
-                    const data = await callAgent('/api/activities_recommendations', prompt);
-                    if (activitiesResult) activitiesResult.textContent = data.recommendations || data.result || 'No activities returned.';
-                } catch (err) {
-                    if (activitiesError) { activitiesError.textContent = `Failed: ${err.message || err}`; activitiesError.classList.remove('hidden'); }
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Generate Activities';
-                }
-            });
-        }
-
-        if (safetyGenBtn) {
-            safetyGenBtn.addEventListener('click', async () => {
-                const btn = safetyGenBtn;
-                const prompt = (safetyPrompt && safetyPrompt.value.trim()) || 'List safety tips, permits, and constraints for a Jharkhand destination';
-                if (safetyError) safetyError.classList.add('hidden');
-                if (safetyResult) safetyResult.textContent = '';
-                btn.disabled = true; btn.textContent = 'Generating...';
-                try {
-                    const data = await callAgent('/api/safety_guidance', prompt);
-                    if (safetyResult) safetyResult.textContent = data.guidance || data.result || 'No guidance returned.';
-                } catch (err) {
-                    if (safetyError) { safetyError.textContent = `Failed: ${err.message || err}`; safetyError.classList.remove('hidden'); }
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Generate Safety Guidance';
-                }
-            });
-        }
-
-        // Weather AI forecast
-        const weatherBtn = document.getElementById('weatherBtn');
-        const weatherLocation = document.getElementById('weatherLocation');
-        const weatherDate = document.getElementById('weatherDate');
-        const weatherResult = document.getElementById('weatherResult');
-        const weatherError = document.getElementById('weatherError');
-        if (weatherBtn) {
-            weatherBtn.addEventListener('click', async () => {
-                const btn = weatherBtn;
-                const location = (weatherLocation && weatherLocation.value.trim()) || 'Ranchi';
-                const date = (weatherDate && weatherDate.value) || '';
-                if (weatherError) weatherError.classList.add('hidden');
-                if (weatherResult) weatherResult.textContent = '';
-                btn.disabled = true; btn.textContent = 'Fetching...';
-                try {
-                    const payload = { location, date };
-                    const res = await fetch(`${apiBase}/api/weather_forecast`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!res.ok) throw new Error(`API ${res.status}`);
-                    const data = await res.json();
-                    const text = data.forecast || data.result || 'No forecast available.';
-                    if (weatherResult) weatherResult.textContent = text;
-                } catch (err) {
-                    if (weatherError) { weatherError.textContent = `Failed: ${err.message || err}`; weatherError.classList.remove('hidden'); }
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Get Forecast';
-                }
-            });
-        }
-
-        // Pack list generator
-        const packGenBtn = document.getElementById('packGenBtn');
-        const packDestination = document.getElementById('packDestination');
-        const packSeason = document.getElementById('packSeason');
-        const packActivities = document.getElementById('packActivities');
-        const packDays = document.getElementById('packDays');
-        const packResult = document.getElementById('packResult');
-        const packError = document.getElementById('packError');
-        if (packGenBtn) {
-            packGenBtn.addEventListener('click', async () => {
-                const btn = packGenBtn;
-                if (packError) packError.classList.add('hidden');
-                if (packResult) packResult.textContent = '';
-                btn.disabled = true; btn.textContent = 'Generating...';
-                try {
-                    const payload = {
-                        destination: (packDestination && packDestination.value.trim()) || 'Jharkhand',
-                        season: packSeason ? packSeason.value : 'Mixed',
-                        activities: packActivities ? packActivities.value : 'Mixed',
-                        days: packDays ? parseInt(packDays.value || '5') : 5
-                    };
-                    const res = await fetch(`${apiBase}/api/pack_list`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!res.ok) throw new Error(`API ${res.status}`);
-                    const data = await res.json();
-                    const text = data.list || data.result || 'No list generated.';
-                    if (packResult) packResult.textContent = text;
-                } catch (err) {
-                    if (packError) { packError.textContent = `Failed: ${err.message || err}`; packError.classList.remove('hidden'); }
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Generate Pack List';
-                }
-            });
-        }
-    </script>
+<nav class="bg-white shadow sticky top-0 z-50">
+<div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between py-3 gap-2">
+<div class="flex items-center gap-4 shrink-0">
+<img src="images/betla.jpg" alt="emblem" class="w-10 h-10 rounded-full" />
+<span class="font-bold text-xl md:text-2xl">Jharkhand 360</span>
+</div>
+<div class="flex-1 min-w-0 flex gap-3 flex-nowrap md:flex-wrap overflow-x-auto no-scrollbar items-center justify-end">
+<button onclick="openTab('home', this)" class="tab-btn px-3 py-2 rounded active">Home</button>
+<button onclick="openTab('destinations', this)" class="tab-btn px-3 py-2 rounded">Destinations</button>
+<button onclick="openTab('culture', this)" class="tab-btn px-3 py-2 rounded">Culture</button>
+<button onclick="openTab('map', this)" class="tab-btn px-3 py-2 rounded">Map</button>
+<button onclick="openTab('itinerary', this)" class="tab-btn px-3 py-2 rounded">Trip Planner</button>
+<button onclick="openTab('marketplace', this)" class="tab-btn px-3 py-2 rounded">Local Market</button>
+<button onclick="openTab('analytics', this)" class="tab-btn px-3 py-2 rounded">Analytics</button>
+<button onclick="openTab('user', this)" class="tab-btn px-3 py-2 rounded">User</button>
+</div>
+</div>
+</div>
+</nav>
+<main>
+<section id="home" class="tab-content active max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5 space-y-8">
+<div class="bg-emerald-700 text-white p-16 text-center rounded-lg shadow-lg card-soft">
+<h1 class="text-5xl font-bold">Welcome to Jharkhand Tourism</h1>
+<p class="mt-4 text-lg md:text-xl">Discover the natural beauty, rich culture, and heritage of Jharkhand.</p>
+</div>
+<div class="bg-white p-8 rounded-lg shadow text-gray-700 card-soft">
+<h2 class="text-3xl font-bold mb-4">About Jharkhand</h2>
+<p class="text-lg leading-relaxed">
+Jharkhand, known as the "Land of Forests", is a treasure of scenic waterfalls, 
+dense forests, wildlife sanctuaries, and rich tribal culture. From the sunrise 
+points at Netarhat to the spiritual vibes of Baidyanath Temple, Jharkhand offers 
+a diverse experience for travelers seeking nature, adventure, and heritage.
+</p>
+</div>
+<div class="relative w-full overflow-hidden rounded-lg shadow">
+<div id="carousel">
+<img src="images/betla.jpg" class="w-full object-cover" alt="Betla National Park">
+<img src="images/baidyanath.jpg" class="w-full object-cover" alt="Baidyanath Temple">
+<img src="images/netarhat.jpg" class="w-full object-cover" alt="Netarhat Sunrise">
+<img src="images/tribal.jpg" class="w-full object-cover" alt="Tribal Festival">
+<img src="images/handicraft.jpg" class="w-full object-cover" alt="Handicraft">
+</div>
+<button id="prev" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80 p-2 rounded-full">❮</button>
+<button id="next" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80 p-2 rounded-full">❯</button>
+<div id="indicators" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2"></div>
+</div>
+</section>
+<section id="destinations" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<h2 class="heading-main mb-8 section-title">Top Destinations</h2>
+<div class="grid md:grid-cols-2 gap-6 mb-6">
+<div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
+<h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
+</svg>
+AI Activities Recommender
+</h3>
+<p class="text-sm text-gray-600 mb-3">Ask for activities to do at a place and suggested timings.</p>
+<textarea id="activitiesPrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Things to do in Netarhat over a weekend"></textarea>
+<button id="activitiesGenBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Activities</button>
+<div class="mt-3 text-sm">
+<div id="activitiesError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
+<pre id="activitiesResult" class="whitespace-pre-wrap text-gray-700"></pre>
+</div>
+</div>
+<div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
+<h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 4.93a10 10 0 1114.14 14.14A10 10 0 014.93 4.93z" />
+</svg>
+AI Safety & Constraints Advisor
+</h3>
+<p class="text-sm text-gray-600 mb-3">Ask for safety tips, permits, timings, and do/don'ts for a place.</p>
+<textarea id="safetyPrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Safety tips for trekking around Betla National Park"></textarea>
+<button id="safetyGenBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded w-full">Generate Safety Guidance</button>
+<div class="mt-3 text-sm">
+<div id="safetyError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
+<pre id="safetyResult" class="whitespace-pre-wrap text-gray-700"></pre>
+</div>
+</div>
+</div>
+<h3 class="heading-sub mb-6 section-title">Explore more places</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<button onclick="openTab('betla')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="images/betla.jpg" class="h-48 w-full object-cover" alt="Betla National Park">
+<div class="p-4"><h3 class="font-bold">Betla National Park</h3><p class="text-sm text-gray-600">Wildlife safari and nature.</p></div>
+</button>
+<button onclick="openTab('baidyanath')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="images/baidyanath.jpg" class="h-48 w-full object-cover" alt="Baidyanath Temple">
+<div class="p-4"><h3 class="font-bold">Baidyanath Temple</h3><p class="text-sm text-gray-600">Pilgrimage site in Deoghar.</p></div>
+</button>
+<button onclick="openTab('netarhat')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="images/netarhat.jpg" class="h-48 w-full object-cover" alt="Netarhat Sunrise">
+<div class="p-4"><h3 class="font-bold">Netarhat Sunrise</h3><p class="text-sm text-gray-600">Scenic sunrise viewpoint.</p></div>
+</button>
+<button onclick="openTab('jonha-falls')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="https://via.placeholder.com/400x250.png?text=Jonha+Falls" class="h-48 w-full object-cover" alt="Jonha Falls">
+<div class="p-4"><h3 class="font-bold">Jonha Falls</h3><p class="text-sm text-gray-600">Beautiful waterfalls.</p></div>
+</button>
+<button onclick="openTab('dassam-falls')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="https://via.placeholder.com/400x250.png?text=Dassam+Falls" class="h-48 w-full object-cover" alt="Dassam Falls">
+<div class="p-4"><h3 class="font-bold">Dassam Falls</h3><p class="text-sm text-gray-600">Ten streams waterfall.</p></div>
+</button>
+<button onclick="openTab('dalma-wildlife')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="https://via.placeholder.com/400x250.png?text=Dalma+Wildlife+Sanctuary" class="h-48 w-full object-cover" alt="Dalma Wildlife Sanctuary">
+<div class="p-4"><h3 class="font-bold">Dalma Wildlife Sanctuary</h3><p class="text-sm text-gray-600">Elephant reserve.</p></div>
+</button>
+<button onclick="openTab('parasnath-hill')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="https://via.placeholder.com/400x250.png?text=Parasnath+Hill" class="h-48 w-full object-cover" alt="Parasnath Hill">
+<div class="p-4"><h3 class="font-bold">Parasnath Hill</h3><p class="text-sm text-gray-600">Jain pilgrimage site.</p></div>
+</button>
+<button onclick="openTab('hundru-falls')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="https://via.placeholder.com/400x250.png?text=Hundru+Falls" class="h-48 w-full object-cover" alt="Hundru Falls">
+<div class="p-4"><h3 class="font-bold">Hundru Falls</h3><p class="text-sm text-gray-600">Scenic cascade.</p></div>
+</button>
+<button onclick="openTab('tagore-hill')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="https://via.placeholder.com/400x250.png?text=Tagore+Hill" class="h-48 w-full object-cover" alt="Tagore Hill">
+<div class="p-4"><h3 class="font-bold">Tagore Hill</h3><p class="text-sm text-gray-600">Historical viewpoint.</p></div>
+</button>
+<button onclick="openTab('patratu-valley')" class="bg-white rounded shadow overflow-hidden text-left">
+<img src="https://via.placeholder.com/400x250.png?text=Patratu+Valley" class="h-48 w-full object-cover" alt="Patratu Valley">
+<div class="p-4"><h3 class="font-bold">Patratu Valley</h3><p class="text-sm text-gray-600">Lush green valley.</p></div>
+</button>
+</div>
+</section>
+<section id="betla" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Betla National Park</h1>
+<img src="images/betla.jpg" alt="Betla National Park" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Betla National Park, located in the Latehar district of Jharkhand, is one of India's earliest tiger reserves. It is renowned for its diverse flora and fauna, offering a thrilling wildlife safari experience. Spread across a vast area, the park is a prime example of successful wildlife conservation efforts in the region.
+</p>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Features and Attractions</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+<li><strong>Wildlife:</strong> Home to tigers, leopards, elephants, gaurs (Indian bison), sambar deer, chital, and a wide variety of birds.</li>
+<li><strong>Jungle Safari:</strong> Experience the thrill of a safari through the dense forest, providing a chance to spot animals in their natural habitat.</li>
+<li><strong>Waterfalls:</strong> The park is also known for its scenic waterfalls and streams, which add to its natural beauty.</li>
+<li><strong>Historical Sites:</strong> The ruins of two historic forts, built by the Chero kings, are situated within the park, offering a glimpse into the region's rich history.</li>
+</ul>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Planning Your Visit</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600">
+<li><strong>Location:</strong> Palamu district, Latehar, Jharkhand, India</li>
+<li><strong>Best Time to Visit:</strong> The ideal time is from October to March when the weather is cool and dry, making wildlife sightings more frequent.</li>
+<li><strong>Entry Timings:</strong> The park is generally open from 6:00 AM to 5:00 PM. Safari timings are usually divided into morning and afternoon slots.</li>
+<li><strong>How to Reach:</strong> The nearest railway station is Barwadih and the nearest airport is Ranchi. The park is well-connected by road.</li>
+</ul>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="baidyanath" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Baidyanath Temple</h1>
+<img src="images/baidyanath.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Baidyanath Temple, located in Deoghar, is one of the twelve sacred Jyotirlingas of Shiva and a revered pilgrimage site. It is believed that the temple was built at the spot where the demon king Ravana offered his ten heads to Shiva as a sacrifice. The temple's spiritual significance attracts millions of devotees every year.
+</p>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Features and Attractions</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+<li><strong>Jyotirlinga:</strong> It is one of the 12 Jyotirlingas, making it a crucial pilgrimage for followers of Shiva.</li>
+<li><strong>Spiritual Atmosphere:</strong> The temple complex is filled with a serene and devout ambiance, especially during the Sawan Mela festival.</li>
+<li><strong>History:</strong> The temple has a rich history with legends and stories dating back to ancient Hindu mythology.</li>
+<li><strong>Surrounding Temples:</strong> The main temple is surrounded by a cluster of other temples dedicated to various Hindu gods and goddesses.</li>
+</ul>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Planning Your Visit</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600">
+<li><strong>Location:</strong> Deoghar, Jharkhand, India</li>
+<li><strong>Best Time to Visit:</strong> The months of October to February offer pleasant weather. The Sawan Mela (July-August) is a major festival but the temple is very crowded.</li>
+<li><strong>Entry Timings:</strong> The temple is open from early morning to late evening, with breaks for rituals.</li>
+<li><strong>Dress Code:</strong> Devotees are advised to wear traditional and modest clothing.</li>
+</ul>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="netarhat" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Netarhat Sunrise</h1>
+<img src="images/netarhat.jpg" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Netarhat, also known as the "Queen of Chotanagpur," is a beautiful hill station famous for its breathtaking sunrise and sunset views. The panoramic view of the sun rising from behind the hills and illuminating the valley below is an unforgettable experience for tourists.
+</p>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Features and Attractions</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+<li><strong>Sunrise Point:</strong> The main attraction is the majestic sunrise view from the designated viewpoint, offering a spectacular display of colors.</li>
+<li><strong>Pine Forests:</strong> The area is covered with dense pine forests, making it a perfect spot for nature walks and picnics.</li>
+<li><strong>Waterfalls:</strong> Nearby attractions include Magnolia Point and various waterfalls like Sadni Falls and Lodh Falls.</li>
+<li><strong>Cool Climate:</strong> Due to its elevation, Netarhat offers a pleasant climate throughout the year, making it a popular getaway.</li>
+</ul>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Planning Your Visit</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600">
+<li><strong>Location:</strong> Latehar district, Jharkhand, India</li>
+<li><strong>Best Time to Visit:</strong> The winter months from October to March are ideal for clear skies and stunning views.</li>
+<li><strong>Timings:</strong> The sunrise point can be visited from early morning. It is recommended to reach before sunrise for the best experience.</li>
+<li><strong>Accommodation:</strong> There are several guesthouses and hotels available in Netarhat for an overnight stay.</li>
+</ul>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="jonha-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Jonha Falls</h1>
+<img src="https://via.placeholder.com/600x400.png?text=Jonha+Falls" alt="Jonha Falls" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Jonha Falls is a beautiful waterfall located near Ranchi. It is also known as Gautamdhara, as there is a temple dedicated to Lord Buddha nearby. The water falls from a height of 43 meters, and visitors have to descend 722 steps to reach the base of the waterfall.
+</p>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="dassam-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dassam Falls</h1>
+<img src="https://via.placeholder.com/600x400.png?text=Dassam+Falls" alt="Dassam Falls" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Dassam Falls is a stunning waterfall created by the Kanchi River, a tributary of the Subarnarekha River. It is famous for its natural beauty and the sound of ten streams of water cascading down. It is a popular picnic and photography spot, but tourists are advised to be careful as the rocks can be slippery.
+</p>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="dalma-wildlife" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Dalma Wildlife Sanctuary</h1>
+<img src="https://via.placeholder.com/600x400.png?text=Dalma+Wildlife+Sanctuary" alt="Dalma Wildlife Sanctuary" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Located near Jamshedpur, Dalma Wildlife Sanctuary is a must-visit for wildlife lovers. It is particularly known for its high population of elephants. The sanctuary also houses a wide range of animals like barking deer, wild boars, and various bird species. The sanctuary offers a great trekking experience up the hills.
+</p>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="parasnath-hill" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Parasnath Hill</h1>
+<img src="https://via.placeholder.com/600x400.png?text=Parasnath+Hill" alt="Parasnath Hill" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Parasnath Hill is a prominent Jain pilgrimage site and the highest peak in Jharkhand. It is believed that 20 of the 24 Jain Tirthankaras attained moksha here. The hill is home to several Jain temples (known as gaddis). Pilgrims and tourists undertake a challenging trek to reach the temples at the top, which offers a serene and spiritual experience.
+</p>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="hundru-falls" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Hundru Falls</h1>
+<div class="tab-nav flex justify-center gap-4 mb-6">
+<button onclick="switchSubTab('hundru-falls-info', this)" class="sub-tab-btn px-4 py-2 rounded-lg bg-emerald-600 text-white active">Info</button>
+<button onclick="switchSubTab('hundru-falls-arvr', this)" class="sub-tab-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700">AR/VR Preview</button>
+</div>
+<div id="hundru-falls-info" class="sub-tab-content active">
+<img src="https://via.placeholder.com/600x400.png?text=Hundru+Falls" alt="Hundru Falls" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Hundru Falls is one of the most famous waterfalls in Jharkhand. Created by the Subarnarekha River, the water falls from a height of 98 meters, making it one of the highest waterfalls in the state. The sight of the water cascading down is truly spectacular, and the surrounding area is perfect for a day trip.
+</p>
+</div>
+<div id="hundru-falls-arvr" class="sub-tab-content hidden p-4">
+<div class="bg-gray-100 rounded-lg p-6 text-center space-y-4">
+<h3 class="text-2xl font-bold text-gray-800">Explore in Augmented/Virtual Reality!</h3>
+<p class="text-lg text-gray-600">Step into a 3D model of Hundru Falls. For the best experience, use a mobile device that supports AR.</p>
+<button onclick="startARVR()" class="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-blue-700 transition shadow-lg">Start AR/VR Preview</button>
+</div>
+</div>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="tagore-hill" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Tagore Hill</h1>
+<img src="https://via.placeholder.com/600x400.png?text=Tagore+Hill" alt="Tagore Hill" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Named after Rabindranath Tagore, this hill near Ranchi is known for its serene atmosphere and historical significance. The hill offers a magnificent panoramic view of the city. It is said that Tagore used to visit this place often for his writings. The hill also houses the Ramakrishna Mission Ashram.
+</p>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="patratu-valley" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Patratu Valley</h1>
+<img src="https://via.placeholder.com/600x400.png?text=Patratu+Valley" alt="Patratu Valley" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Patratu Valley is famous for its stunning scenic drive and the horseshoe-shaped Patratu Dam. The winding roads of the valley offer a thrilling ride with panoramic views of the lush green hills and the tranquil lake. It is a popular spot for picnics and boat rides, and an ideal weekend getaway.
+</p>
+<div class="mt-8">
+<button onclick="openTab('destinations')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Destinations</button>
+</div>
+</div>
+</section>
+<section id="culture" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<h2 class="heading-main mb-8 section-title">Culture & Traditions</h2>
+<div class="grid md:grid-cols-2 gap-6 mb-8">
+<div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
+<h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
+</svg>
+AI Culture Recommendations
+</h3>
+<p class="text-sm text-gray-600 mb-3">Ask for cultural experiences, events, dances, arts, and village visits.</p>
+<textarea id="culturePrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Suggest a 1-day cultural experience near Ranchi"></textarea>
+<button id="cultureGenBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Culture Plan</button>
+<div class="mt-3 text-sm">
+<div id="cultureError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
+<pre id="cultureResult" class="whitespace-pre-wrap text-gray-700"></pre>
+</div>
+</div>
+<div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
+<h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M10 14h4M12 18h.01" />
+</svg>
+AI Food Recommendations
+</h3>
+<p class="text-sm text-gray-600 mb-3">Ask for local dishes, restaurants, stalls, and seasonal specialties.</p>
+<textarea id="foodPrompt" class="border rounded p-2 w-full mb-3" rows="3" placeholder="e.g., Recommend authentic Jharkhand dishes in Ranchi"></textarea>
+<button id="foodGenBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded w-full">Generate Food Picks</button>
+<div class="mt-3 text-sm">
+<div id="foodError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
+<pre id="foodResult" class="whitespace-pre-wrap text-gray-700"></pre>
+</div>
+</div>
+</div>
+<h3 class="heading-sub mb-6 section-title">Explore more</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<button onclick="openTab('tribal-dance')" class="bg-white rounded shadow p-4 text-left">
+<img src="images/tribaldance.jpg" class="h-36 w-full object-cover rounded" />
+<h3 class="mt-2 font-semibold">Tribal Dance</h3>
+<p class="text-sm text-gray-600">Celebration of heritage.</p>
+</button>
+<button onclick="openTab('festivals')" class="bg-white rounded shadow p-4 text-left">
+<img src="images/festival.jpg" class="h-36 w-full object-cover rounded" />
+<h3 class="mt-2 font-semibold">Festivals</h3>
+<p class="text-sm text-gray-600">Sarhul, Karma, Tusu.</p>
+</button>
+<button onclick="openTab('handicrafts')" class="bg-white rounded shadow p-4 text-left">
+<img src="images/handicraft2.jpg" class="h-36 w-full object-cover rounded" />
+<h3 class="mt-2 font-semibold">Handicrafts</h3>
+<p class="text-sm text-gray-600">Dokra, Sohrai painting.</p>
+</button>
+</div>
+</section>
+<section id="tribal-dance" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Tribal Dances</h1>
+<img src="images/tribaldance.jpg" alt="Tribal Dance" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Jharkhand's tribal dances are a vibrant expression of their rich culture and daily life. These dances are performed during festivals, harvests, and other special occasions. Some of the well-known dance forms include **Chhau**, a UNESCO-recognized martial art dance; **Paika**, a dance symbolizing battle art; and **Karma**, a harvest festival dance. They often use bows, arrows, and traditional musical instruments like the Dhol and Nagara.
+</p>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Dance Forms for Kids</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+<li><strong>Chhau Dance:</strong> A semi-classical dance with martial and folk traditions. Dancers wear bright costumes and sometimes masks.</li>
+<li><strong>Paika Dance:</strong> This dance is performed to welcome guests or during processions. Dancers carry shields and swords, mimicking battle movements.</li>
+<li><strong>Karam Dance:</strong> A joyful harvest festival dance performed to worship the god of power and youth.</li>
+</ul>
+<div class="mt-8">
+<button onclick="openTab('culture')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Culture</button>
+</div>
+</div>
+</section>
+<section id="festivals" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Festivals</h1>
+<img src="images/festival.jpg" alt="Festivals" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+Jharkhand is a land of many vibrant festivals, most of which are deeply connected to nature and tribal traditions. These festivals are celebrated with great enthusiasm, involving dance, music, and special rituals. Some popular ones include **Sarhul**, which celebrates the spring season and the worship of the Sal tree; **Sohrai**, a festival for domestic animals; and **Tusu Parab**, a harvest festival for unmarried girls.
+</p>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Festivals for Kids</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+<li><strong>Sarhul:</strong> A festival of flowers where people thank the deities for protecting the village. Kids can learn about the importance of trees and nature.</li>
+<li><strong>Karma:</strong> A festival where young girls celebrate for the well-being of their brothers. They plant grains in a small basket, teaching them about farming and new life.</li>
+<li><strong>Jitiya:</strong> A 35-hour dry fast observed by mothers for the longevity of their children, a great way for kids to learn about unconditional love and devotion.</li>
+</ul>
+<div class="mt-8">
+<button onclick="openTab('culture')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Culture</button>
+</div>
+</div>
+</section>
+<section id="handicrafts" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handicrafts</h1>
+<img src="images/handicraft.jpg" alt="Handicrafts" class="w-full h-80 object-cover rounded-lg mb-6">
+<p class="text-lg text-gray-700 leading-relaxed mb-6">
+The **art and handicrafts** of Jharkhand reflect the state's natural resources and rich tribal heritage. Artisans use traditional techniques to create beautiful and unique items. These crafts include **Dokra art**, an ancient metal casting technique; **Sohrai and Khovar paintings**, which are traditional wall murals; and various crafts made from bamboo and wood.
+</p>
+<h2 class="text-2xl font-bold text-emerald-700 mb-4">Key Handicrafts for Kids</h2>
+<ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+<li><strong>Dokra Art:</strong> Learn about the "lost-wax technique" used to create intricate metal sculptures of animals and figures.</li>
+<li><strong>Sohrai Painting:</strong> This art form uses natural pigments and bold lines to create beautiful paintings on walls, often as part of a festival.</li>
+<li><strong>Bamboo Crafts:</strong> Kids can learn how artisans weave and shape bamboo into useful items like baskets and mats, and even toys.</li>
+</ul>
+<div class="mt-8">
+<button onclick="openTab('culture')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Culture</button>
+</div>
+</div>
+</section>
+<section id="dokra" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Dokra Art</h1>
+<div class="md:flex gap-8 items-center">
+<div class="md:w-1/2">
+<img src="images/dokra.jpg" alt="Handmade Dokra" class="w-full object-cover rounded-lg shadow-lg">
+</div>
+<div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
+<h2 class="text-2xl font-bold">Dokra Handicraft</h2>
+<p class="text-3xl font-semibold text-emerald-600">₹1200</p>
+<p class="text-sm text-gray-500 line-through">₹1333</p>
+<div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
+<div class="flex gap-4">
+<button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition" onclick="showReceipt('Dokra Handicraft', 1200)">Buy Now</button>
+<button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
+</div>
+<div>
+<label for="coupon" class="block text-gray-700">Have a coupon code?</label>
+<div class="flex mt-1">
+<input type="text" id="coupon" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
+<button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
+</div>
+</div>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-emerald-700 pt-6">About Dokra Art</h2>
+<p class="text-lg text-gray-700 leading-relaxed">
+**Dokra** is an ancient art of metal casting using the lost-wax technique. It's one of the oldest forms of this craft, with a history spanning over 4,000 years. The artisans, mainly from the Malhar and Dhokra Damar tribes of Jharkhand, create intricate and beautiful figures of animals, deities, and tribal life. The art is known for its primitive simplicity and folk motifs. Each piece is unique because the mold is broken after casting.
+</p>
+<div class="mt-8">
+<button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
+</div>
+</div>
+</section>
+<section id="tribal-shawl" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+<h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handmade Tribal Shawl</h1>
+<div class="md:flex gap-8 items-center">
+<div class="md:w-1/2">
+<img src="images/shawl.jpeg" class="w-full h-80 object-cover rounded-lg shadow-lg">
+</div>
+<div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
+<h2 class="text-2xl font-bold">Tribal Shawl</h2>
+<p class="text-3xl font-semibold text-emerald-600">₹800</p>
+<p class="text-sm text-gray-500 line-through">₹888</p>
+<div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
+<div class="flex gap-4">
+<button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition" onclick="showReceipt('Tribal Shawl', 800)">Buy Now</button>
+<button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
+</div>
+<div>
+<label for="coupon2" class="block text-gray-700">Have a coupon code?</label>
+<div class="flex mt-1">
+<input type="text" id="coupon2" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
+<button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
+</div>
+</div>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-emerald-700 pt-6">About Tribal Shawls</h2>
+<p class="text-lg text-gray-700 leading-relaxed">
+Jharkhand's tribal shawls are more than just clothing; they are a symbol of culture, tradition, and artistry. Hand-woven by local tribes, these shawls feature intricate designs and vibrant colors, often depicting elements from nature and tribal folklore. They are made from natural fibers, making them soft, comfortable, and durable. Each shawl tells a unique story and is a testament to the skill of the artisans.
+</p>
+<div class="mt-8">
+<button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
+</div>
+</div>
+</section>
+<section id="map" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<h2 class="heading-main mb-8 section-title">Interactive Map</h2>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-white rounded shadow p-4 border-t-4 border-emerald-600">
+<h3 class="font-semibold text-lg mb-2 flex items-center gap-2">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M3 16a4 4 0 104 4h10a4 4 0 100-8 6 6 0 10-12 0 4 4 0 00-2 4z" />
+</svg>
+AI Weather Forecaster
+</h3>
+<p class="text-sm text-gray-600 mb-3">Get a short-term forecast and travel advice.</p>
+<div class="grid gap-3 mb-3">
+<input id="weatherLocation" class="border rounded p-2 w-full" placeholder="Enter location (e.g., Ranchi)" />
+<input id="weatherDate" type="date" class="border rounded p-2 w-full" />
+</div>
+<button id="weatherBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Get Forecast</button>
+<div class="mt-3 text-sm">
+<div id="weatherError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
+<pre id="weatherResult" class="whitespace-pre-wrap text-gray-700"></pre>
+</div>
+</div>
+<div class="bg-gray-50 rounded border border-dashed border-gray-300 p-6 flex items-center justify-center text-gray-600 text-center">
+<div>
+<div class="font-semibold mb-1">Live interactive map</div>
+<div class="text-sm">Will be added</div>
+</div>
+</div>
+</div>
+</section>
+<section id="itinerary" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<h2 class="heading-main mb-8 section-title">Trip Planner</h2>
+<div class="grid md:grid-cols-2 gap-6 items-stretch">
+<div class="bg-white p-4 rounded shadow border-t-4 border-emerald-600 h-full min-h-[520px] flex flex-col">
+<h3 class="font-semibold mb-2 flex items-center gap-2">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8m-4-4v4m8-10a8 8 0 11-16 0 8 8 0 0116 0z" />
+</svg>
+Plan your trip
+</h3>
+<div class="space-y-3 flex-1 overflow-auto">
+<label class="block">Destination
+<select id="destSel" class="border rounded p-2 w-full mt-1">
+<option>Explore Jharkhand (General)</option>
+<option>Ranchi & Surroundings</option>
+<option>Deoghar Pilgrimage Circuit</option>
+<option>Netarhat Hill Station</option>
+<option>Betla National Park</option>
+<option>Tribal Villages & Culture</option>
+<option>Waterfalls Circuit</option>
+<option>Custom Destination</option>
+</select>
+<input id="destCustom" class="border rounded p-2 w-full mt-2 hidden" placeholder="Specify your destination" />
+</label>
+<label class="block">Month
+<select id="month" class="border rounded p-2 w-full mt-1">
+<option>January</option><option>February</option><option>March</option><option>April</option>
+<option>May</option><option>June</option><option>July</option><option>August</option>
+<option>September</option><option>October</option><option>November</option><option>December</option>
+</select>
+</label>
+<label class="block">Duration (days)
+<input id="duration" type="number" min="1" max="30" value="7" class="border rounded p-2 w-full mt-1" />
+</label>
+<label class="block">People
+<select id="people" class="border rounded p-2 w-full mt-1">
+<option>1</option><option>2</option><option>3</option><option>4-6</option><option>7-10</option><option>10+</option>
+</select>
+</label>
+<label class="block">Tourism Type
+<select id="tourism" class="border rounded p-2 w-full mt-1">
+<option>Eco-Tourism & Nature</option>
+<option>Tribal Culture & Heritage</option>
+<option>Pilgrimage & Spiritual</option>
+<option>Adventure & Trekking</option>
+<option>Mixed Experience</option>
+<option>Photography & Wildlife</option>
+</select>
+</label>
+<label class="block">Tribal Interest
+<select id="tribal" class="border rounded p-2 w-full mt-1">
+<option>Low</option><option selected>Medium</option><option>High</option><option>Very High</option>
+</select>
+</label>
+<label class="block">Mobility Level
+<select id="mobility" class="border rounded p-2 w-full mt-1">
+<option>Easy (No trekking)</option>
+<option>Moderate (Light walking)</option>
+<option>Active (Moderate trekking)</option>
+<option>Adventure (Challenging treks)</option>
+</select>
+</label>
+<label class="block">Accommodation
+<select id="accommodation" class="border rounded p-2 w-full mt-1">
+<option>Homestays (Tribal villages)</option>
+<option>Eco-lodges & Nature stays</option>
+<option>Hotels & Resorts</option>
+<option>Mixed (Homestays + Hotels)</option>
+<option>Budget-friendly options</option>
+</select>
+</label>
+<label class="block">Language
+<select id="language" class="border rounded p-2 w-full mt-1">
+<option>English</option>
+<option>Hindi</option>
+<option>English + Hindi</option>
+<option>Local languages welcome</option>
+</select>
+</label>
+<label class="block">Budget
+<select id="budget" class="border rounded p-2 w-full mt-1">
+<option>Budget (₹500-1500/day)</option>
+<option>Mid-Range (₹1500-3000/day)</option>
+<option>Comfortable (₹3000-5000/day)</option>
+<option>Luxury (₹5000+/day)</option>
+</select>
+</label>
+<label class="block">Special Interests (comma separated)
+<input id="interests" class="border rounded p-2 w-full mt-1" placeholder="Wildlife photography, Handicraft workshops" />
+</label>
+<label class="block">Comments
+<textarea id="comments" class="border rounded p-2 w-full mt-1" rows="2"></textarea>
+</label>
+<button id="generateBtn" class="bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Itinerary</button>
+<div class="pt-3 text-sm">
+<div class="font-semibold mb-2">Result</div>
+<div id="itineraryResult" class="prose max-w-none whitespace-pre-wrap text-sm"></div>
+<div id="errorBox" class="hidden mt-2 p-2 bg-red-50 text-red-700 rounded text-sm"></div>
+</div>
+</div>
+</div>
+<div class="bg-white p-4 rounded shadow border-t-4 border-emerald-600">
+<h3 class="font-semibold mb-2 flex items-center gap-2">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M6 7l.894-1.788A2 2 0 018.618 4h6.764a2 2 0 011.724 1.212L18 7m-2 0v10a2 2 0 01-2 2H10a2 2 0 01-2-2V7" />
+</svg>
+Essential things pack list generator
+</h3>
+<p class="text-sm text-gray-600 mb-3">Generate a packing list based on trip details.</p>
+<div class="grid gap-3">
+<input id="packDestination" class="border rounded p-2 w-full" placeholder="Destination (e.g., Netarhat)" />
+<select id="packSeason" class="border rounded p-2 w-full">
+<option value="Winter">Winter</option>
+<option value="Monsoon">Monsoon</option>
+<option value="Summer">Summer</option>
+<option value="Mixed" selected>Mixed</option>
+</select>
+<select id="packActivities" class="border rounded p-2 w-full">
+<option>Sightseeing</option>
+<option>Trekking</option>
+<option>Pilgrimage</option>
+<option>Wildlife Safari</option>
+<option>Mixed</option>
+</select>
+<input id="packDays" type="number" min="1" value="5" class="border rounded p-2 w-full" placeholder="Days" />
+</div>
+<button id="packGenBtn" class="mt-3 bg-emerald-600 text-white px-4 py-2 rounded w-full">Generate Pack List</button>
+<div class="mt-3 text-sm">
+<div id="packError" class="hidden p-2 bg-red-50 text-red-700 rounded"></div>
+<pre id="packResult" class="whitespace-pre-wrap text-gray-700"></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="marketplace" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<h2 class="heading-main mb-8 section-title">Local Market</h2>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-white p-4 rounded shadow">
+<img src="images/dokra.jpg" class="h-36 w-full object-cover rounded" />
+<h4 class="mt-2 font-medium">Handmade Dokra</h4>
+<p class="font-semibold">₹1200</p>
+</div>
+<div class="bg-white p-4 rounded shadow">
+<img src="images/shawl.jpeg" class="h-36 w-full object-cover rounded" />
+<h4 class="mt-2 font-medium">Tribal Shawl</h4>
+<p class="font-semibold">₹800</p>
+</div>
+</div>
+</section>
+<section id="analytics" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<h2 class="heading-main mb-8 section-title">Analytics Dashboard</h2>
+<div id="analytics-root"></div>
+</section>
+<section id="user" class="tab-content max-w-screen-xl mx-auto px-3 sm:px-4 md:px-6 py-5">
+<h2 class="heading-main mb-8 section-title">User Dashboard</h2>
+<div class="bg-white p-6 rounded shadow">
+<div class="flex items-center gap-4 mb-4">
+<div id="userAvatar" class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-semibold select-none">U</div>
+<div>
+<div class="text-lg font-semibold" id="userDisplayName">Your Name</div>
+<div class="text-sm text-gray-500" id="userDisplayEmail">you@example.com</div>
+</div>
+</div>
+<h3 class="heading-sub mb-3 section-title">Profile</h3>
+<div class="grid md:grid-cols-2 gap-4">
+<label class="block"><span class="font-medium">User Name</span>
+<input id="username" class="border rounded p-2 w-full mt-1" type="text" placeholder="Enter your name">
+</label>
+<label class="block"><span class="font-medium">Email</span>
+<input id="email" class="border rounded p-2 w-full mt-1" type="email" placeholder="you@example.com">
+</label>
+<label class="block"><span class="font-medium">User ID</span>
+<input id="userid" class="border rounded p-2 w-full mt-1" type="text" disabled>
+</label>
+<div class="md:col-span-2 flex justify-end">
+<button onclick="saveUser()" class="bg-emerald-600 text-white px-6 py-2 rounded">Save changes</button>
+</div>
+</div>
+<hr class="my-6">
+<h3 class="heading-sub mb-3 section-title">Trips & activity</h3>
+<div class="grid md:grid-cols-2 gap-4">
+<div class="bg-gray-50 p-4 rounded border">Upcoming Trip: Betla Safari</div>
+<div class="bg-gray-50 p-4 rounded border">Saved: Netarhat Sunrise</div>
+<div class="bg-gray-50 p-4 rounded border">Past Bookings</div>
+<div class="bg-gray-50 p-4 rounded border">Feedback & Reviews</div>
+</div>
+</div>
+</section>
+</main>
+<div id="receipt-modal" class="modal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeReceipt()">×</span>
+<div id="receipt-details"></div>
+</div>
+</div>
+<section id="payment-page" class="tab-content fixed inset-0 z-50 bg-white p-8 overflow-auto hidden">
+<div class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+<h2 class="text-2xl font-bold mb-4">Payment Gateway</h2>
+<img src="https://via.placeholder.com/300x150.png?text=UPI+QR+Code" alt="UPI QR Code" class="w-full h-40 object-contain rounded mb-4">
+<p class="mb-4 text-lg">Scan to Pay: <strong id="payment-amount"></strong></p>
+<p class="text-sm text-gray-500">
+This is a mock payment interface. Please do not enter real payment details.
+</p>
+<div class="flex justify-center gap-4 mt-6">
+<button onclick="openTab('user')" class="bg-emerald-600 text-white px-6 py-2 rounded-lg">Go to Profile</button>
+</div>
+</div>
+</section>
+<footer class="bg-emerald-700 text-white text-center py-4 mt-8">
+© 2025 Jharkhand Tourism Portal
+</footer>
+<div id="chat-widget">
+<button id="chat-toggle" class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center" aria-label="Open chat">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+<path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.1 0-2.15-.16-3.12-.45-.32-.1-.48-.15-.63-.17a2 2 0 0 0-.91.09l-2.33.78a1 1 0 0 1-1.27-1.27l.78-2.33c.11-.34.16-.51.17-.63a3 3 0 0 0-.17-.75C3.2 14.84 3 13.94 3 13c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+</svg>
+</button>
+<div id="chat-box" class="hidden fixed bottom-24 right-6 z-50 w-80 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden">
+<div class="bg-emerald-600 text-white px-4 py-2 flex items-center justify-between">
+<span class="font-semibold text-sm">AI Assistant</span>
+<button id="chat-close" class="text-white/80 hover:text-white" aria-label="Close chat">×</button>
+</div>
+<div class="p-3 text-sm text-gray-600">
+Hi! How can I help you explore Jharkhand today?
+</div>
+</div>
+</div>
+<script>
+function openTab(tabId, btn) {
+document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+const target = document.getElementById(tabId);
+if (target) {
+target.classList.add('active');
+}
+document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+if (btn) {
+btn.classList.add('active');
+}
+const payment = document.getElementById('payment-page');
+if (payment) {
+if (tabId === 'payment-page') {
+payment.classList.remove('hidden');
+} else {
+payment.classList.add('hidden');
+}
+}
+}
+const carousel = document.getElementById('carousel');
+const slides = carousel.children;
+let index = 0;
+const total = slides.length;
+const indicatorsContainer = document.getElementById('indicators');
+for(let i=0; i<total; i++){
+const dot = document.createElement('button');
+dot.className = "w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-80";
+dot.addEventListener('click', () => { index=i; updateCarousel(); resetInterval(); });
+indicatorsContainer.appendChild(dot);
+}
+function updateCarousel() {
+carousel.style.transform = `translateX(-${index*100}%)`;
+Array.from(indicatorsContainer.children).forEach((dot,i)=>dot.style.backgroundColor = i===index ? "#059669" : "rgba(255,255,255,0.5)");
+}
+document.getElementById('prev').addEventListener('click', ()=>{ index=(index-1+total)%total; updateCarousel(); resetInterval(); });
+document.getElementById('next').addEventListener('click', ()=>{ index=(index+1)%total; updateCarousel(); resetInterval(); });
+let interval = setInterval(()=>{ index=(index+1)%total; updateCarousel(); }, 3000);
+function resetInterval(){ clearInterval(interval); interval=setInterval(()=>{index=(index+1)%total; updateCarousel();},3000);}
+updateCarousel();
+// Itinerary generator (calls backend)
+const apiBase = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://127.0.0.1:8000' : '';
+// Toggle custom destination input
+const destSel = document.getElementById('destSel');
+const destCustom = document.getElementById('destCustom');
+if (destSel && destCustom) {
+destSel.addEventListener('change', () => {
+if (destSel.value === 'Custom Destination') {
+destCustom.classList.remove('hidden');
+} else {
+destCustom.classList.add('hidden');
+}
+});
+}
+const generateBtn = document.getElementById('generateBtn');
+if (generateBtn) {
+generateBtn.addEventListener('click', async () => {
+const btn = generateBtn;
+const resultBox = document.getElementById('itineraryResult');
+const errorBox = document.getElementById('errorBox');
+if (errorBox) errorBox.classList.add('hidden');
+if (resultBox) resultBox.textContent = '';
+btn.disabled = true; btn.textContent = 'Generating...';
+try {
+const selectedDestination = destSel && destSel.value === 'Custom Destination'
+? ((destCustom && destCustom.value) || 'Explore Jharkhand (General)')
+: (destSel ? destSel.value : 'Explore Jharkhand (General)');
+const payload = {
+preferences: {
+destination: selectedDestination,
+month: document.getElementById('month').value,
+duration: parseInt(document.getElementById('duration').value || '7'),
+num_people: document.getElementById('people').value,
+tourism_type: document.getElementById('tourism').value,
+tribal_interest: document.getElementById('tribal').value,
+mobility_level: document.getElementById('mobility').value,
+accommodation_type: document.getElementById('accommodation').value,
+language_preference: document.getElementById('language').value,
+budget_range: document.getElementById('budget').value,
+special_interests: (document.getElementById('interests').value || '').split(',').map(s=>s.trim()).filter(Boolean),
+comments: document.getElementById('comments').value || ''
+}
+};
+const res = await fetch(`${apiBase}/api/generate_itinerary`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
+if (!res.ok) throw new Error(`API ${res.status}`);
+const data = await res.json();
+if (resultBox) resultBox.textContent = data.itinerary || 'No itinerary returned.';
+} catch (err) {
+if (errorBox) {
+errorBox.textContent = `Failed to generate itinerary: ${err.message || err}`;
+errorBox.classList.remove('hidden');
+}
+} finally {
+btn.disabled = false; btn.textContent = 'Generate Itinerary';
+}
+});
+}
+function saveUser() {
+const name = document.getElementById('username').value;
+const email = document.getElementById('email').value;
+// Update display name and email
+const displayName = document.getElementById('userDisplayName');
+const displayEmail = document.getElementById('userDisplayEmail');
+if (displayName) displayName.textContent = name || 'Your Name';
+if (displayEmail) displayEmail.textContent = email || 'you@example.com';
+// Update initials avatar
+const avatar = document.getElementById('userAvatar');
+if (avatar) {
+const initials = (name || 'User')
+.split(/\s+/)
+.filter(Boolean)
+.slice(0, 2)
+.map(part => part[0]?.toUpperCase() || '')
+.join('') || 'U';
+avatar.textContent = initials;
+}
+alert(`Saved! Name: ${name || 'Your Name'}, Email: ${email || 'you@example.com'}`);
+}
+const receiptModal = document.getElementById('receipt-modal');
+const receiptDetails = document.getElementById('receipt-details');
+function showReceipt(itemName, price) {
+receiptDetails.innerHTML = `
+<h2 class="text-2xl font-bold mb-4">Order Summary</h2>
+<div class="border-b pb-4 mb-4">
+<p class="text-lg">Item: <strong class="text-emerald-700">${itemName}</strong></p>
+<p class="text-lg">Total: <strong class="text-orange-500">₹${price}</strong></p>
+</div>
+<div class="space-y-2">
+<button onclick="showPayment('${price}')" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">Proceed to Payment</button>
+<button onclick="showAddressForm()" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Add Address</button>
+<button onclick="closeReceipt()" class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">Cancel</button>
+</div>
+`;
+receiptModal.style.display = 'block';
+}
+function closeReceipt() {
+receiptModal.style.display = 'none';
+}
+function showPayment(amount) {
+closeReceipt();
+openTab('payment-page');
+document.getElementById('payment-amount').innerText = `₹${amount}`;
+}
+function showAddressForm() {
+alert('Address form would appear here!');
+}
+window.onclick = function(event) {
+if (event.target == receiptModal) {
+closeReceipt();
+}
+}
+// Chat widget toggle
+const chatToggle = document.getElementById('chat-toggle');
+const chatBox = document.getElementById('chat-box');
+const chatClose = document.getElementById('chat-close');
+if (chatToggle && chatBox) {
+chatToggle.addEventListener('click', () => {
+chatBox.classList.toggle('hidden');
+});
+}
+if (chatClose && chatBox) {
+chatClose.addEventListener('click', () => {
+chatBox.classList.add('hidden');
+});
+}
+// Culture & Food AI agents (frontend wiring)
+const cultureGenBtn = document.getElementById('cultureGenBtn');
+const culturePrompt = document.getElementById('culturePrompt');
+const cultureResult = document.getElementById('cultureResult');
+const cultureError = document.getElementById('cultureError');
+const foodGenBtn = document.getElementById('foodGenBtn');
+const foodPrompt = document.getElementById('foodPrompt');
+const foodResult = document.getElementById('foodResult');
+const foodError = document.getElementById('foodError');
+async function callAgent(endpoint, prompt) {
+const url = `${apiBase}${endpoint}`;
+const response = await fetch(url, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ prompt })
+});
+if (!response.ok) throw new Error(`API ${response.status}`);
+return response.json();
+}
+if (cultureGenBtn) {
+cultureGenBtn.addEventListener('click', async () => {
+const btn = cultureGenBtn;
+const prompt = (culturePrompt && culturePrompt.value.trim()) || 'Recommend a cultural experience in Jharkhand';
+if (cultureError) cultureError.classList.add('hidden');
+if (cultureResult) cultureResult.textContent = '';
+btn.disabled = true; btn.textContent = 'Generating...';
+try {
+const data = await callAgent('/api/culture_recommendations', prompt);
+if (cultureResult) cultureResult.textContent = data.recommendations || data.result || 'No recommendations returned.';
+} catch (err) {
+if (cultureError) { cultureError.textContent = `Failed: ${err.message || err}`; cultureError.classList.remove('hidden'); }
+} finally {
+btn.disabled = false; btn.textContent = 'Generate Culture Plan';
+}
+});
+}
+if (foodGenBtn) {
+foodGenBtn.addEventListener('click', async () => {
+const btn = foodGenBtn;
+const prompt = (foodPrompt && foodPrompt.value.trim()) || 'Recommend authentic Jharkhand dishes and places to try them';
+if (foodError) foodError.classList.add('hidden');
+if (foodResult) foodResult.textContent = '';
+btn.disabled = true; btn.textContent = 'Generating...';
+try {
+const data = await callAgent('/api/food_recommendations', prompt);
+if (foodResult) foodResult.textContent = data.recommendations || data.result || 'No recommendations returned.';
+} catch (err) {
+if (foodError) { foodError.textContent = `Failed: ${err.message || err}`; foodError.classList.remove('hidden'); }
+} finally {
+btn.disabled = false; btn.textContent = 'Generate Food Picks';
+}
+});
+}
+// Destinations: Activities & Safety agents
+const activitiesGenBtn = document.getElementById('activitiesGenBtn');
+const activitiesPrompt = document.getElementById('activitiesPrompt');
+const activitiesResult = document.getElementById('activitiesResult');
+const activitiesError = document.getElementById('activitiesError');
+const safetyGenBtn = document.getElementById('safetyGenBtn');
+const safetyPrompt = document.getElementById('safetyPrompt');
+const safetyResult = document.getElementById('safetyResult');
+const safetyError = document.getElementById('safetyError');
+if (activitiesGenBtn) {
+activitiesGenBtn.addEventListener('click', async () => {
+const btn = activitiesGenBtn;
+const prompt = (activitiesPrompt && activitiesPrompt.value.trim()) || 'Suggest activities and timings for a Jharkhand destination';
+if (activitiesError) activitiesError.classList.add('hidden');
+if (activitiesResult) activitiesResult.textContent = '';
+btn.disabled = true; btn.textContent = 'Generating...';
+try {
+const data = await callAgent('/api/activities_recommendations', prompt);
+if (activitiesResult) activitiesResult.textContent = data.recommendations || data.result || 'No activities returned.';
+} catch (err) {
+if (activitiesError) { activitiesError.textContent = `Failed: ${err.message || err}`; activitiesError.classList.remove('hidden'); }
+} finally {
+btn.disabled = false; btn.textContent = 'Generate Activities';
+}
+});
+}
+if (safetyGenBtn) {
+safetyGenBtn.addEventListener('click', async () => {
+const btn = safetyGenBtn;
+const prompt = (safetyPrompt && safetyPrompt.value.trim()) || 'List safety tips, permits, and constraints for a Jharkhand destination';
+if (safetyError) safetyError.classList.add('hidden');
+if (safetyResult) safetyResult.textContent = '';
+btn.disabled = true; btn.textContent = 'Generating...';
+try {
+const data = await callAgent('/api/safety_guidance', prompt);
+if (safetyResult) safetyResult.textContent = data.guidance || data.result || 'No guidance returned.';
+} catch (err) {
+if (safetyError) { safetyError.textContent = `Failed: ${err.message || err}`; safetyError.classList.remove('hidden'); }
+} finally {
+btn.disabled = false; btn.textContent = 'Generate Safety Guidance';
+}
+});
+}
+// Weather AI forecast
+const weatherBtn = document.getElementById('weatherBtn');
+const weatherLocation = document.getElementById('weatherLocation');
+const weatherDate = document.getElementById('weatherDate');
+const weatherResult = document.getElementById('weatherResult');
+const weatherError = document.getElementById('weatherError');
+if (weatherBtn) {
+weatherBtn.addEventListener('click', async () => {
+const btn = weatherBtn;
+const location = (weatherLocation && weatherLocation.value.trim()) || 'Ranchi';
+const date = (weatherDate && weatherDate.value) || '';
+if (weatherError) weatherError.classList.add('hidden');
+if (weatherResult) weatherResult.textContent = '';
+btn.disabled = true; btn.textContent = 'Fetching...';
+try {
+const payload = { location, date };
+const res = await fetch(`${apiBase}/api/weather_forecast`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
+if (!res.ok) throw new Error(`API ${res.status}`);
+const data = await res.json();
+const text = data.forecast || data.result || 'No forecast available.';
+if (weatherResult) weatherResult.textContent = text;
+} catch (err) {
+if (weatherError) { weatherError.textContent = `Failed: ${err.message || err}`; weatherError.classList.remove('hidden'); }
+} finally {
+btn.disabled = false; btn.textContent = 'Get Forecast';
+}
+});
+}
+// Pack list generator
+const packGenBtn = document.getElementById('packGenBtn');
+const packDestination = document.getElementById('packDestination');
+const packSeason = document.getElementById('packSeason');
+const packActivities = document.getElementById('packActivities');
+const packDays = document.getElementById('packDays');
+const packResult = document.getElementById('packResult');
+const packError = document.getElementById('packError');
+if (packGenBtn) {
+packGenBtn.addEventListener('click', async () => {
+const btn = packGenBtn;
+if (packError) packError.classList.add('hidden');
+if (packResult) packResult.textContent = '';
+btn.disabled = true; btn.textContent = 'Generating...';
+try {
+const payload = {
+destination: (packDestination && packDestination.value.trim()) || 'Jharkhand',
+season: packSeason ? packSeason.value : 'Mixed',
+activities: packActivities ? packActivities.value : 'Mixed',
+days: packDays ? parseInt(packDays.value || '5') : 5
+};
+const res = await fetch(`${apiBase}/api/pack_list`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
+if (!res.ok) throw new Error(`API ${res.status}`);
+const data = await res.json();
+const text = data.list || data.result || 'No list generated.';
+if (packResult) packResult.textContent = text;
+} catch (err) {
+if (packError) { packError.textContent = `Failed: ${err.message || err}`; packError.classList.remove('hidden'); }
+} finally {
+btn.disabled = false; btn.textContent = 'Generate Pack List';
+}
+});
+}
+function switchSubTab(subTabId, btn) {
+// Hide all sub-tabs within the hundru-falls section
+document.querySelectorAll('#hundru-falls .sub-tab-content').forEach(c => c.classList.add('hidden'));
+// Show the selected sub-tab
+const target = document.getElementById(subTabId);
+if (target) {
+target.classList.remove('hidden');
+target.classList.add('active'); // Add active class to control display via CSS
+}
+// Update button styles
+document.querySelectorAll('#hundru-falls .sub-tab-btn').forEach(b => {
+b.classList.remove('bg-emerald-600', 'text-white', 'active');
+b.classList.add('bg-gray-200', 'text-gray-700');
+});
+if (btn) {
+btn.classList.remove('bg-gray-200', 'text-gray-700');
+btn.classList.add('bg-emerald-600', 'text-white', 'active');
+}
+}
+function startARVR() {
+window.location.href = 'hundrufall_arvr.html';
+}
+</script>
 </body>
 </html>
