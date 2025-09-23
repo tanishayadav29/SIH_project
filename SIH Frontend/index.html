@@ -13,7 +13,13 @@ const apiRoot = (typeof apiBase !== 'undefined') ? apiBase : '';
 const dataFetcher = async () => {
 const res = await fetch(`${apiRoot}/api/analytics`);
 if (!res.ok) throw new Error('Failed to load analytics');
-return await res.json();
+return await res.json();function goBack() {
+  window.history.back();
+}function goBack() {
+  window.history.back();
+}function goBack() {
+  window.history.back();
+}
 };
 window.initAnalyticsDashboard('#analytics-root', dataFetcher);
 });
@@ -1007,7 +1013,6 @@ AI Food Recommendations
             </div>
             </div>
         </div>
-        </div>
         <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Pottery</h2>
         <p class="text-lg text-gray-700 leading-relaxed">
         Pottery is one of the oldest crafts of Jharkhand. Made with natural clay, pottery items like bowls, lamps, and vessels are both decorative and useful, reflecting the earthy lifestyle of the tribes.
@@ -1042,7 +1047,7 @@ AI Food Recommendations
         Terracotta art is one of the oldest forms of craft in Jharkhand, often inspired by tribal life, animals, and deities. These figurines are eco-friendly, handmade, and perfect for décor or gifting.
         </p>
         <div class="mt-8">
-        <button onclick="openTab('marketplace')" class="bg-gray-300 px-4 py-2 rounded">Back to Marketplace</button>
+        <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
         </div>
     </div>
     </section>
@@ -1071,7 +1076,7 @@ AI Food Recommendations
         Handmade jute bags are lightweight, strong, and eco-friendly alternatives to plastic. Decorated with tribal patterns, they are both practical for daily use and fashionable.
         </p>
         <div class="mt-8">
-        <button onclick="openTab('marketplace')" class="bg-gray-300 px-4 py-2 rounded">Back to Marketplace</button>
+        <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
         </div>
     </div>
     </section>
@@ -1100,7 +1105,7 @@ AI Food Recommendations
         Tribal earrings are made using brass, beads, and silver-plated metal, reflecting the tribal culture of Jharkhand. They are lightweight, stylish, and perfect for festive occasions.
         </p>
         <div class="mt-8">
-        <button onclick="openTab('marketplace')" class="bg-gray-300 px-4 py-2 rounded">Back to Marketplace</button>
+        <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
         </div>
     </div>
     </section>
@@ -1129,7 +1134,7 @@ AI Food Recommendations
         Stone carving is a traditional craft of Jharkhand, where artisans skillfully carve idols, panels, and decorative items from local stones. They are often used in temples and as home décor.
         </p>
         <div class="mt-8">
-        <button onclick="openTab('marketplace')" class="bg-gray-300 px-4 py-2 rounded">Back to Marketplace</button>
+        <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
         </div>
     </div>
     </section>
@@ -1297,8 +1302,9 @@ Essential things pack list generator
 </div>
 </section>
 <section id="marketplace" class="tab-content max-w-7xl mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-6">Marketplace</h2>
-        <div class="grid md:grid-cols-3 gap-6">
+    <!-- Updated heading style and text -->
+    <h2 class="heading-main mb-8 section-title">Explore more</h2>
+    <div class="grid md:grid-cols-3 gap-6">
             <!-- 1. Handmade Dokra -->
             <button onclick="openTab('dokra')" class="bg-white p-4 rounded shadow text-left">
             <img src="images/dokra.jpg" class="h-36 w-full object-cover rounded" />
