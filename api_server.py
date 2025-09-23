@@ -106,6 +106,39 @@ def api_generate_itinerary(payload: GenerateRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+# ...existing code...
+
+from fastapi.responses import JSONResponse
+
+@app.get("/api/analytics")
+def api_analytics():
+    # Dummy/sample data; replace with real analytics logic as needed
+    return JSONResponse({
+        "kpis": {
+            "totalVisitors": 12345,
+            "avgStay": 3.7,
+            "revenue": 2500000,
+            "occupancy": 68.5
+        },
+        "topLocations": [
+            {"name": "Ranchi", "visitors": 3200},
+            {"name": "Netarhat", "visitors": 2100},
+            {"name": "Betla", "visitors": 1800}
+        ],
+        "topPlaces": [
+            {"name": "Betla National Park", "visitors": 1500},
+            {"name": "Hundru Falls", "visitors": 1200},
+            {"name": "Baidyanath Temple", "visitors": 1100}
+        ],
+        "trends": [
+            {"date": "2024-06-01", "visitors": 300},
+            {"date": "2024-06-02", "visitors": 350},
+            {"date": "2024-06-03", "visitors": 400}
+        ]
+    })
+
+# ...existing code...
 
 if __name__ == "__main__":
     uvicorn.run("api_server:app", host="0.0.0.0", port=int(os.getenv("PORT", 8000)), reload=True)
