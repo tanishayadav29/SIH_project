@@ -990,38 +990,58 @@ AI Food Recommendations
 
     <!-- 8. Pottery Bowl -->
     <section id="pottery-bowl" class="tab-content max-w-7xl mx-auto p-8">
-    <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
-        <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handcrafted Pottery Bowl</h1>
-        <div class="md:flex gap-8 items-center">
-        <div class="md:w-1/2">
-            <img src="images/pottery.jpg" alt="Pottery Bowl" class="w-full h-80 object-cover rounded-lg shadow-lg">
+  <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+    <h1 class="text-4xl font-bold text-center text-emerald-800 mb-6">Handcrafted Pottery Bowl</h1>
+
+    <div class="md:flex gap-8 items-center">
+      <div class="md:w-1/2">
+        <img src="images/pottery.jpg" alt="Handcrafted Pottery Bowl" class="w-full object-cover rounded-lg shadow-lg">
+      </div>
+
+      <div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
+        <h2 class="text-2xl font-bold">Clay Pottery Bowl</h2>
+        <p class="text-3xl font-semibold text-emerald-600">₹400</p>
+        <p class="text-sm text-gray-500 line-through">₹450</p>
+
+        <div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">Authentic Tribal Pottery!</div>
+
+        <div class="flex gap-4">
+          <button
+            class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition"
+            onclick="showReceipt('Clay Pottery Bowl', 400)"
+          >
+            Buy Now
+          </button>
+
+          <button
+            class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition"
+            aria-label="Add Clay Pottery Bowl to cart"
+          >
+            Add to Cart
+          </button>
         </div>
-        <div class="md:w-1/2 mt-6 md:mt-0 space-y-4">
-            <h2 class="text-2xl font-bold">Clay Pottery Bowl</h2>
-            <p class="text-3xl font-semibold text-emerald-600">₹400</p>
-            <p class="text-sm text-gray-500 line-through">₹450</p>
-            <div class="bg-yellow-200 text-yellow-800 p-2 rounded text-center font-semibold">10% off on your first purchase!</div>
-            <div class="flex gap-4">
-            <button class="bg-orange-500 text-white font-bold px-6 py-3 rounded hover:bg-orange-600 transition" onclick="showReceipt('Pottery Bowl', 400)">Buy Now</button>
-            <button class="bg-emerald-600 text-white font-bold px-6 py-3 rounded hover:bg-emerald-700 transition">Add to Cart</button>
-            </div>
-            <div>
-            <label for="coupon11" class="block text-gray-700">Have a coupon code?</label>
-            <div class="flex mt-1">
-                <input type="text" id="coupon11" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
-                <button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
-            </div>
-            </div>
+
+        <div>
+          <label for="coupon11" class="block text-gray-700">Have a coupon code?</label>
+          <div class="flex mt-1">
+            <input type="text" id="coupon11" class="border rounded-l p-2 w-full" placeholder="Enter coupon code">
+            <button class="bg-gray-200 px-4 py-2 rounded-r hover:bg-gray-300">Apply</button>
+          </div>
         </div>
-        <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Pottery</h2>
-        <p class="text-lg text-gray-700 leading-relaxed">
-        Pottery is one of the oldest crafts of Jharkhand. Made with natural clay, pottery items like bowls, lamps, and vessels are both decorative and useful, reflecting the earthy lifestyle of the tribes.
-        </p>
-        <div class="mt-8">
-            <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
-        </div>
+      </div>
     </div>
-    </section>
+
+    <h2 class="text-2xl font-bold text-emerald-700 pt-6">About Pottery</h2>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      Pottery is one of the oldest crafts of Jharkhand. Made with natural clay, pottery items like bowls, lamps, and vessels are both decorative and useful, reflecting the earthy lifestyle of the tribes.
+    </p>
+
+    <div class="mt-8">
+      <button onclick="openTab('marketplace')" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to Marketplace</button>
+    </div>
+  </div>
+</section>
+
 
     <!-- 9. Terracotta Figurine -->
     <section id="terracotta-figurine" class="tab-content max-w-7xl mx-auto p-8">
