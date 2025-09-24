@@ -6,7 +6,16 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 
 # Import existing agents and graph
-from agents import generate_itinerary
+from agents import (
+    generate_itinerary,
+    safety_constraints,
+    cultural_recommender,
+    food_culture_recommender,
+    recommend_activities,
+    packing_list_generator,
+    weather_forecaster,
+)
+from agents import chat_agent
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated
 
@@ -106,39 +115,230 @@ def api_generate_itinerary(payload: GenerateRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    
-# ...existing code...
 
-from fastapi.responses import JSONResponse
 
-@app.get("/api/analytics")
-def api_analytics():
-    # Dummy/sample data; replace with real analytics logic as needed
-    return JSONResponse({
-        "kpis": {
-            "totalVisitors": 12345,
-            "avgStay": 3.7,
-            "revenue": 2500000,
-            "occupancy": 68.5
-        },
-        "topLocations": [
-            {"name": "Ranchi", "visitors": 3200},
-            {"name": "Netarhat", "visitors": 2100},
-            {"name": "Betla", "visitors": 1800}
-        ],
-        "topPlaces": [
-            {"name": "Betla National Park", "visitors": 1500},
-            {"name": "Hundru Falls", "visitors": 1200},
-            {"name": "Baidyanath Temple", "visitors": 1100}
-        ],
-        "trends": [
-            {"date": "2024-06-01", "visitors": 300},
-            {"date": "2024-06-02", "visitors": 350},
-            {"date": "2024-06-03", "visitors": 400}
-        ]
-    })
+class SafetyPromptRequest(BaseModel):
+    prompt: str
 
-# ...existing code...
+
+@app.post("/api/safety_guidance")
+def api_safety_guidance(payload: SafetyPromptRequest):
+    try:
+        # Map the free-form prompt to the agent's expected state shape.
+        # Using the prompt as destination enables keyword-based rules (e.g., Betla) to trigger.
+        state = {
+            "preferences_text": f"Safety guidance request for: {payload.prompt}",
+            "preferences": {
+                "destination": payload.prompt,
+                "month": "October",
+                "tourism_type": "Mixed Experience",
+                "mobility_level": "Moderate (Light walking)",
+                "special_interests": [],
+            },
+            "itinerary": "",
+            "activity_suggestions": "",
+            "useful_links": [],
+            "weather_forecast": "",
+            "packing_list": "",
+            "food_culture_info": "",
+            "safety_constraints": "",
+            "chat_history": [],
+            "user_question": "",
+            "chat_response": "",
+        }
+
+        result = safety_constraints.safety_constraints_agent(state)
+        return {"guidance": result.get("safety_constraints", "")}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class SimplePromptRequest(BaseModel):
+    prompt: str
+
+
+@app.post("/api/culture_recommendations")
+def api_culture_recommendations(payload: SimplePromptRequest):
+    try:
+        state = {
+            "preferences_text": f"Culture recommendations for: {payload.prompt}",
+            "preferences": {
+                "destination": payload.prompt,
+                "month": "October",
+                "tribal_interest": "Medium",
+                "mobility_level": "Moderate (Light walking)",
+                "budget_range": "Mid-Range (₹1500-3000/day)",
+                "special_interests": [],
+            },
+            "itinerary": "",
+            "activity_suggestions": "",
+            "useful_links": [],
+            "weather_forecast": "",
+            "packing_list": "",
+            "food_culture_info": "",
+            "safety_constraints": "",
+            "chat_history": [],
+            "user_question": "",
+            "chat_response": "",
+        }
+        result = cultural_recommender.cultural_recommender(state)
+        return {"recommendations": result.get("cultural_recommendations", "")}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/food_recommendations")
+def api_food_recommendations(payload: SimplePromptRequest):
+    try:
+        state = {
+            "preferences_text": f"Food recommendations for: {payload.prompt}",
+            "preferences": {
+                "destination": payload.prompt,
+                "month": "October",
+                "budget_range": "Mid-Range (₹1500-3000/day)",
+                "tribal_interest": "Medium",
+                "special_interests": ["Local cuisine & cooking"],
+            },
+            "itinerary": "",
+            "activity_suggestions": "",
+            "useful_links": [],
+            "weather_forecast": "",
+            "packing_list": "",
+            "food_culture_info": "",
+            "safety_constraints": "",
+            "chat_history": [],
+            "user_question": "",
+            "chat_response": "",
+        }
+        result = food_culture_recommender.food_culture_recommender(state)
+        return {"recommendations": result.get("food_culture_info", "")}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/activities_recommendations")
+def api_activities_recommendations(payload: SimplePromptRequest):
+    try:
+        # Use the prompt as the destination context to trigger place-specific data
+        state = {
+            "preferences_text": f"Activities recommendations for: {payload.prompt}",
+            "preferences": {
+                "destination": payload.prompt,
+                "month": "October",
+                "tourism_type": "Mixed Experience",
+                "tribal_interest": "Medium",
+                "mobility_level": "Moderate (Light walking)",
+                "budget_range": "Mid-Range (₹1500-3000/day)",
+                "special_interests": [],
+            },
+            "itinerary": "",
+            "activity_suggestions": "",
+            "useful_links": [],
+            "weather_forecast": "",
+            "packing_list": "",
+            "food_culture_info": "",
+            "safety_constraints": "",
+            "chat_history": [],
+            "user_question": "",
+            "chat_response": "",
+        }
+        result = recommend_activities.recommend_activities(state)
+        return {"recommendations": result.get("activity_suggestions", "")}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class PackListRequest(BaseModel):
+    destination: str
+    season: str
+    activities: str
+    days: int
+
+
+@app.post("/api/pack_list")
+def api_pack_list(payload: PackListRequest):
+    try:
+        # Map request to the packing list agent's expected state
+        state = {
+            "preferences_text": (
+                f"Pack list for {payload.destination}, {payload.season}, {payload.days} days, activities: {payload.activities}"
+            ),
+            "preferences": {
+                "destination": payload.destination,
+                "month": payload.season,
+                "duration": payload.days,
+                "holiday_type": payload.activities,
+            },
+            "packing_list": "",
+        }
+        result = packing_list_generator.packing_list_generator(state)
+        return {"list": result.get("packing_list", "")}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class WeatherRequest(BaseModel):
+    location: str
+    date: str | None = None
+
+
+@app.post("/api/weather_forecast")
+def api_weather_forecast(payload: WeatherRequest):
+    try:
+        # Derive month name from date if provided, else default to October
+        month = "October"
+        try:
+            if payload.date:
+                # Expecting YYYY-MM-DD
+                parts = payload.date.split("-")
+                if len(parts) == 3:
+                    import calendar
+                    month_num = int(parts[1])
+                    month = calendar.month_name[month_num]
+        except Exception:
+            pass
+
+        state = {
+            "preferences_text": f"Weather forecast for {payload.location} on {payload.date or month}",
+            "preferences": {
+                "destination": payload.location,
+                "month": month,
+                "tourism_type": "Mixed Experience",
+                "mobility_level": "Moderate (Light walking)",
+            },
+            "weather_forecast": "",
+        }
+        result = weather_forecaster.weather_forecaster(state)
+        return {"forecast": result.get("weather_forecast", "")}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class ChatRequest(BaseModel):
+    prompt: str
+
+
+@app.post("/api/chat")
+def api_chat(payload: ChatRequest):
+    try:
+        state = {
+            "preferences_text": f"Chat prompt: {payload.prompt}",
+            "preferences": {},
+            "itinerary": "",
+            "activity_suggestions": "",
+            "useful_links": [],
+            "weather_forecast": "",
+            "packing_list": "",
+            "food_culture_info": "",
+            "safety_constraints": "",
+            "chat_history": [],
+            "user_question": payload.prompt,
+            "chat_response": "",
+        }
+        result = chat_agent.chat_node(state)
+        return {"response": result.get("chat_response", "")}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     uvicorn.run("api_server:app", host="0.0.0.0", port=int(os.getenv("PORT", 8000)), reload=True)
