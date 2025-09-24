@@ -97,7 +97,7 @@ There are two ways to run the app now:
 3. Start the API server:
    ```bash
    python -m uvicorn api_server:app --host 127.0.0.1 --port 8000 --reload
-   ```
+   ```uvicorn api_server:app --host 127.0.0.1 --port 8000 --reload
 4. Open the HTML frontend:
    - Option 1 (recommended): serve the static files via a simple server
      ```bash
