@@ -1604,21 +1604,27 @@ Essential things pack list generator
 © 2025 Jharkhand Tourism Portal
 </footer>
 <div id="chat-widget">
-<button id="chat-toggle" class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center" aria-label="Open chat">
-<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-<path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.1 0-2.15-.16-3.12-.45-.32-.1-.48-.15-.63-.17a2 2 0 0 0-.91.09l-2.33.78a1 1 0 0 1-1.27-1.27l.78-2.33c.11-.34.16-.51.17-.63a3 3 0 0 0-.17-.75C3.2 14.84 3 13.94 3 13c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-</svg>
-</button>
-<div id="chat-box" class="hidden fixed bottom-24 right-6 z-50 w-80 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden">
-<div class="bg-emerald-600 text-white px-4 py-2 flex items-center justify-between">
-<span class="font-semibold text-sm">AI Assistant</span>
-<button id="chat-close" class="text-white/80 hover:text-white" aria-label="Close chat">×</button>
-</div>
-<div class="p-3 text-sm text-gray-600">
-Hi! How can I help you explore Jharkhand today?
-</div>
-</div>
-</div>
+        <button id="chat-toggle" class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center" aria-label="Open chat">
+            <!-- Chat icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.1 0-2.15-.16-3.12-.45-.32-.1-.48-.15-.63-.17a2 2 0 0 0-.91.09l-2.33.78a1 1 0 0 1-1.27-1.27l.78-2.33c.11-.34.16-.51.17-.63a3 3 0 0 0-.17-.75C3.2 14.84 3 13.94 3 13c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+        </button>
+
+        <div id="chat-box" class="hidden fixed bottom-24 right-6 z-50 w-80 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden">
+            <div class="bg-emerald-600 text-white px-4 py-2 flex items-center justify-between">
+                <span class="font-semibold text-sm">AI Assistant</span>
+                <button id="chat-close" class="text-white/80 hover:text-white" aria-label="Close chat">×</button>
+            </div>
+            <div id="chat-messages" class="p-3 space-y-2 max-h-72 overflow-y-auto text-sm">
+                <div class="text-gray-600">Hi! How can I help you explore Jharkhand today?</div>
+            </div>
+            <div class="border-t p-2 bg-gray-50 flex gap-2 items-end">
+                <textarea id="chat-input" rows="2" class="flex-1 border rounded p-2 text-sm" placeholder="Type your question..."></textarea>
+                <button id="chat-send" class="bg-emerald-600 text-white px-3 py-2 rounded text-sm">Send</button>
+            </div>
+        </div>
+    </div>
 <script>
 function openTab(tabId, btn) {
 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -1813,6 +1819,54 @@ chatClose.addEventListener('click', () => {
 chatBox.classList.add('hidden');
 });
 }
+
+// Chat send wiring to backend /api/chat
+const chatSend = document.getElementById('chat-send');
+const chatInput = document.getElementById('chat-input');
+const chatMessages = document.getElementById('chat-messages');
+async function sendChatMessage() {
+    const text = (chatInput && chatInput.value.trim()) || '';
+    if (!text) return;
+    // append user message
+    if (chatMessages) {
+        const me = document.createElement('div');
+        me.className = 'text-right';
+        me.innerHTML = `<span class="inline-block bg-emerald-100 text-emerald-900 px-2 py-1 rounded">${text}</span>`;
+        chatMessages.appendChild(me);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    if (chatInput) chatInput.value = '';
+    // call backend
+    try {
+        const res = await fetch(`${apiBase}/api/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: text })
+        });
+        const data = res.ok ? await res.json() : { response: `Failed: API ${res.status}` };
+        const reply = data.response || data.chat_response || 'Sorry, I could not answer.';
+        if (chatMessages) {
+            const bot = document.createElement('div');
+            bot.className = 'text-left';
+            bot.innerHTML = `<span class="inline-block bg-gray-100 text-gray-900 px-2 py-1 rounded">${reply}</span>`;
+            chatMessages.appendChild(bot);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    } catch (err) {
+        if (chatMessages) {
+            const bot = document.createElement('div');
+            bot.className = 'text-left text-red-700';
+            bot.textContent = `Error: ${err.message || err}`;
+            chatMessages.appendChild(bot);
+        }
+    }
+}
+if (chatSend) chatSend.addEventListener('click', sendChatMessage);
+if (chatInput) chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
+});
+
+  
 // Culture & Food AI agents (frontend wiring)
 const cultureGenBtn = document.getElementById('cultureGenBtn');
 const culturePrompt = document.getElementById('culturePrompt');
